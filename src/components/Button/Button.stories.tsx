@@ -7,24 +7,23 @@ import StoryRow from '../storybook/StoryRow';
 import StoryItem from '../storybook/StoryItem';
 import StoryCol from '../storybook/StoryCol';
 const buttonTypes: any = [
-    'primary',
-    'secondary',
-    'link',
-    'outlinePrimary'
+  'primary',
+  'secondary',
+  'link',
+  'outlinePrimary'
 ];
 export default {
   title: 'Button',
   component: Button,
-    argTypes: {
-        buttonType: {
-            options: buttonTypes,
-            control: { type: 'radio' }
-        }
+  argTypes: {
+    buttonType: {
+      options: buttonTypes,
+      control: { type: 'radio' }
     }
+  }
 };
 
 const scales: Size[] = ['big', 'medium', 'small'];
-
 
 
 export const buttons = () => {

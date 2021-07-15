@@ -1,6 +1,6 @@
 import React, { FC, HTMLProps } from 'react';
 import { Size, Variant } from '../../types';
-import { sizeClass, variantClass } from "../../utils/helpers";
+import { sizeClass, variantClass } from '../../utils/helpers';
 import './Button.scss';
 export interface IButtonProps extends Omit<HTMLProps<HTMLButtonElement>, 'size'> {
   /** Внешний вид */
@@ -40,7 +40,7 @@ const Button: FC<IButtonProps> = ({
   return (
 
     <button
-          {...props}
+      {...props}
       type={type}
       className={`rf-button ${classesMap[buttonType]} ${sizeClass[size]} ${variantClass[variant]} ${widthClass} ${
         props.className || ''
