@@ -1,0 +1,81 @@
+{
+  "name": "juicyfront",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "commit": "git add . && node ./node_modules/cz-customizable/standalone.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Michaeladze/JuicyFront.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Michaeladze/JuicyFront/issues"
+  },
+  "homepage": "https://github.com/Michaeladze/JuicyFront#readme",
+  "devDependencies": {
+    "x----x----x": "===================================StoryBook======================================================",
+    "@storybook/addon-actions": "^6.3.4",
+    "@storybook/addon-essentials": "^6.3.4",
+    "@storybook/addon-links": "^6.3.4",
+    "@storybook/preset-scss": "^1.0.3",
+    "@storybook/preset-typescript": "^3.0.0",
+    "@storybook/react": "^6.3.4",
+    "x----x----x": "===================================Linters========================================================",
+    "eslint": "^7.30.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-unused-imports": "^1.1.2",
+    "@typescript-eslint/eslint-plugin": "^4.28.3",
+    "@typescript-eslint/parser": "^4.28.3",
+    "x----x----x": "=======================================Babel======================================================",
+
+    "x----x----x": "=======================================Commit=====================================================",
+    "cz-customizable": "^6.3.0",
+    "x----x----x": "==================================================================================================",
+    "@babel/core": "^7.14.6",
+    "babel-loader": "^8.2.2",
+    "@types/react": "^17.0.14",
+    "@types/react-dom": "^17.0.9",
+    "sass": "^1.35.2",
+    "sass-loader": "^10.1.0",
+    "typescript": "^4.3.5",
+    "rxjs": "^7.2.0",
+    "x----x----x": "*"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "eslintConfig": {
+    "extends": "./.eslintrc.json"
+  },
+  "stylelint": {
+    "extends": "./.stylelintrc.json"
+  },
+  "commitlint": {
+    "extends": [
+      "./commitlint.config.js"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "changelog.config.js"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged --config .lintstagedrc.json",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}
