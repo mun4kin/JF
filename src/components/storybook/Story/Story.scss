@@ -8,7 +8,6 @@
 .story__name {
   @include h2;
   margin-bottom: 8px;
-  color: var(--base-900);
 }
 
 .story__wrapper {
@@ -16,7 +15,6 @@
 }
 
 .story__description {
-  @include p1;
-  color: var(--base-700);
+  @include text-l;
   max-width: 600px;
 }

@@ -6,6 +6,7 @@
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
+    "test": "jest",
     "commit": "git add . && node ./node_modules/cz-customizable/standalone.js",
     "build": "rimraf dist && tsc && webpack --config webpack-lib.config.js ",
     "copy": "cp webpack.config.js dist/ && cp-cli .eslintrc.json dist/ && cp .stylelintrc.json dist/ && cp commitlint.config.js dist/ && cp changelog.config.js dist/ && cp .lintstagedrc.json dist/ && mkdir dist/styles/ && cp src/styles/mixins.scss dist/styles/ && cp src/styles/common.scss dist/styles/"
@@ -29,6 +30,13 @@
     "@storybook/preset-scss": "^1.0.3",
     "@storybook/preset-typescript": "^3.0.0",
     "@storybook/react": "^6.3.4",
+    "x----x----x": "====================================Tests=========================================================",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "ts-jest": "^27.0.3",
+    "@types/jest": "^26.0.24",
+    "jest": "^27.0.6",
+    "identity-obj-proxy": "^3.0.0",
     "x----x----x": "===================================Linters========================================================",
     "eslint": "^7.30.0",
     "eslint-config-react-app": "^6.0.0",
@@ -64,17 +72,18 @@
     "@types/react-router-dom": "^5.1.8",
     "x----x----x": "=======================================SaSS=======================================================",
     "sass": "^1.35.2",
-"css-vars-ponyfill": "^2.4.5",
+    "css-vars-ponyfill": "^2.4.5",
     "x----x----x": "=======================================Windows====================================================",
     "rimraf": "^3.0.2",
     "cp-cli": "^2.0.0",
     "x----x----x": "=======================================Other======================================================",
     "typescript": "^4.3.5",
     "rxjs": "^7.2.0",
-
     "x----x----x": "*"
   },
   "dependencies": {
+    "@openvtb/admiral-icons": "^2.0.1",
+    "@openvtb/fonts": "^1.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0"
@@ -102,6 +111,14 @@
     "hooks": {
       "pre-commit": "lint-staged --config .lintstagedrc.json",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.(ts|tsx)?$": "ts-jest"
+    },
+    "moduleNameMapper": {
+      "\\.(css|scss|svg)$": "identity-obj-proxy"
     }
   }
 }

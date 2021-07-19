@@ -1,16 +1,19 @@
 import React, { FC, HTMLProps } from 'react';
-import { Size, Variant } from '../../types';
-import { sizeClass, variantClass } from '../../utils/helpers';
+import { Size } from '../../types';
+import { sizeClass } from '../../utils/helpers';
 import './Button.scss';
+
+export type ButtonType = 'primary' | 'light' | 'secondary' | 'ghost' | 'danger' | 'success' | 'icon' | 'textPrimary' | 'textSecondary';
+
 export interface IButtonProps extends Omit<HTMLProps<HTMLButtonElement>, 'size'> {
   /** Внешний вид */
-  buttonType?: 'primary' | 'secondary' | 'link' | 'outlinePrimary' | 'outlineSecondary' | 'round' | 'text';
+  buttonType?: ButtonType;
   /** Тип */
   type?: 'button' | 'submit' | 'reset';
-  /** Варианты */
-  variant?: Variant;
   /** Размер */
   size?: Size;
+  /** Прелоудер */
+  preloader?: boolean;
   /** 100% ширина */
   fullWidth?: boolean;
 }
@@ -20,17 +23,20 @@ const Button: FC<IButtonProps> = ({
   size = 'medium',
   fullWidth = false,
   buttonType = 'primary',
-  variant = buttonType === 'text' ? 'base' : 'accent',
+  preloader,
   ...props
 }: IButtonProps) => {
-  const classesMap: { [key: string]: string } = {
+
+  const classesMap: Record<ButtonType, string> = {
     primary: 'rf-button--primary',
+    light: 'rf-button--light',
     secondary: 'rf-button--secondary',
-    link: 'rf-button--link',
-    outlinePrimary: 'rf-button--outline-primary',
-    outlineSecondary: 'rf-button--outline-secondary',
-    text: 'rf-button--text',
-    round: 'rf-button--round'
+    ghost: 'rf-button--ghost',
+    danger: 'rf-button--danger',
+    success: 'rf-button--success',
+    icon: 'rf-button--icon',
+    textPrimary: 'rf-button--textPrimary',
+    textSecondary: 'rf-button--textSecondary',
   };
 
   const widthClass = fullWidth ? 'rf-button__full-width' : '';
@@ -40,12 +46,10 @@ const Button: FC<IButtonProps> = ({
   return (
 
     <button
-      {...props}
-      type={type}
-      className={`rf-button ${classesMap[buttonType]} ${sizeClass[size]} ${variantClass[variant]} ${widthClass} ${
-        props.className || ''
-      }`}>
-      {props.children}
+      { ...props }
+      type={ type }
+      className={ `rf-button ${classesMap[buttonType]} ${sizeClass[size]} ${widthClass} ${props.className || ''}` }>
+      { preloader === undefined ? props.children : preloader ? <div>loading...</div> : props.children }
     </button>
   );
 };

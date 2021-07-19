@@ -20,39 +20,39 @@
 
 @mixin h {
   font-style: normal;
-  font-weight: 700;
-  letter-spacing: normal;
-  color: var(--base-1000);
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--text-primary);
 }
 
 @mixin h1 {
   @include h;
-  font-size: 36px;
-  line-height: 48px;
+  font-size: 42px;
+  line-height: 52px;
 }
 
 @mixin h2 {
+  @include h;
+  font-size: 36px;
+  line-height: 44px;
+}
+
+@mixin h3 {
   @include h;
   font-size: 32px;
   line-height: 40px;
 }
 
-@mixin h3 {
-  @include h;
-  font-size: 30px;
-  line-height: 40px;
-}
-
 @mixin h4 {
   @include h;
-  font-size: 26px;
-  line-height: 32px;
+  font-size: 28px;
+  line-height: 36px;
 }
 
 @mixin h5 {
   @include h;
   font-size: 22px;
-  line-height: 32px;
+  line-height: 28px;
 }
 
 @mixin h6 {
@@ -64,106 +64,82 @@
 // Подзаголовки
 
 @mixin s {
-  font-style: normal;
-  font-weight: 500;
-  letter-spacing: normal;
-  color: var(--base-1000);
-  line-height: 24px;
-}
-
-@mixin s0 {
-  @include s;
   font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: var(--text-primary);
 }
 
-@mixin s1 {
-  @include s;
-  font-size: 15px;
-}
+// Caption
 
-@mixin s2 {
-  @include s;
-  font-size: 13px;
+@mixin caption {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0;
+  color: var(--text-primary);
 }
 
 // Тексты
 
-@mixin t {
+@mixin text {
   font-style: normal;
   font-weight: 400;
-  letter-spacing: normal;
-  color: var(--base-1000);
+  letter-spacing: 0;
+  color: var(--text-primary);
 }
 
-@mixin p1 {
-  @include t;
-  font-size: 15px;
+@mixin text-l {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@mixin text-m {
+  font-size: 16px;
   line-height: 20px;
 }
 
-@mixin p2 {
-  @include t;
-  font-size: 13px;
-  line-height: 18px;
+@mixin text-s {
+  font-size: 14px;
+  line-height: 20px;
 }
 
-@mixin c1 {
-  @include t;
-  font-size: 12px;
+@mixin text-xs {
+  font-size: 14px;
   line-height: 16px;
 }
 
-@mixin c2 {
-  @include t;
+@mixin text-lb {
+  @include text-l;
   font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
 }
 
-@mixin label {
-  @include t;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 16px;
-  text-transform: uppercase;
+@mixin text-sb {
+  @include text-s;
+  font-weight: 500;
 }
 
 // Кнопки
 
 @mixin button {
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
+  letter-spacing: 0;
 }
 
-@mixin buttonGiant {
+@mixin button1 {
   @include button;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 24px;
 }
 
-@mixin buttonLarge {
-  @include button;
-  font-size: 16px;
-  line-height: 20px;
-}
-
-@mixin buttonMedium {
+@mixin button2 {
   @include button;
   font-size: 14px;
-  line-height: 16px;
-}
-
-@mixin buttonSmall {
-  @include button;
-  font-size: 12px;
-  line-height: 16px;
-}
-
-@mixin buttonTiny {
-  @include button;
-  font-size: 10px;
-  line-height: 12px;
-  letter-spacing: 1px;
+  line-height: 20px;
 }
 
 // Прочее

@@ -6,8 +6,7 @@
 }
 
 .story__description {
-  @include p1;
-  color: var(--base-700);
+  @include text-l;
   max-width: 600px;
 }
 
@@ -16,6 +15,6 @@
   padding-bottom: 32px;
   margin-top: 16px;
   margin-bottom: 16px;
-  border-top: 1px solid var(--base-200);
-  border-bottom: 1px solid var(--base-200);
+  border-top: 1px solid var(--background-secondary);
+  border-bottom: 1px solid var(--background-secondary);
 }
