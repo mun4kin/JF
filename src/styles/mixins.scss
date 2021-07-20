@@ -92,33 +92,33 @@
   color: var(--text-primary);
 }
 
-@mixin text-l {
+@mixin text-l-16 {
   font-size: 16px;
   line-height: 24px;
 }
 
-@mixin text-m {
+@mixin text-m-16 {
   font-size: 16px;
   line-height: 20px;
 }
 
-@mixin text-s {
+@mixin text-s-14 {
   font-size: 14px;
   line-height: 20px;
 }
 
-@mixin text-xs {
+@mixin text-xs-14 {
   font-size: 14px;
   line-height: 16px;
 }
 
-@mixin text-lb {
-  @include text-l;
+@mixin text-l-16-bold {
+  @include text-l-16;
   font-weight: 500;
 }
 
-@mixin text-sb {
-  @include text-s;
+@mixin text-s-14-bold {
+  @include text-s-14;
   font-weight: 500;
 }
 
@@ -130,13 +130,13 @@
   letter-spacing: 0;
 }
 
-@mixin button1 {
+@mixin button-m-16 {
   @include button;
   font-size: 16px;
   line-height: 24px;
 }
 
-@mixin button2 {
+@mixin button-s-14 {
   @include button;
   font-size: 14px;
   line-height: 20px;

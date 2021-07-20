@@ -98,7 +98,7 @@ export interface IBreadcrumb {
 export type Variant = 'base' | 'accent' | 'info' | 'complement' | 'danger' | 'warning' | 'success';
 
 /** Размер */
-export type Size = 'small' | 'medium' | 'big';
+export type Size = 's' | 'm' | 'l' | 'xl';
 
 /** Формат даты для дейтпикера */
 export type DateFormat = 'dd.mm.yy' | 'dd.mm.yyyy';

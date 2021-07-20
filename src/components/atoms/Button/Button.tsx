@@ -1,9 +1,18 @@
-import React, { FC, HTMLProps } from 'react';
-import { Size } from '../../types';
-import { sizeClass } from '../../utils/helpers';
+import React, {
+  FC, HTMLProps, useEffect, useState
+} from 'react';
+import { Size } from '../../../types';
+import { sizeClass } from '../../../utils/helpers';
 import './Button.scss';
 
-export type ButtonType = 'primary' | 'light' | 'secondary' | 'ghost' | 'danger' | 'success' | 'icon' | 'textPrimary' | 'textSecondary';
+export type ButtonType =
+  'primary'
+  | 'light'
+  | 'secondary'
+  | 'ghost'
+  | 'danger'
+  | 'icon'
+  | 'text';
 
 export interface IButtonProps extends Omit<HTMLProps<HTMLButtonElement>, 'size'> {
   /** Внешний вид */
@@ -20,7 +29,7 @@ export interface IButtonProps extends Omit<HTMLProps<HTMLButtonElement>, 'size'>
 
 const Button: FC<IButtonProps> = ({
   type = 'button',
-  size = 'medium',
+  size = 'm',
   fullWidth = false,
   buttonType = 'primary',
   preloader,
@@ -33,13 +42,33 @@ const Button: FC<IButtonProps> = ({
     secondary: 'rf-button--secondary',
     ghost: 'rf-button--ghost',
     danger: 'rf-button--danger',
-    success: 'rf-button--success',
     icon: 'rf-button--icon',
-    textPrimary: 'rf-button--textPrimary',
-    textSecondary: 'rf-button--textSecondary',
+    text: 'rf-button--text',
   };
 
   const widthClass = fullWidth ? 'rf-button__full-width' : '';
+
+  // -------------------------------------------------------------------------------------------------------------------
+
+  const [pressed, setPressed] = useState<boolean>(false);
+
+  /** Состояние pressed */
+  const onMouseDown = () => {
+    setPressed(true);
+  };
+
+  useEffect(() => {
+    const onMouseUp = () => {
+      setPressed(false);
+    };
+
+    window.addEventListener('mouseup', onMouseUp);
+    return () => {
+      window.removeEventListener('mouseup', onMouseUp);
+    };
+  }, []);
+
+  const pressedClass = pressed ? 'rf-button--pressed' : '';
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -48,7 +77,8 @@ const Button: FC<IButtonProps> = ({
     <button
       { ...props }
       type={ type }
-      className={ `rf-button ${classesMap[buttonType]} ${sizeClass[size]} ${widthClass} ${props.className || ''}` }>
+      onMouseDown={ onMouseDown }
+      className={ `rf-button ${classesMap[buttonType]} ${sizeClass[size]} ${widthClass} ${pressedClass} ${props.className || ''}` }>
       { preloader === undefined ? props.children : preloader ? <div>loading...</div> : props.children }
     </button>
   );

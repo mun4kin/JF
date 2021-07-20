@@ -1,9 +1,7 @@
 import { MonoTypeOperatorFunction } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import {
-  IFormattedDate, Size, Variant
-} from '../types';
+import { IFormattedDate, Size } from '../types';
 
 const months = [
   'январь',
@@ -154,20 +152,11 @@ export const variantClass: Record<string, string> = {
   warning: 'rf--warning'
 };
 
-export const variants: Variant[] = [
-  'base',
-  'accent',
-  'info',
-  'complement',
-  'danger',
-  'warning',
-  'success'
-];
-
 export const sizeClass: Record<Size, string> = {
-  'small': 'rf--small',
-  'medium': 'rf--medium',
-  'big': 'rf--big'
+  's': 'rf--s',
+  'm': 'rf--m',
+  'l': 'rf--l',
+  'xl': 'rf--xl'
 };
 
 function oDataServ(data:any) {

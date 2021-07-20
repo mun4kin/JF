@@ -1,0 +1,230 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.rf-button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  width: auto;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.15s ease-in all;
+  white-space: nowrap;
+  @include button-m-16;
+  user-select: none;
+}
+
+.rf-button.rf--s {
+  padding: 6px 16px;
+  height: 32px;
+  @include button-s-14;
+}
+
+.rf-button.rf--m {
+  padding: 8px 20px;
+  height: 40px;
+  @include button-m-16;
+}
+
+.rf-button.rf--l {
+  padding: 12px 24px;
+  height: 48px;
+  @include button-m-16;
+}
+
+.rf-button.rf--xl {
+  padding: 16px 32px;
+  height: 56px;
+  @include button-m-16;
+}
+
+.rf-button.rf-button__full-width {
+  width: 100%;
+}
+
+.rf-button:disabled {
+  pointer-events: none;
+}
+
+// Primary
+
+.rf-button--primary {
+  background-color: var(--basic-primary);
+  color: var(--text-static-white);
+}
+
+.rf-button--primary:hover {
+  background-color: var(--basic-hover);
+}
+
+.rf-button--primary.rf-button--pressed {
+  background-color: var(--basic-press);
+}
+
+.rf-button--primary:disabled {
+  background-color: var(--basic-disable);
+}
+
+// Light
+
+.rf-button--light {
+  background-color: var(--special-softBlue);
+  color: var(--basic-primary);
+}
+
+.rf-button--light:hover {
+  background-color: var(--basic-primary-light);
+  color: var(--text-static-white);
+}
+
+.rf-button--light.rf-button--pressed {
+  background-color: var(--basic-press);
+  color: var(--text-static-white);
+}
+
+.rf-button--light:disabled {
+  background-color: var(--basic-disable);
+  color: var(--text-static-white);
+}
+
+// Secondary
+
+.rf-button--secondary {
+  background-color: var(--background-primary);
+  border: 2px solid var(--basic-primary);;
+  color: var(--basic-primary);
+}
+
+.rf-button--secondary:hover {
+  background-color: var(--background-secondary);
+  border-color: var(--basic-hover);
+  color: var(--basic-hover);
+}
+
+.rf-button--secondary.rf-button--pressed {
+  background-color: var(--background-secondary);
+  border-color: var(--basic-press);
+  color: var(--basic-press);
+}
+
+.rf-button--secondary:disabled {
+  background-color: var(--background-primary);
+  color: var(--basic-tertiary);
+  border-color: var(--basic-disable);
+}
+
+// Ghost
+
+.rf-button--ghost {
+  background-color: transparent;
+  color: var(--basic-primary);
+}
+
+.rf-button--ghost:hover {
+  background-color: var(--background-secondary);
+  color: var(--basic-hover);
+}
+
+.rf-button--ghost.rf-button--pressed {
+  background-color: var(--background-secondary);
+  color: var(--basic-press);
+}
+
+.rf-button--ghost:disabled {
+  background-color: transparent;
+  color: var(--text-tertiary);
+}
+
+// Icon
+
+.rf-button--icon {
+
+  &.rf--s {
+    padding: 0;
+    width: 32px;
+  }
+
+  &.rf--m {
+    padding: 0;
+    width: 40px;
+  }
+
+  &.rf--l {
+    padding: 0;
+    width: 48px;
+  }
+
+  &.rf--xl {
+    padding: 0;
+    width: 56px;
+  }
+
+  background-color: transparent;
+  color: var(--basic-primary);
+}
+
+.rf-button--icon:hover {
+  background-color: var(--background-secondary);
+  color: var(--basic-hover);
+}
+
+.rf-button--icon.rf-button--pressed {
+  background-color: var(--background-secondary);
+  color: var(--basic-press);
+}
+
+.rf-button--icon:disabled {
+  background-color: transparent;
+  color: var(--text-tertiary);
+}
+
+// Text
+
+.rf-button--text {
+  color: var(--basic-primary);
+
+  &.rf--s,
+  &.rf--m,
+  &.rf--l,
+  &.rf--xl {
+    width: auto;
+    height: auto;
+    padding: 0;
+  }
+}
+
+.rf-button--text:hover {
+  color: var(--basic-hover);
+}
+
+.rf-button--text.rf-button--pressed {
+  color: var(--basic-press);
+}
+
+.rf-button--text:disabled {
+  color: var(--text-tertiary);
+}
+
+// Danger
+
+.rf-button--danger {
+  background-color: var(--background-danger);
+  color: var(--status-danger);
+}
+
+.rf-button--danger:hover {
+  color: var(--status-danger-hover);
+}
+
+.rf-button--danger.rf-button--pressed {
+  color: var(--status-danger-press);
+}
+
+.rf-button--danger:disabled {
+  background-color: var(--basic-disable);
+  color: var(--text-static-white);
+}
