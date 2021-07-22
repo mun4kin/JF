@@ -3,6 +3,7 @@ import Tabs, { ITabsProps } from './Tabs';
 import { ITab } from '../../../types';
 import { BrowserRouter } from 'react-router-dom';
 import Story from '../../storybook/Story';
+import Badge from '../Badge';
 
 export default {
   title: 'Tabs',
@@ -48,7 +49,7 @@ export const tabs = (args: ITabsProps) => {
 
   const list: ITab[] = [
     {
-      label: 'Заявки',
+      label: <Badge badgeContent={10} placeNear>Заявки</Badge>,
       tab: tab1
     },
     {
