@@ -110,7 +110,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "echo 1"
+      "pre-commit": "jest"
     }
   },
   "jest": {
