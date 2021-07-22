@@ -119,6 +119,8 @@
     },
     "moduleNameMapper": {
       "\\.(css|scss|svg)$": "identity-obj-proxy"
-    }
+    },
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": ["./setupTests.ts"]
   }
 }

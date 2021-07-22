@@ -1,0 +1,79 @@
+@import "../../../styles/mixins";
+
+$lineWidth: 2px;
+
+.rf-tabs__navigation {
+  position: relative;
+  padding-bottom: 12px;
+  border-bottom: $lineWidth solid var(--background-tertiary);
+}
+
+.rf-tabs__navigation-list {
+  display: flex;
+  align-items: center;
+}
+
+.rf-tabs__navigation-line {
+  position: absolute;
+  bottom: -$lineWidth;
+  left: 0;
+  height: $lineWidth;
+  background-color: var(--basic-primary);
+
+  transition: 0.3s;
+}
+
+.rf-tabs__link {
+  //margin-right: 32px;
+}
+
+.rf-tabs__link:last-of-type {
+  margin-right: 0;
+}
+
+.rf-tabs__button {
+  @include text-l-16;
+  height: auto;
+  color: var(--text-secondary);
+  background-color: transparent;
+  outline: none;
+  border: 0;
+  padding: 0 16px;
+}
+
+.rf-tabs__button--active {
+  color: var(--text-primary);
+}
+
+.rf-tabs__button:disabled {
+  color: var(--text-tertiary);
+  pointer-events: none;
+}
+
+.rf-tabs__content {
+  margin-top: 24px;
+}
+
+.rf-tabs--buttons {
+
+  .rf-tabs__navigation {
+    border-bottom: none;
+  }
+
+  .rf-tabs__button {
+    @include h5;
+    color: var(--text-secondary);
+  }
+
+  .rf-tabs__button--active {
+    color: var(--text-primary);
+  }
+
+  .rf-tabs__navigation-line {
+    height: 4px;
+  }
+
+  .rf-tabs__content {
+    margin-top: 24px;
+  }
+}

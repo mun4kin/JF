@@ -36,7 +36,7 @@ export default {
   }
 };
 
-export const buttons = (args: IButtonProps) => {
+export const button = (args: IButtonProps) => {
   return (
     <Story name='Button (Кнопка)'>
       <Button buttonType={args.buttonType} size={args.size} disabled={args.disabled}>
