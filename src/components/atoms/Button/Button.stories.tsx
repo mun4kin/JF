@@ -39,7 +39,7 @@ export default {
 export const button = (args: IButtonProps) => {
   return (
     <Story name='Button (Кнопка)'>
-      <Button buttonType={args.buttonType} size={args.size} disabled={args.disabled}>
+      <Button {...args}>
         { args.buttonType === 'icon' ? 'i' : 'Button'}
       </Button>
     </Story>

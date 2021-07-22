@@ -71,7 +71,7 @@ export const tabs = (args: ITabsProps) => {
       name='Tabs (Вкладки)'
       description='Переключение между вкладками. Внутри вкладки может быть как компонент, так и роутер.'>
       <BrowserRouter>
-        <Tabs list={list} type={args.type} />
+        <Tabs {...args} list={list}/>
       </BrowserRouter>
     </Story>
   );

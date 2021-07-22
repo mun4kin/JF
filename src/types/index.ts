@@ -95,7 +95,19 @@ export interface IBreadcrumb {
 }
 
 /** Тип цветового оформления */
-export type Variant = 'base' | 'accent' | 'info' | 'complement' | 'danger' | 'warning' | 'success';
+export type Variant = 'default' | 'blue' | 'lightBlue' | 'turquoise' | 'green' | 'yellow' | 'red' | 'magenta' | 'purple' | 'violet';
+export const variants: Variant[] = [
+  'default',
+  'blue',
+  'lightBlue',
+  'turquoise',
+  'green',
+  'yellow',
+  'red',
+  'magenta',
+  'purple',
+  'violet'
+];
 
 /** Размер */
 export type Size = 's' | 'm' | 'l' | 'xl';
