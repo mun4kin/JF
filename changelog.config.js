@@ -13,14 +13,11 @@ module.exports = {
     'body',
     'breaking',
     'footer',
-
   ],
   messages: {
     type: ' \n____________Коммит в ' + branch.toString().toLocaleUpperCase() + '____________\n',
-    subject: 'Введите описание:\n',
+    subject: 'Описание:\n',
     confirmCommit: 'Вы уверены?',
-
-
   },
   types: [
     {
