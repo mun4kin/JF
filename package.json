@@ -110,7 +110,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "jest"
+      "pre-commit": "lint-staged --config .lintstagedrc.json && jest",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "jest": {
