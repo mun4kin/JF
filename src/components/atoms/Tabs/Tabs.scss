@@ -61,8 +61,13 @@ $lineWidth: 2px;
   }
 
   .rf-tabs__button {
-    @include h5;
+    @include button-m-16;
     color: var(--text-secondary);
+  }
+
+  .rf-tabs__button:disabled {
+    color: var(--text-tertiary);
+    pointer-events: none;
   }
 
   .rf-tabs__button--active {

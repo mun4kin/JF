@@ -1,15 +1,24 @@
 import React from 'react';
-import Tabs from './Tabs';
+import Tabs, { ITabsProps } from './Tabs';
 import { ITab } from '../../../types';
 import { BrowserRouter } from 'react-router-dom';
 import Story from '../../storybook/Story';
 
 export default {
   title: 'Tabs',
-  component: Tabs
+  component: Tabs,
+  argTypes: {
+    type: {
+      options: ['underline', 'buttons'],
+      control: { type: 'select' },
+      defaultValue: 'underline'
+    },
+    list: { control: null },
+    children: { control: null }
+  }
 };
 
-export const tabs = () => {
+export const tabs = (args: ITabsProps) => {
   const tab1 = (
     <div style={{ padding: '20px' }}>
       <ul>
@@ -62,7 +71,7 @@ export const tabs = () => {
       name='Tabs (Вкладки)'
       description='Переключение между вкладками. Внутри вкладки может быть как компонент, так и роутер.'>
       <BrowserRouter>
-        <Tabs list={list} />
+        <Tabs list={list} type={args.type} />
       </BrowserRouter>
     </Story>
   );
