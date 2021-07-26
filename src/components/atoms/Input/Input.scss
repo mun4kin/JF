@@ -1,0 +1,106 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+
+.rf-input {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+}
+
+.rf-input__field {
+  width: 100%;
+  padding: 0 16px;
+  height: 40px;
+  @include text-l-16;
+  transition: 0.15s ease-in;
+  border: 1px solid var(--basic-tertiary);
+  border-radius: 8px;
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+
+  &.invalid {
+    border-color: var(--status-danger);
+  }
+
+  &.disabled {
+    @include disabled();
+
+    &::placeholder {
+      color: var(--text-secondary);
+    }
+  }
+
+  &.rf-input__field--file {
+    cursor: pointer;
+  }
+}
+
+.rf-input.invalid .rf-input__field {
+  border-color: var(--status-danger);
+}
+
+.rf-input__field:hover {
+  border-color: var(--basic-hover);
+}
+
+.rf-input__field:focus {
+  border-color: var(--basic-hover);
+}
+
+.rf-input__field:disabled {
+  @include disabled();
+  background-color: var(--background-tertiary);
+  border-color: var(--background-tertiary);
+}
+
+.rf-input__field::placeholder {
+  @include text-l-16;
+  color: var(--text-secondary);
+}
+
+.rf-input__field:disabled::placeholder {
+  color: var(--text-secondary);
+}
+
+/** [START] file-input */
+
+.rf-input__file-hidden {
+  @include hidden;
+}
+
+.rf-input__file-placeholder {
+  line-height: 20px;
+  @include text-l-16;
+  color: var(--text-secondary);
+}
+
+.rf-input__file-value {
+  @include text-l-16;
+}
+
+input[type='file']:disabled + .rf-input__field.rf-input__field--file {
+  @include disabled();
+}
+
+/** [END] file-input */
+
+.rf-input__action {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  color: var(--text-tertiary);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rf-input__action:hover,
+.rf-input__action:focus {
+  color: var(--basic-hover);
+}
