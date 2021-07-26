@@ -55,7 +55,7 @@ export const select = () => {
       <StoryItem>
         <Select placeholder='Выберите значение'
           options={ filteredOptions }
-          tagsPosition='inside'
+          tagsPosition='outside'
           onChange={onChange}
           onSearch={onSearch}
           multiselect

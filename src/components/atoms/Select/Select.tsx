@@ -1,5 +1,5 @@
 import React, {
-  FC, useCallback, useEffect, useLayoutEffect, useRef, useState
+  FC, useCallback, useEffect, useRef, useState
 } from 'react';
 import './Select.scss';
 
@@ -192,14 +192,16 @@ const Select: FC<ISelectProps> = ({
 
   // -------------------------------------------------------------------------------------------------------------------
 
+  const noop = () => {};
+
   const tagsRef = useRef<HTMLDivElement>(null);
-  const tagsClass = tagsPosition === 'inside' ? 'rf-select__tags--inside' : 'rf-select__tags--outside';
+  // const tagsClass = tagsPosition === 'inside' ? 'rf-select__tags--inside' : 'rf-select__tags--outside';
 
   const tagsJSX = multiselect && values.length > 0 && (
-    <div className={`rf-select__tags ${tagsClass}`} ref={ tagsRef } onClick={ () => !disabled && toggleDropdown(true) }>
+    <div className='rf-select__tags' ref={ tagsRef } onClick={ () => !disabled && toggleDropdown(true) }>
       { values.map((t: IOption) => (
         <div className='rf-select__tag' key={ t.value }>
-          <Tag onRemove={ () => onValueChange(t) } disabled={ disabled }>
+          <Tag onRemove={ () => onValueChange(t) } onClick={noop} disabled={ disabled }>
             { t.label }
           </Tag>
         </div>
@@ -207,25 +209,25 @@ const Select: FC<ISelectProps> = ({
     </div>
   );
 
-  const [paddingLeft, setPaddingLeft] = useState<number>(20);
-
-  useLayoutEffect(() => {
-    if (!multiselect || tagsPosition === 'outside') {
-      return;
-    }
-
-    const LEFT = 20;
-
-    if (!tagsRef.current) {
-      setPaddingLeft(LEFT);
-      return;
-    }
-
-    const { width } = tagsRef.current.getBoundingClientRect();
-
-    setPaddingLeft(width + 28);
-
-  }, [values, multiselect]);
+  // const [paddingLeft, setPaddingLeft] = useState<number>(20);
+  //
+  // useLayoutEffect(() => {
+  //   if (!multiselect || tagsPosition === 'outside') {
+  //     return;
+  //   }
+  //
+  //   const LEFT = 20;
+  //
+  //   if (!tagsRef.current) {
+  //     setPaddingLeft(LEFT);
+  //     return;
+  //   }
+  //
+  //   const { width } = tagsRef.current.getBoundingClientRect();
+  //
+  //   setPaddingLeft(width + 28);
+  //
+  // }, [values, multiselect]);
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -251,16 +253,15 @@ const Select: FC<ISelectProps> = ({
   return (
     <div className='rf-select' ref={ componentNode }>
       <div className={`rf-select__wrapper ${openClass}`}>
+        {/* { tagsPosition === 'inside' && tagsJSX }*/}
         <input
           className='rf-select__input'
-          style={ { paddingLeft: `${paddingLeft}px` } }
           onClick={ openDropdown }
           onChange={ onSelectSearch }
           value={ inputValue }
           disabled={ disabled }
           readOnly={ readOnly }
           placeholder={ disabled || (multiselect && tagsPosition === 'inside' && values.length === maxOptions) ? '' : placeholder }/>
-        { tagsPosition === 'inside' && tagsJSX }
         { closeButton }
         { chevronButton }
       </div>
@@ -275,7 +276,7 @@ const Select: FC<ISelectProps> = ({
           </div>
         )
       }
-      { tagsPosition === 'outside' && tagsJSX }
+      { tagsJSX }
     </div>
   );
 };
