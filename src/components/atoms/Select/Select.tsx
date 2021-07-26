@@ -2,9 +2,8 @@ import React, {
   FC, useCallback, useEffect, useLayoutEffect, useRef, useState
 } from 'react';
 import './Select.scss';
-import Input from '../Input';
-// import { ReactComponent as Close } from '../../../icons/close.svg';
-// import { ReactComponent as Chevron } from '../../../icons/chevron-down.svg';
+
+
 import Tag from '../Tag';
 import { IOption } from '../../../types';
 import useClickOutside from '../../../hooks/useClickOutside';
@@ -246,10 +245,14 @@ const Select: FC<ISelectProps> = ({
   );
 
   // -------------------------------------------------------------------------------------------------------------------
+
+  const openClass = showDropdown ? 'rf-select__wrapper--open' : '';
+
   return (
     <div className='rf-select' ref={ componentNode }>
-      <div className='rf-select__wrapper'>
-        <Input
+      <div className={`rf-select__wrapper ${openClass}`}>
+        <input
+          className='rf-select__input'
           style={ { paddingLeft: `${paddingLeft}px` } }
           onClick={ openDropdown }
           onChange={ onSelectSearch }

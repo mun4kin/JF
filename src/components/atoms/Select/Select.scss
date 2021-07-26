@@ -8,6 +8,26 @@
 .rf-select__wrapper {
   width: 100%;
   position: relative;
+  border: 1px solid var(--basic-tertiary);
+  border-radius: 8px;
+  background-color: var(--background-primary);
+  overflow: hidden;
+}
+
+.rf-select__wrapper:hover {
+  border-color: var(--basic-hover);
+}
+
+.rf-select__wrapper--open {
+  border-color: var(--basic-hover);
+}
+
+.rf-select__input {
+  border: 0;
+  outline: 0;
+  width: 100%;
+  height: 40px;
+  @include text-l-16;
 }
 
 .rf-select__list {
