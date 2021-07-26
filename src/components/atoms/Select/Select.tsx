@@ -1,0 +1,279 @@
+import React, {
+  FC, useCallback, useEffect, useLayoutEffect, useRef, useState
+} from 'react';
+import './Select.scss';
+import Input from '../Input';
+// import { ReactComponent as Close } from '../../../icons/close.svg';
+// import { ReactComponent as Chevron } from '../../../icons/chevron-down.svg';
+import Tag from '../Tag';
+import { IOption } from '../../../types';
+import useClickOutside from '../../../hooks/useClickOutside';
+
+export interface ISelectProps {
+  /** Варианты выбора */
+  options: IOption[];
+  /** Изменение значения */
+  onChange: (option: IOption[]) => void;
+  /** Поиск внутри селекта */
+  onSearch?: (query: string) => void;
+  /** Значение по умолчанию */
+  defaultValues?: IOption[];
+  /** Множественный выбор */
+  multiselect?: boolean;
+  /** Плейсхолдер */
+  placeholder?: string;
+  /** Запрещает вводить текст */
+  readOnly?: boolean;
+  disabled?: boolean;
+  /** Максимальное количество выбранных вариантов при multiselect */
+  maxOptions?: number;
+  /** Прелоудер при ленивой загрузке */
+  preloader?: boolean;
+  /** Положение тегов - внутри инпута или под селектом */
+  tagsPosition?: 'inside' | 'outside';
+  /** Очистить селект при выборе значения */
+  clearOnSelect?: boolean;
+  /** Любое изменяемое значение (зависимость). При изменении этого параметра очищается селект */
+  clearHook?: any;
+}
+
+const Select: FC<ISelectProps> = ({
+  options,
+  onChange,
+  onSearch,
+  defaultValues = [],
+  multiselect = false,
+  placeholder = '',
+  disabled = false,
+  readOnly = false,
+  maxOptions = options.length,
+  preloader = false,
+  tagsPosition = 'inside',
+  clearOnSelect = false,
+  clearHook
+}: ISelectProps) => {
+
+  const [showDropdown, toggleDropdown] = useState(false);
+  const componentNode = useRef<HTMLDivElement>(null);
+
+  // -------------------------------------------------------------------------------------------------------------------
+
+  /** Клик в сторону */
+  const handleClickOutside = useCallback(() => {
+    if (showDropdown) {
+      toggleDropdown(false);
+    }
+  }, [showDropdown, multiselect]);
+
+  useClickOutside(componentNode, handleClickOutside);
+
+  // -------------------------------------------------------------------------------------------------------------------
+
+  const [inputValue, setInputValue] = useState<string>(() =>
+    defaultValues.length > 0 && !multiselect ? defaultValues[0].label : '');
+  const openDropdown = () => {
+    toggleDropdown(true);
+  };
+
+  /** Очистка селекта */
+  const onClear = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setInputValue('');
+    toggleDropdown(true);
+
+    if (!multiselect) {
+      setValues([]);
+    }
+
+    onSearch && onSearch('');
+  };
+
+  /** Очистка при изменении извне через clearHook */
+  useEffect(() => {
+    if (!multiselect) {
+      setValues([]);
+    }
+
+    if (clearHook === undefined) {
+      return;
+    }
+
+    setInputValue('');
+    onSearch && onSearch('');
+  }, [clearHook]);
+
+  // -------------------------------------------------------------------------------------------------------------------
+
+  /** Поиск в селекте */
+  const onSelectSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
+
+  useEffect(() => {
+    if (onSearch) {
+      onSearch(inputValue);
+      return;
+    }
+
+    const filtered = options.filter((o: IOption) => o.label.toLowerCase().includes(inputValue.toLowerCase()));
+    setFilteredOptions(filtered);
+  }, [inputValue]);
+
+  // -------------------------------------------------------------------------------------------------------------------
+
+  const [values, setValues] = useState<IOption[]>(() => defaultValues);
+  const [selectedMap, setSelectedMap] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    if (!values) {
+      return;
+    }
+
+    const map: Record<string, boolean> = values.reduce((acc: Record<string, boolean>, o: IOption) => {
+      acc[o.value] = true;
+      return acc;
+    }, {});
+
+    onChange(values);
+    setSelectedMap(map);
+
+  }, [values]);
+
+  const onValueChange = (option: IOption) => {
+    if (multiselect) {
+      const index = values.findIndex((o: IOption) => option.value === o.value);
+
+      if (index >= 0) {
+        setValues((values: IOption[]) => values.filter((_: IOption, i: number) => i !== index));
+      } else {
+        if (values.length < maxOptions) {
+          setValues((values: IOption[]) => [...values, option]);
+        }
+      }
+    } else {
+      setValues([option]);
+    }
+  };
+
+  // -------------------------------------------------------------------------------------------------------------------
+
+  const [filteredOptions, setFilteredOptions] = useState<IOption[]>([]);
+
+  useEffect(() => {
+    setFilteredOptions(options);
+  }, [options]);
+
+  // -------------------------------------------------------------------------------------------------------------------
+
+  const listJSX = filteredOptions.map((o: IOption) => {
+    const disabled = o.disabled || false;
+    const active = selectedMap[o.value] || false;
+
+    const handleChange = (e: React.MouseEvent | React.ChangeEvent) => {
+      e.stopPropagation();
+      onValueChange(o);
+
+      if (!multiselect) {
+        setInputValue(clearOnSelect ? '' : o.label);
+        toggleDropdown(false);
+      } else {
+        setInputValue('');
+      }
+    };
+
+    const disabledClass = disabled ? 'rf-select__list-element--disabled' : '';
+    const activeClass = active ? 'rf-select__list-element--active' : '';
+
+    return (
+      <div className={`rf-select__list-element ${disabledClass} ${activeClass}`} key={ o.value } onClick={ handleChange }>
+        { o.label }
+      </div>
+    );
+  });
+
+  // -------------------------------------------------------------------------------------------------------------------
+
+  const tagsRef = useRef<HTMLDivElement>(null);
+  const tagsClass = tagsPosition === 'inside' ? 'rf-select__tags--inside' : 'rf-select__tags--outside';
+
+  const tagsJSX = multiselect && values.length > 0 && (
+    <div className={`rf-select__tags ${tagsClass}`} ref={ tagsRef } onClick={ () => !disabled && toggleDropdown(true) }>
+      { values.map((t: IOption) => (
+        <div className='rf-select__tag' key={ t.value }>
+          <Tag onRemove={ () => onValueChange(t) } disabled={ disabled }>
+            { t.label }
+          </Tag>
+        </div>
+      )) }
+    </div>
+  );
+
+  const [paddingLeft, setPaddingLeft] = useState<number>(20);
+
+  useLayoutEffect(() => {
+    if (!multiselect || tagsPosition === 'outside') {
+      return;
+    }
+
+    const LEFT = 20;
+
+    if (!tagsRef.current) {
+      setPaddingLeft(LEFT);
+      return;
+    }
+
+    const { width } = tagsRef.current.getBoundingClientRect();
+
+    setPaddingLeft(width + 28);
+
+  }, [values, multiselect]);
+
+  // -------------------------------------------------------------------------------------------------------------------
+
+  const closeButton = !disabled && !readOnly && inputValue.length > 0 && (
+    <button className='rf-select__button' onClick={ onClear }>
+      X
+      {/* <Close/>*/}
+    </button>
+  );
+
+  const chevronButton = !disabled && (readOnly || inputValue.length === 0) && (
+    <button className={`rf-select__button ${showDropdown ? 'rf-select__button--rotate' : ''}`}
+      onClick={ () => toggleDropdown((state: boolean) => !state) }>
+      V
+      {/* <Chevron/>*/}
+    </button>
+  );
+
+  // -------------------------------------------------------------------------------------------------------------------
+  return (
+    <div className='rf-select' ref={ componentNode }>
+      <div className='rf-select__wrapper'>
+        <Input
+          style={ { paddingLeft: `${paddingLeft}px` } }
+          onClick={ openDropdown }
+          onChange={ onSelectSearch }
+          value={ inputValue }
+          disabled={ disabled }
+          readOnly={ readOnly }
+          placeholder={ disabled || (multiselect && tagsPosition === 'inside' && values.length === maxOptions) ? '' : placeholder }/>
+        { tagsPosition === 'inside' && tagsJSX }
+        { closeButton }
+        { chevronButton }
+      </div>
+      {
+        showDropdown && filteredOptions.length > 0 && (
+          <div className='rf-select__list'>
+            { preloader ? (
+              <div className='rf-select__list-preloader'>
+                Loading...
+              </div>
+            ) : listJSX }
+          </div>
+        )
+      }
+      { tagsPosition === 'outside' && tagsJSX }
+    </div>
+  );
+};
+export default Select;

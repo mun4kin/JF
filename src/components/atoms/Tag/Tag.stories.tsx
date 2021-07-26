@@ -21,7 +21,7 @@ export const tag = (args: ITagProps) => {
     <Story
       name='Tag'>
       <StoryItem>
-        <Tag { ...args }> Вариант </Tag>
+        <Tag variant={args.variant} disabled={args.disabled}> Вариант </Tag>
       </StoryItem>
     </Story>
   );

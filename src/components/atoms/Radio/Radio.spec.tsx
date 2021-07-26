@@ -3,7 +3,7 @@ import React from 'react';
 import Radio from './Radio';
 
 describe('Test <Radio/> component', () => {
-  it('Should be rendered with text "Label" and value "1"', () => {
+  it('should be rendered with text "Label" and value "1"', () => {
     const element = <Radio value='1' label='Label' />;
     const { container } = render(element);
   
