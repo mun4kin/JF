@@ -1,5 +1,5 @@
 import React, {
-  FC, useCallback, useEffect, useRef, useState
+  FC, ReactNode, useCallback, useEffect, useRef, useState
 } from 'react';
 import './Select.scss';
 
@@ -7,6 +7,7 @@ import './Select.scss';
 import Tag from '../Tag';
 import { IOption } from '../../../types';
 import useClickOutside from '../../../hooks/useClickOutside';
+import Checkbox from '../Checkbox';
 
 export interface ISelectProps {
   /** Варианты выбора */
@@ -183,11 +184,39 @@ const Select: FC<ISelectProps> = ({
     const disabledClass = disabled ? 'rf-select__list-element--disabled' : '';
     const activeClass = active ? 'rf-select__list-element--active' : '';
 
-    return (
-      <div className={`rf-select__list-element ${disabledClass} ${activeClass}`} key={ o.value } onClick={ handleChange }>
-        { o.label }
-      </div>
-    );
+    let label: ReactNode = o.label;
+
+    if (inputValue) {
+      const indexStart = o.label.toLowerCase().indexOf(inputValue.toLowerCase());
+
+      if (indexStart >= 0) {
+        const indexEnd = indexStart + inputValue.length - 1;
+        let left = '';
+        let query = '';
+        let right = '';
+
+        for (let i = 0; i < o.label.length; i++) {
+          if (i < indexStart) {
+            left += o.label[i];
+            continue;
+          }
+
+          if (i >= indexStart && i <= indexEnd) {
+            query += o.label[i];
+            continue;
+          }
+
+          right += o.label[i];
+        }
+
+        label = <>{left}<span className='rf-select__list-element--query'>{query}</span>{right}</>;
+      }
+    }
+
+    return (<div className={`rf-select__list-element ${disabledClass} ${activeClass}`} key={ o.value }>
+      { multiselect ? <Checkbox label={label} checked={active} onChange={handleChange} fullWidth/> :
+        <div className='rf-select__list-element-single' onClick={ handleChange }>{label}</div>}
+    </div>);
   });
 
   // -------------------------------------------------------------------------------------------------------------------
@@ -195,7 +224,6 @@ const Select: FC<ISelectProps> = ({
   const noop = () => {};
 
   const tagsRef = useRef<HTMLDivElement>(null);
-  // const tagsClass = tagsPosition === 'inside' ? 'rf-select__tags--inside' : 'rf-select__tags--outside';
 
   const tagsJSX = multiselect && values.length > 0 && (
     <div className='rf-select__tags' ref={ tagsRef } onClick={ () => !disabled && toggleDropdown(true) }>
@@ -208,26 +236,6 @@ const Select: FC<ISelectProps> = ({
       )) }
     </div>
   );
-
-  // const [paddingLeft, setPaddingLeft] = useState<number>(20);
-  //
-  // useLayoutEffect(() => {
-  //   if (!multiselect || tagsPosition === 'outside') {
-  //     return;
-  //   }
-  //
-  //   const LEFT = 20;
-  //
-  //   if (!tagsRef.current) {
-  //     setPaddingLeft(LEFT);
-  //     return;
-  //   }
-  //
-  //   const { width } = tagsRef.current.getBoundingClientRect();
-  //
-  //   setPaddingLeft(width + 28);
-  //
-  // }, [values, multiselect]);
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -253,7 +261,6 @@ const Select: FC<ISelectProps> = ({
   return (
     <div className='rf-select' ref={ componentNode }>
       <div className={`rf-select__wrapper ${openClass}`}>
-        {/* { tagsPosition === 'inside' && tagsJSX }*/}
         <input
           className='rf-select__input'
           onClick={ openDropdown }

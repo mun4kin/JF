@@ -54,11 +54,20 @@
 .rf-select__list-element {
   width: 100%;
   text-align: left;
-  padding: 8px 16px;
   cursor: pointer;
   white-space: nowrap;
   transition: 0.15s ease-in-out;
   @include text-l-16;
+}
+
+.rf-select__list-element-single {
+  width: 100%;
+  padding: 8px 16px;
+}
+
+.rf-select__list-element .rf-checkbox {
+  width: 100%;
+  padding: 8px 16px;
 }
 
 .rf-select__list-element:not(.rf-select__list-element--disabled):hover {
@@ -73,6 +82,10 @@
 
 .rf-select__list-element--active {
   background-color: var(--background-secondary);
+}
+
+.rf-select__list-element--query {
+  color: var(--basic-primary);
 }
 
 .rf-select__tags {

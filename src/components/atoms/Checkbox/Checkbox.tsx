@@ -16,6 +16,8 @@ export interface ICheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   position?: 'left' | 'right';
   /** Круглый чекбокс */
   round?: boolean;
+  /** 100% ширины */
+  fullWidth?: boolean;
 }
 
 const Checkbox: FC<ICheckboxProps> = ({
@@ -26,10 +28,12 @@ const Checkbox: FC<ICheckboxProps> = ({
   halfChecked = false,
   position = 'left',
   round = false,
+  fullWidth = false,
   ...props
 }: ICheckboxProps) => {
 
   const roundClass = round ? 'rf-checkbox__check--round' : '';
+  const fullWidthClass = fullWidth ? 'rf-checkbox__check--fullWidth' : '';
 
   /** Отображение иконки */
   const checkIcon = !halfChecked && icon && (
@@ -57,7 +61,7 @@ const Checkbox: FC<ICheckboxProps> = ({
   const positionClass = position === 'left' ? 'rf-checkbox--left' : 'rf-checkbox--right';
 
   return (
-    <label className={`rf-checkbox ${props.className || ''} ${disabledClass} ${alignClass[align]} ${positionClass}`}>
+    <label className={`rf-checkbox ${props.className || ''} ${disabledClass} ${alignClass[align]} ${positionClass} ${fullWidthClass}`}>
       <input {...props} type='checkbox' className='rf-checkbox__input' value={value}/>
 
       {checkIcon}
