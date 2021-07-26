@@ -1,0 +1,46 @@
+@import "../../../styles/mixins";
+.rf-hint__wrapper {
+  background: var(--background-secondary);
+  border-radius: var(--12);
+  padding: var(--16);
+  display: flex;
+}
+
+.rf-hint__title-text{
+  @include text-l-16-bold()
+}
+.rf-hint__message{
+  @include text-m-16()
+}
+.rf-hint__body{
+  padding-left: var(--4);
+}
+.rf-hint__icon{
+  width:var(--24);
+  height:var(--24);
+  margin-right:var(--4) ;
+}
+.rf-hint__default{
+  background-color: var(--background-secondary);
+  .rf-hint__icon{
+    fill:var(--basic-primary)
+  }
+}
+.rf-hint__green{
+  background-color: var(--background-success);
+  .rf-hint__icon{
+    fill:var(--status-success)
+  }
+}
+.rf-hint__yellow{
+  background-color: var(--background-warn);
+  .rf-hint__icon{
+    fill:var(--status-warn)
+  }
+}
+.rf-hint__red{
+  background-color: var(--background-danger);
+  .rf-hint__icon{
+    fill:var(--status-danger)
+  }
+}
