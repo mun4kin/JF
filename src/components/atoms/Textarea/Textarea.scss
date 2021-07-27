@@ -1,0 +1,48 @@
+@import "../../../styles/mixins";
+
+.rf-textarea__wrapper {
+  width: 100%;
+}
+
+.rf-textarea-field {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+  padding: 8px 16px;
+  border-radius: 8px;
+  line-height: 20px;
+  transition: 0.15s ease-in all;
+
+  @include text-l-16;
+  border: 1px solid var(--basic-tertiary);
+}
+
+.rf-textarea-field::placeholder {
+  @include text-l-16;
+  color: var(--text-secondary);
+}
+
+.rf-textarea-field:hover {
+  border-color: var(--basic-hover);
+}
+
+.rf-textarea-field:focus {
+  border-color: var(--basic-hover);
+}
+
+.rf-textarea-field:disabled {
+  @include disabled();
+  background-color: var(--background-tertiary);
+  border-color: var(--background-tertiary);
+}
+
+.rf-textarea-field.invalid {
+  border-color: var(--status-danger);
+}
+
+.rf-textarea__max-length {
+  @include text-xs-14;
+  margin-top: 4px;
+  text-align: right;
+}
