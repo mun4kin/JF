@@ -15,6 +15,7 @@ const Tag: React.FC<ITagProps> = ({ children, onClick, onRemove, disabled, varia
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     onClick && onClick();
   };
 

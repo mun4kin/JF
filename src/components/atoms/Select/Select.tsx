@@ -1,13 +1,14 @@
 import React, {
-  FC, useCallback, useEffect, useLayoutEffect, useRef, useState
+  FC, ReactNode, useCallback, useEffect, useRef, useState
 } from 'react';
 import './Select.scss';
-import Input from '../Input';
-// import { ReactComponent as Close } from '../../../icons/close.svg';
-// import { ReactComponent as Chevron } from '../../../icons/chevron-down.svg';
+
+
 import Tag from '../Tag';
 import { IOption } from '../../../types';
 import useClickOutside from '../../../hooks/useClickOutside';
+import Checkbox from '../Checkbox';
+import Preloader from '../Preloader';
 
 export interface ISelectProps {
   /** Варианты выбора */
@@ -184,49 +185,58 @@ const Select: FC<ISelectProps> = ({
     const disabledClass = disabled ? 'rf-select__list-element--disabled' : '';
     const activeClass = active ? 'rf-select__list-element--active' : '';
 
-    return (
-      <div className={`rf-select__list-element ${disabledClass} ${activeClass}`} key={ o.value } onClick={ handleChange }>
-        { o.label }
-      </div>
-    );
+    let label: ReactNode = o.label;
+
+    if (inputValue) {
+      const indexStart = o.label.toLowerCase().indexOf(inputValue.toLowerCase());
+
+      if (indexStart >= 0) {
+        const indexEnd = indexStart + inputValue.length - 1;
+        let left = '';
+        let query = '';
+        let right = '';
+
+        for (let i = 0; i < o.label.length; i++) {
+          if (i < indexStart) {
+            left += o.label[i];
+            continue;
+          }
+
+          if (i >= indexStart && i <= indexEnd) {
+            query += o.label[i];
+            continue;
+          }
+
+          right += o.label[i];
+        }
+
+        label = <>{left}<span className='rf-select__list-element--query'>{query}</span>{right}</>;
+      }
+    }
+
+    return (<div className={`rf-select__list-element ${disabledClass} ${activeClass}`} key={ o.value }>
+      { multiselect ? <Checkbox label={label} checked={active} onChange={handleChange} fullWidth/> :
+        <div className='rf-select__list-element-single' onClick={ handleChange }>{label}</div>}
+    </div>);
   });
 
   // -------------------------------------------------------------------------------------------------------------------
 
+  const noop = () => {};
+
   const tagsRef = useRef<HTMLDivElement>(null);
-  const tagsClass = tagsPosition === 'inside' ? 'rf-select__tags--inside' : 'rf-select__tags--outside';
 
   const tagsJSX = multiselect && values.length > 0 && (
-    <div className={`rf-select__tags ${tagsClass}`} ref={ tagsRef } onClick={ () => !disabled && toggleDropdown(true) }>
+    <div className='rf-select__tags' ref={ tagsRef } onClick={ () => !disabled && toggleDropdown(true) }>
       { values.map((t: IOption) => (
         <div className='rf-select__tag' key={ t.value }>
-          <Tag onRemove={ () => onValueChange(t) } disabled={ disabled }>
+          <Tag onRemove={ () => onValueChange(t) } onClick={noop} disabled={ disabled }>
             { t.label }
           </Tag>
         </div>
       )) }
     </div>
   );
-
-  const [paddingLeft, setPaddingLeft] = useState<number>(20);
-
-  useLayoutEffect(() => {
-    if (!multiselect || tagsPosition === 'outside') {
-      return;
-    }
-
-    const LEFT = 20;
-
-    if (!tagsRef.current) {
-      setPaddingLeft(LEFT);
-      return;
-    }
-
-    const { width } = tagsRef.current.getBoundingClientRect();
-
-    setPaddingLeft(width + 28);
-
-  }, [values, multiselect]);
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -246,18 +256,20 @@ const Select: FC<ISelectProps> = ({
   );
 
   // -------------------------------------------------------------------------------------------------------------------
+
+  const openClass = showDropdown ? 'rf-select__wrapper--open' : '';
+
   return (
     <div className='rf-select' ref={ componentNode }>
-      <div className='rf-select__wrapper'>
-        <Input
-          style={ { paddingLeft: `${paddingLeft}px` } }
+      <div className={`rf-select__wrapper ${openClass}`}>
+        <input
+          className='rf-select__input'
           onClick={ openDropdown }
           onChange={ onSelectSearch }
           value={ inputValue }
           disabled={ disabled }
           readOnly={ readOnly }
           placeholder={ disabled || (multiselect && tagsPosition === 'inside' && values.length === maxOptions) ? '' : placeholder }/>
-        { tagsPosition === 'inside' && tagsJSX }
         { closeButton }
         { chevronButton }
       </div>
@@ -266,13 +278,13 @@ const Select: FC<ISelectProps> = ({
           <div className='rf-select__list'>
             { preloader ? (
               <div className='rf-select__list-preloader'>
-                Loading...
+                <Preloader size='m'/>
               </div>
             ) : listJSX }
           </div>
         )
       }
-      { tagsPosition === 'outside' && tagsJSX }
+      { tagsJSX }
     </div>
   );
 };

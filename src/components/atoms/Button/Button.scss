@@ -2,6 +2,7 @@
 @import "../../../styles/variables";
 
 .rf-button {
+  position: relative;
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;

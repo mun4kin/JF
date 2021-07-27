@@ -8,6 +8,28 @@
 .rf-select__wrapper {
   width: 100%;
   position: relative;
+  border: 1px solid var(--basic-tertiary);
+  border-radius: 8px;
+  background-color: var(--background-primary);
+  overflow: hidden;
+}
+
+.rf-select__wrapper:hover {
+  border-color: var(--basic-hover);
+}
+
+.rf-select__wrapper--open {
+  border-color: var(--basic-hover);
+}
+
+.rf-select__input {
+  border: 0;
+  outline: 0;
+  width: 100%;
+  height: 40px;
+  @include text-l-16;
+  padding-left: 16px;
+  padding-right: 48px;
 }
 
 .rf-select__list {
@@ -25,18 +47,27 @@
 
 .rf-select__list-preloader {
   position: relative;
-  height: 20px;
+  height: 48px;
   width: 100%;
 }
 
 .rf-select__list-element {
   width: 100%;
   text-align: left;
-  padding: 8px 16px;
   cursor: pointer;
   white-space: nowrap;
   transition: 0.15s ease-in-out;
   @include text-l-16;
+}
+
+.rf-select__list-element-single {
+  width: 100%;
+  padding: 8px 16px;
+}
+
+.rf-select__list-element .rf-checkbox {
+  width: 100%;
+  padding: 8px 16px;
 }
 
 .rf-select__list-element:not(.rf-select__list-element--disabled):hover {
@@ -53,25 +84,23 @@
   background-color: var(--background-secondary);
 }
 
+.rf-select__list-element--query {
+  color: var(--basic-primary);
+}
+
 .rf-select__tags {
   display: flex;
   flex-wrap: wrap;
-}
-
-.rf-select__tags--outside {
-  position: relative;
-  max-width: 100%;
   padding: 8px 0;
 }
 
-.rf-select__tags--inside {
-  position: absolute;
-  top: 8px;
-  left: 16px;
+.rf-select__tag {
+  margin-right: 8px;
+  margin-bottom: 8px;
 }
 
-.rf-select__tag:not(:last-of-type) {
-  margin-right: 8px;
+.rf-select__tag:last-of-type {
+  margin-right: 0;
 }
 
 .rf-select__button {
@@ -80,7 +109,7 @@
   width: 24px;
   height: 24px;
   top: 50%;
-  right: 20px;
+  right: 16px;
   transform: translateY(-50%);
   cursor: pointer;
   transition: transform 0.3s;
