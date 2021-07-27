@@ -18,7 +18,7 @@ export default {
     children: {
       control: 'text',
       defaultValue: 'Cамый длинный предлинный тект Cамый длинный предлинный тект Cамый длинный предлинный тект' +
-            'Cамый длинный предлинный тект Cамый длинный предлинный тект Cамый длинный предлинный тект'
+        'Cамый длинный предлинный тект Cамый длинный предлинный тект Cамый длинный предлинный тект'
     },
     title: {
       control: 'text',
@@ -43,27 +43,27 @@ export const hint = (args: IHintProps) => {
   return (
     <Story name='Hint' description='Общее уведомление'>
       <StoryItem subtitle='Простое уведомление'>
-        <Hint variant={args.variant}
-          maxWidth={args.maxWidth}
-          title={args.title} button={undefined}>
-          {args.children}
+        <Hint variant={ args.variant }
+          maxWidth={ args.maxWidth }
+          title={ args.title } button={ undefined }>
+          { args.children }
         </Hint>
       </StoryItem>
       <StoryItem subtitle='Простое уведомление c иконкой'>
-        <Hint variant={args.variant}
-          icon={args.icon}
-          maxWidth={args.maxWidth}
-          title={args.title} button={undefined}>
-          {args.children}
+        <Hint variant={ args.variant }
+          icon={ args.icon }
+          maxWidth={ args.maxWidth }
+          title={ args.title } button={ undefined }>
+          { args.children }
         </Hint>
       </StoryItem>
       <StoryItem subtitle='Простое уведомление c кнопкой'>
-        <Hint variant={args.variant}
-          icon={args.icon}
-          maxWidth={args.maxWidth}
-          title={args.title}
-          button={<Button buttonType='text' textColor='green'>Нажми меня</Button>}>
-          {args.children}
+        <Hint variant={ args.variant }
+          icon={ args.icon }
+          maxWidth={ args.maxWidth }
+          title={ args.title }
+          button={ <Button buttonType='text' textColor='green'>Нажми меня</Button> }>
+          { args.children }
         </Hint>
       </StoryItem>
     </Story>

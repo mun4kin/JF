@@ -27,7 +27,7 @@ export interface IButtonProps extends Omit<HTMLProps<HTMLButtonElement>, 'size'>
   /** 100% ширина */
   fullWidth?: boolean;
   /** цвет шрифта ТЕКСТОВОЙ кнопки */
-  textColor?:VariantClassic;
+  textColor?: VariantClassic;
 }
 
 const Button: FC<IButtonProps> = ({
@@ -96,9 +96,9 @@ const Button: FC<IButtonProps> = ({
 
     <button
       { ...props }
-      ref={ref}
+      ref={ ref }
       type={ type }
-      style={{ minWidth: `${minWidth}px` }}
+      style={ { minWidth: `${minWidth}px` } }
       onMouseDown={ onMouseDown }
 
       className={ `rf-button ${classesMap[buttonType]} ${sizeClass[size]} ${widthClass} ${pressedClass} ${props.className || ''} ${colorClass}` }>

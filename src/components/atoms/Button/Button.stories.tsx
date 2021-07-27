@@ -45,8 +45,8 @@ export default {
 export const button = (args: IButtonProps) => {
   return (
     <Story name='Button (Кнопка)'>
-      <Button {...args}>
-        { args.buttonType === 'icon' ? 'i' : 'Button'}
+      <Button { ...args }>
+        { args.buttonType === 'icon' ? 'i' : 'Button' }
       </Button>
     </Story>
   );

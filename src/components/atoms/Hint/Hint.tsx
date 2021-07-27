@@ -4,16 +4,17 @@ import { VariantClassic } from '../../../types';
 
 
 import { ReactComponent as InfoSolid } from '@openvtb/admiral-icons/build/service/InfoSolid.svg';
-export interface IHintProps {
- /** основное сообщение*/
 
-  children?: ReactNode|string;
-  title?:ReactNode|string;
-  button?:ReactNode;
+export interface IHintProps {
+  /** основное сообщение*/
+
+  children?: ReactNode | string;
+  title?: ReactNode | string;
+  button?: ReactNode;
   className?: string;
   variant?: VariantClassic;
-  icon?:'info';
-  maxWidth?:string;
+  icon?: 'info';
+  maxWidth?: string;
 
 }
 
@@ -31,16 +32,16 @@ const Hint: React.FC<IHintProps> = ({
 
 
   return (
-    <div style={{ maxWidth }} className={`rf-hint__wrapper rf-hint__${variant} ${className} `}>
-      {icon === 'info' &&
-          <div className='rf-hint__icon'>
-            <InfoSolid/>
-          </div>
+    <div style={ { maxWidth } } className={ `rf-hint__wrapper rf-hint__${variant} ${className} ` }>
+      { icon === 'info' &&
+      <div className='rf-hint__icon'>
+        <InfoSolid/>
+      </div>
       }
       <div className='rf-hint__body'>
-        <div className='rf-hint__title-text'>   {title}</div>
-        <div className='rf-hint__message'> {children} </div>
-        {!!button && button}
+        <div className='rf-hint__title-text'>   { title }</div>
+        <div className='rf-hint__message'> { children } </div>
+        { button && <div className='rf-hint__button'> { button } </div>}
       </div>
     </div>
   );

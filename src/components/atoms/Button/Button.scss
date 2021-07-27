@@ -187,7 +187,6 @@
 
 .rf-button--text {
 
-
   &.rf--s,
   &.rf--m,
   &.rf--l,
@@ -197,10 +196,12 @@
     padding: 0;
   }
 }
+
 //===========Default==========================
-.rf-button--text-default{
+.rf-button--text-default {
   color: var(--basic-primary);
 }
+
 .rf-button--text-default:hover {
   color: var(--basic-hover);
 }
@@ -214,9 +215,10 @@
 }
 
 //===========Green==========================
-.rf-button--text-green{
+.rf-button--text-green {
   color: var(--status-success);
 }
+
 .rf-button--text-green:hover {
   color: var(--status-success-hover);
 }
@@ -228,10 +230,12 @@
 .rf-button--text-green:disabled {
   color: var(--text-tertiary);
 }
+
 //===========Yellow==========================
-.rf-button--text-yellow{
+.rf-button--text-yellow {
   color: var(--status-warn);
 }
+
 .rf-button--text-yellow:hover {
   color: var(--status-warn-hover);
 }
@@ -243,10 +247,12 @@
 .rf-button--text-yellow:disabled {
   color: var(--text-tertiary);
 }
+
 //===========Red==========================
-.rf-button--text-red{
+.rf-button--text-red {
   color: var(--status-danger);
 }
+
 .rf-button--text-red:hover {
   color: var(--status-danger-hover);
 }
@@ -259,16 +265,9 @@
   color: var(--text-tertiary);
 }
 
-
-
 //////////////
 
-
 //////////////
-
-
-
-
 
 // Danger
 
