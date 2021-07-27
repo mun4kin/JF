@@ -1,4 +1,3 @@
-console.log(module)
 
 module.exports = {
   "stories": [

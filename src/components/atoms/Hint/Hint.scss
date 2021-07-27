@@ -16,8 +16,10 @@
   padding-left: var(--4);
 }
 .rf-hint__icon{
-  width:var(--24);
-  height:var(--24);
+  min-width:var(--24);
+  max-width:var(--24);
+  min-height:var(--24);
+  max-height:var(--24);
   margin-right:var(--4) ;
 }
 .rf-hint__default{

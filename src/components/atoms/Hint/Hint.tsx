@@ -4,12 +4,11 @@ import { VariantClassic } from '../../../types';
 
 
 import { ReactComponent as InfoSolid } from '@openvtb/admiral-icons/build/service/InfoSolid.svg';
-import Button from '../Button';
 export interface IHintProps {
  /** основное сообщение*/
 
-  children?: ReactNode;
-  title?:ReactNode;
+  children?: ReactNode|string;
+  title?:ReactNode|string;
   button?:ReactNode;
   className?: string;
   variant?: VariantClassic;
@@ -21,16 +20,14 @@ export interface IHintProps {
 
 const Hint: React.FC<IHintProps> = ({
   children = 'Текстовое сообщение',
-  button = <Button buttonType='text' >Text Button</Button>,
+  button,
   className = '',
   variant = 'default',
-  icon = 'info',
+  icon,
   title = 'Заголовок сообщения',
   maxWidth = '648px',
 
 }: IHintProps) => {
-
-  // const wrapper = useRef<HTMLDivElement>(null);
 
 
   return (

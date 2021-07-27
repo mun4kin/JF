@@ -185,7 +185,7 @@
 // Text
 
 .rf-button--text {
-  color: var(--basic-primary);
+
 
   &.rf--s,
   &.rf--m,
@@ -196,18 +196,78 @@
     padding: 0;
   }
 }
-
-.rf-button--text:hover {
+//===========Default==========================
+.rf-button--text-default{
+  color: var(--basic-primary);
+}
+.rf-button--text-default:hover {
   color: var(--basic-hover);
 }
 
-.rf-button--text.rf-button--pressed {
+.rf-button--text-default.rf-button--pressed {
   color: var(--basic-press);
 }
 
-.rf-button--text:disabled {
+.rf-button--text-default:disabled {
   color: var(--text-tertiary);
 }
+
+//===========Green==========================
+.rf-button--text-green{
+  color: var(--status-success);
+}
+.rf-button--text-green:hover {
+  color: var(--status-success-hover);
+}
+
+.rf-button--text-green.rf-button--pressed {
+  color: var(--status-success-press);
+}
+
+.rf-button--text-green:disabled {
+  color: var(--text-tertiary);
+}
+//===========Yellow==========================
+.rf-button--text-yellow{
+  color: var(--status-warn);
+}
+.rf-button--text-yellow:hover {
+  color: var(--status-warn-hover);
+}
+
+.rf-button--text-yellow.rf-button--pressed {
+  color: var(--status-warn-press);
+}
+
+.rf-button--text-yellow:disabled {
+  color: var(--text-tertiary);
+}
+//===========Red==========================
+.rf-button--text-red{
+  color: var(--status-danger);
+}
+.rf-button--text-red:hover {
+  color: var(--status-danger-hover);
+}
+
+.rf-button--text-red.rf-button--pressed {
+  color: var(--status-danger-press);
+}
+
+.rf-button--text-red:disabled {
+  color: var(--text-tertiary);
+}
+
+
+
+//////////////
+
+
+//////////////
+
+
+
+
 
 // Danger
 

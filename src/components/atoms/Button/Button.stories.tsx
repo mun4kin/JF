@@ -1,6 +1,7 @@
 import React from 'react';
 import Button, { ButtonType, IButtonProps } from './Button';
 import Story from '../../storybook/Story';
+import { variantsClassic } from '../../../types';
 
 const buttonTypes: ButtonType[] = [
   'primary',
@@ -32,7 +33,12 @@ export default {
       defaultValue: 'm'
     },
     disabled: { type: 'boolean' },
-    type: { control: null }
+    type: { control: null },
+    textColor: {
+      options: variantsClassic,
+      control: { type: 'select' },
+      defaultValue: 'default'
+    }
   }
 };
 
