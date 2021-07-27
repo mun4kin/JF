@@ -1,9 +1,10 @@
 import React, {
-  FC, HTMLProps, useEffect, useState
+  FC, HTMLProps, useEffect, useRef, useState
 } from 'react';
 import { Size } from '../../../types';
 import { sizeClass } from '../../../utils/helpers';
 import './Button.scss';
+import Preloader from '../Preloader';
 
 export type ButtonType =
   'primary'
@@ -72,14 +73,31 @@ const Button: FC<IButtonProps> = ({
 
   // -------------------------------------------------------------------------------------------------------------------
 
+  const [minWidth, setMinWidth] = useState(32);
+  const ref = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (ref.current) {
+        const { width } = ref.current.getBoundingClientRect();
+        setMinWidth(width);
+      }
+    });
+  }, [props.children]);
+
+
+  // -------------------------------------------------------------------------------------------------------------------
+
   return (
 
     <button
       { ...props }
+      ref={ref}
       type={ type }
+      style={{ minWidth: `${minWidth}px` }}
       onMouseDown={ onMouseDown }
       className={ `rf-button ${classesMap[buttonType]} ${sizeClass[size]} ${widthClass} ${pressedClass} ${props.className || ''}` }>
-      { preloader === undefined ? props.children : preloader ? <div>loading...</div> : props.children }
+      { preloader === undefined ? props.children : preloader ? <Preloader size='s' variant='white'/> : props.children }
     </button>
   );
 };

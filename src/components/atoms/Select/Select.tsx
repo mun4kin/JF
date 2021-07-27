@@ -8,6 +8,7 @@ import Tag from '../Tag';
 import { IOption } from '../../../types';
 import useClickOutside from '../../../hooks/useClickOutside';
 import Checkbox from '../Checkbox';
+import Preloader from '../Preloader';
 
 export interface ISelectProps {
   /** Варианты выбора */
@@ -277,7 +278,7 @@ const Select: FC<ISelectProps> = ({
           <div className='rf-select__list'>
             { preloader ? (
               <div className='rf-select__list-preloader'>
-                Loading...
+                <Preloader size='m'/>
               </div>
             ) : listJSX }
           </div>
