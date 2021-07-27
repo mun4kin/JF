@@ -1,7 +1,7 @@
 import React, {
   FC, HTMLProps, useEffect, useRef, useState
 } from 'react';
-import { Size } from '../../../types';
+import { Size, VariantClassic } from '../../../types';
 import { sizeClass } from '../../../utils/helpers';
 import './Button.scss';
 import Preloader from '../Preloader';
@@ -26,6 +26,8 @@ export interface IButtonProps extends Omit<HTMLProps<HTMLButtonElement>, 'size'>
   preloader?: boolean;
   /** 100% ширина */
   fullWidth?: boolean;
+  /** цвет шрифта ТЕКСТОВОЙ кнопки */
+  textColor?:VariantClassic;
 }
 
 const Button: FC<IButtonProps> = ({
@@ -34,6 +36,7 @@ const Button: FC<IButtonProps> = ({
   fullWidth = false,
   buttonType = 'primary',
   preloader,
+  textColor = 'default',
   ...props
 }: IButtonProps) => {
 
@@ -70,6 +73,7 @@ const Button: FC<IButtonProps> = ({
   }, []);
 
   const pressedClass = pressed ? 'rf-button--pressed' : '';
+  const colorClass = buttonType === 'text' ? `rf-button--text-${textColor}` : '';
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -96,8 +100,10 @@ const Button: FC<IButtonProps> = ({
       type={ type }
       style={{ minWidth: `${minWidth}px` }}
       onMouseDown={ onMouseDown }
-      className={ `rf-button ${classesMap[buttonType]} ${sizeClass[size]} ${widthClass} ${pressedClass} ${props.className || ''}` }>
+
+      className={ `rf-button ${classesMap[buttonType]} ${sizeClass[size]} ${widthClass} ${pressedClass} ${props.className || ''} ${colorClass}` }>
       { preloader === undefined ? props.children : preloader ? <Preloader size='s' variant='white'/> : props.children }
+
     </button>
   );
 };

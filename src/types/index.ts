@@ -95,7 +95,17 @@ export interface IBreadcrumb {
 }
 
 /** Тип цветового оформления */
-export type Variant = 'default' | 'blue' | 'lightBlue' | 'turquoise' | 'green' | 'yellow' | 'red' | 'magenta' | 'purple' | 'violet';
+export type VariantClassic = 'default' | 'green' | 'yellow' | 'red';
+export type Variant = VariantClassic | 'blue' | 'lightBlue' | 'turquoise' | 'magenta' | 'purple' | 'violet';
+
+export const variantsClassic: VariantClassic[] = [
+  'default',
+
+  'green',
+  'yellow',
+  'red'
+
+];
 export const variants: Variant[] = [
   'default',
   'blue',

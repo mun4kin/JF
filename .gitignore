@@ -27,11 +27,11 @@ yarn-error.log*
 /yarn.lock
 
 **/.npmrc
-
+dist
 
 .eslintcache
 
-dist
+
 .firebaserc
 .firebase
 firebase.json

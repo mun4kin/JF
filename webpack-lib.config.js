@@ -41,6 +41,10 @@ module.exports = {
         ]
       },
       {
+        test: /\.svg$/,
+        use: ["@svgr/webpack", "url-loader"],
+      },
+      {
         test: /\.css|\.scss$/,
         use: ['scoped-css-loader'],
         exclude: [path.resolve(__dirname, 'node_modules'), /src\/styles\/vendor\/*/]
@@ -58,15 +62,15 @@ module.exports = {
           }
         ]
       },
-      {
-        test: /\.(svg)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: { name: 'assets/svg/[name].[ext]' }
-          }
-        ]
-      },
+      // {
+      //   test: /\.(svg)$/,
+      //   use: [
+      //     {
+      //       loader: 'file-loader',
+      //       options: { name: 'assets/svg/[name].[ext]' }
+      //     }
+      //   ]
+      // },
 
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,

@@ -63,8 +63,9 @@
     "resolve-url-loader": "^4.0.0",
     "sass-loader": "10.1.1",
     "file-loader": "^6.2.0",
-    "babel-plugin-react-scoped-css": "^1.1.1",
+    "@svgr/webpack": "^5.5.0",
 
+    "babel-plugin-react-scoped-css": "^1.1.1",
     "x----x----x": "=======================================Commit=====================================================",
     "cz-customizable": "^6.3.0",
     "lint-staged": "^11.0.1",
