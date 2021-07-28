@@ -52,6 +52,7 @@
   @include disabled();
   background-color: var(--background-tertiary);
   border-color: var(--background-tertiary);
+  color: var(--text-tertiary);
 }
 
 .rf-input__field::placeholder {
@@ -98,6 +99,10 @@ input[type='file']:disabled + .rf-input__field.rf-input__field--file {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  svg {
+    fill: var(--text-tertiary);
+  }
 }
 
 .rf-input__action:hover,

@@ -2,7 +2,8 @@ import React, {
   Dispatch, ReactNode, RefObject, SetStateAction, useCallback, useEffect, useRef, useState
 } from 'react';
 import './DatepickerCalendar.scss';
-// import { ReactComponent as Chevron } from '../../../../icons/chevron-left.svg';
+import { ReactComponent as ChevronLeftOutline } from '@openvtb/admiral-icons/build/system/ChevronLeftOutline.svg';
+import { ReactComponent as ChevronRightOutline } from '@openvtb/admiral-icons/build/system/ChevronRightOutline.svg';
 import {
   compareMonths, formatDate,
   getDaysForMonth, isCurrentDay, isCurrentMonth, months, stringToDate, weekDays
@@ -26,6 +27,7 @@ interface IDatepickerCalendarProps {
   position: 'left' | 'right';
   format: DateFormat;
   separator: string;
+  disableWeekDays: number[];
 }
 
 const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
@@ -41,7 +43,8 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
   showTodayButton,
   position,
   format,
-  separator
+  separator,
+  disableWeekDays
 }: IDatepickerCalendarProps) => {
 
   const contentRef = useRef<HTMLDivElement>(null);
@@ -238,9 +241,10 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
       'rf-datepicker__calendar-tile--range rf-datepicker__calendar-date--range' : '';
 
     const d = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    const disabledWeekDay = disableWeekDays.includes(d.getDay());
     const disabledMin = minDate && minDate.getTime() > d.getTime();
     const disabledMax = maxDate && maxDate.getTime() < d.getTime();
-    const disabledClass = disabledMin || disabledMax ? 'rf-datepicker__calendar-date--disabled' : '';
+    const disabledClass = disabledWeekDay || disabledMin || disabledMax ? 'rf-datepicker__calendar-date--disabled' : '';
 
     return (
       <button
@@ -438,8 +442,8 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
         <div className='rf-calendar__control'>
           <button type='button' className='rf-calendar__button rf-calendar__button--arrow rf-calendar__button-prev'
             disabled={ prevArrowDisabled } onClick={ () => onPeriodChange(-1) }>
-            <span className='rf-datepicker__calendar-prev'>
-              L
+            <span className='rf-datepicker__calendar-left'>
+              <ChevronLeftOutline/>
             </span>
           </button>
           <button type='button' className='rf-calendar__button rf-calendar__label-button'
@@ -451,7 +455,7 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
           <button type='button' className='rf-calendar__button rf-calendar__button--arrow rf-calendar__button-next'
             disabled={ nextArrowDisabled } onClick={ () => onPeriodChange(1) }>
             <span className='rf-datepicker__calendar-right'>
-              R
+              <ChevronRightOutline/>
             </span>
           </button>
         </div>

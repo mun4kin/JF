@@ -51,6 +51,10 @@
 .rf-checkbox__half-check {
   @include checkBox;
   color: var(--text-primary);
+
+  svg {
+    fill: var(--text-static-white);
+  }
 }
 
 .rf-checkbox__check--round {
@@ -58,12 +62,19 @@
 }
 
 .rf-checkbox__mark {
+  width: var(--24);
+  height: var(--24);
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   transition: 0.15s ease-in;
   color: var(--text-static-white);
+
+  svg {
+    fill: var(--text-static-white);
+  }
 }
 
 .rf-checkbox__label {

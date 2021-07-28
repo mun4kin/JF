@@ -104,7 +104,7 @@
 }
 
 .rf-select__button {
-  color: var(--base-400);
+  color: var(--text-secondary);
   position: absolute;
   width: 24px;
   height: 24px;
@@ -113,6 +113,10 @@
   transform: translateY(-50%);
   cursor: pointer;
   transition: transform 0.3s;
+
+  svg {
+    fill: var(--text-secondary);
+  }
 }
 
 .rf-select__button--rotate {

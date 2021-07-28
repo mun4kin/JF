@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import './Tag.scss';
 import { Variant } from '../../../types';
-
+import { ReactComponent as CloseOutline } from '@openvtb/admiral-icons/build/service/CloseOutline.svg';
 
 export interface ITagProps {
   children: ReactNode | ReactNode[];
@@ -33,7 +33,9 @@ const Tag: React.FC<ITagProps> = ({ children, onClick, onRemove, disabled, varia
   return (
     <div className={`rf-tag ${clickableClass} rf-tag--${variant}`} onClick={handleClick}>
       {children}
-      {onRemove && <div className='rf-tag__remove' onClick={handleRemove}>X</div>}
+      {onRemove && <div className='rf-tag__remove' onClick={handleRemove}>
+        <CloseOutline/>
+      </div>}
     </div>
   );
 };

@@ -2,6 +2,7 @@
 
 .rf-datepicker {
   position: relative;
+  width: 100%;
 }
 
 .rf-datepicker__input-wrapper {
@@ -12,6 +13,7 @@
 .rf-datepicker__calendar-button {
   position: absolute;
   width: 24px;
+  height: 24px;
   top: 50%;
   right: 8px;
   transform: translateY(-50%) rotate(0);
@@ -19,13 +21,17 @@
   color: var(--base-500);
   cursor: pointer;
   pointer-events: none;
+
+  svg {
+    fill: var(--text-secondary);
+  }
 }
 
 .rf-datepicker__input-wrapper--disabled {
   pointer-events: none;
 
   .rf-datepicker__calendar-button {
-    color: var(--base-300);
+    color: var(--text-tertiary);
   }
 }
 

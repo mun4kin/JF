@@ -2,7 +2,7 @@ import React, {
   useCallback, useEffect, useRef, useState
 } from 'react';
 import './Datepicker.scss';
-// import { ReactComponent as Calendar } from '../../../icons/calendar-outline.svg';
+import { ReactComponent as CalendarOutline } from '@openvtb/admiral-icons/build/system/CalendarOutline.svg';
 import DatepickerCalendar from './DatepickerCalendar';
 import InputMask from 'react-input-mask';
 import {
@@ -21,12 +21,19 @@ export interface IDatepickerProps {
   min?: Date | string | number;
   max?: Date | string | number;
   onChange?: (value: IDateVariants, name?: string) => void;
+  /** Диапазон */
   range?: boolean;
+  /** Показывать день недели в инпуте */
   showDayOfWeek?: boolean;
+  /** Локализация */
   locale?: 'ru' | 'en';
+  /** Кнопка Сегодня */
   showTodayButton?: boolean;
   position?: 'left' | 'right';
+  /** Формат даты */
   format?: DateFormat;
+  /** Ограничения на дни недели 0 - 6 */
+  disableWeekDays?: number[];
 }
 
 const Datepicker: React.FC<IDatepickerProps> = ({
@@ -41,9 +48,10 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   onChange,
   range = false,
   showDayOfWeek = false,
-  showTodayButton = false,
+  showTodayButton = true,
   position = 'left',
-  format = 'dd.mm.yyyy'
+  format = 'dd.mm.yyyy',
+  disableWeekDays = [0, 6]
 }: IDatepickerProps) => {
   const separator = format[2];
 
@@ -304,9 +312,8 @@ const Datepicker: React.FC<IDatepickerProps> = ({
           <Input/>
         </InputMask>
 
-        <button className='rf-datepicker__calendar-button' style={{ color: 'var(--base-500)' }}>
-          C
-          {/* <Calendar />*/}
+        <button className='rf-datepicker__calendar-button'>
+          <CalendarOutline/>
         </button>
       </div>
       { showCalendar && (
@@ -324,6 +331,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
           position={ position }
           separator={ separator }
           format={ format }
+          disableWeekDays={disableWeekDays || []}
         />
       ) }
     </div>
