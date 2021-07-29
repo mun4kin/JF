@@ -29,7 +29,7 @@
   background-color: var(--background-secondary);
 
   .rf-hint__icon {
-    fill: var(--basic-primary)
+    color: var(--basic-primary)
   }
 }
 
@@ -37,7 +37,7 @@
   background-color: var(--background-success);
 
   .rf-hint__icon {
-    fill: var(--status-success)
+    color: var(--status-success)
   }
 }
 
@@ -45,7 +45,7 @@
   background-color: var(--background-warn);
 
   .rf-hint__icon {
-    fill: var(--status-warn)
+    color: var(--status-warn)
   }
 }
 
@@ -53,7 +53,7 @@
   background-color: var(--background-danger);
 
   .rf-hint__icon {
-    fill: var(--status-danger)
+    color: var(--status-danger)
   }
 }
 

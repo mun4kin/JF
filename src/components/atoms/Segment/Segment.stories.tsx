@@ -23,12 +23,16 @@ export const segment = () => {
     }
   ];
 
+  const onChange = (option: IOption) => {
+    console.log(option);
+  };
+
   return (
     <Story name='Segment (Сегмент 🧐)' description='Текстовый переключатель.'>
 
       <StoryItem>
         <StoryRow>
-          <Segment list={list}/>
+          <Segment list={list} onChange={onChange}/>
         </StoryRow>
       </StoryItem>
     </Story>

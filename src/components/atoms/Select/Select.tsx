@@ -2,8 +2,7 @@ import React, {
   FC, ReactNode, useCallback, useEffect, useRef, useState
 } from 'react';
 import './Select.scss';
-import { ReactComponent as ChevronDownOutline } from '@openvtb/admiral-icons/build/system/ChevronDownOutline.svg';
-import { ReactComponent as CloseOutline } from '@openvtb/admiral-icons/build/service/CloseOutline.svg';
+import { ChevronDown, Close } from '../../../assets/icons';
 
 import Tag from '../Tag';
 import { IOption } from '../../../types';
@@ -243,14 +242,14 @@ const Select: FC<ISelectProps> = ({
 
   const closeButton = !disabled && !readOnly && inputValue.length > 0 && (
     <button className='rf-select__button' onClick={ onClear }>
-      <CloseOutline/>
+      <Close/>
     </button>
   );
 
   const chevronButton = !disabled && (readOnly || inputValue.length === 0) && (
     <button className={`rf-select__button ${showDropdown ? 'rf-select__button--rotate' : ''}`}
       onClick={ () => toggleDropdown((state: boolean) => !state) }>
-      <ChevronDownOutline/>
+      <ChevronDown/>
     </button>
   );
 

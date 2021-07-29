@@ -85,6 +85,7 @@
     "typescript": "^4.3.5",
     "rxjs": "^7.2.0",
     "react-input-mask": "^3.0.0-alpha.2",
+    "resize-observer-polyfill": "^1.5.1",
     "x----x----x": "*"
   },
   "dependencies": {

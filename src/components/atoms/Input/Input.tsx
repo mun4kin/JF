@@ -6,7 +6,7 @@ import { fromEvent } from 'rxjs';
 import {
   debounceTime, distinctUntilChanged, map
 } from 'rxjs/operators';
-import { ReactComponent as CloseOutline } from '@openvtb/admiral-icons/build/service/CloseOutline.svg';
+import { Close } from '../../../assets/icons';
 
 export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size'> {
   /** Возможность очистки поля по клику */
@@ -69,7 +69,7 @@ const Input: FC<IInputProps> = ({
   /** Кнопка поиска и сброса */
   const closeButton = onClear && value.length > 0 && (
     <button className='rf-input__action' onClick={ clearInput }>
-      <CloseOutline/>
+      <Close/>
     </button>
   );
 

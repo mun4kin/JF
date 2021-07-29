@@ -47,7 +47,7 @@
   border-radius: 50%;
 
   svg {
-    fill: var(--text-secondary);
+    color: var(--text-secondary);
   }
 }
 
@@ -85,6 +85,10 @@
   display: inline-flex;
   width: 24px;
   height: 24px;
+}
+
+.rf-datepicker__calendar-right {
+  transform: rotate(180deg);
 }
 
 .rf-datepicker__calendar-today {

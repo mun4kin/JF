@@ -2,8 +2,6 @@ import React, {
   Dispatch, ReactNode, RefObject, SetStateAction, useCallback, useEffect, useRef, useState
 } from 'react';
 import './DatepickerCalendar.scss';
-import { ReactComponent as ChevronLeftOutline } from '@openvtb/admiral-icons/build/system/ChevronLeftOutline.svg';
-import { ReactComponent as ChevronRightOutline } from '@openvtb/admiral-icons/build/system/ChevronRightOutline.svg';
 import {
   compareMonths, formatDate,
   getDaysForMonth, isCurrentDay, isCurrentMonth, months, stringToDate, weekDays
@@ -12,6 +10,7 @@ import {
   DateFormat,
   IDatepickerActivePeriod, IDatepickerDay, IDatepickerPeriodType, IDatepickerStack
 } from './datepicker.types';
+import { ChevronLeft } from '../../../../assets/icons';
 
 interface IDatepickerCalendarProps {
   value: string;
@@ -443,7 +442,7 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
           <button type='button' className='rf-calendar__button rf-calendar__button--arrow rf-calendar__button-prev'
             disabled={ prevArrowDisabled } onClick={ () => onPeriodChange(-1) }>
             <span className='rf-datepicker__calendar-left'>
-              <ChevronLeftOutline/>
+              <ChevronLeft/>
             </span>
           </button>
           <button type='button' className='rf-calendar__button rf-calendar__label-button'
@@ -455,7 +454,7 @@ const DatepickerCalendar: React.FC<IDatepickerCalendarProps> = ({
           <button type='button' className='rf-calendar__button rf-calendar__button--arrow rf-calendar__button-next'
             disabled={ nextArrowDisabled } onClick={ () => onPeriodChange(1) }>
             <span className='rf-datepicker__calendar-right'>
-              <ChevronRightOutline/>
+              <ChevronLeft/>
             </span>
           </button>
         </div>

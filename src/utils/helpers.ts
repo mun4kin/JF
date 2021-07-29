@@ -153,6 +153,7 @@ export const variantClass: Record<string, string> = {
 };
 
 export const sizeClass: Record<Size, string> = {
+  'xs': 'rf--xs',
   's': 'rf--s',
   'm': 'rf--m',
   'l': 'rf--l',

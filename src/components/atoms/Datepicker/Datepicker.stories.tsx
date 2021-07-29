@@ -3,6 +3,7 @@ import Datepicker from './Datepicker';
 import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
 import StoryRow from '../../storybook/StoryRow';
+import { Button } from '../../../index';
 
 export default {
   title: 'Form Controls/Datepicker',
@@ -14,7 +15,7 @@ export const datepicker = () => {
     <Story name='Datepicker' description='Выбор даты.' width={350}>
       <StoryItem subtitle='Default' description='Принимает любой формат: number, string или Date'>
         <StoryRow>
-          <Datepicker/>
+          <Datepicker readOnly/>
         </StoryRow>
       </StoryItem>
       <StoryItem subtitle='Min, max, and disabledWeekDay' description='Позволяет ограничить выбор даты'>
@@ -30,6 +31,13 @@ export const datepicker = () => {
       <StoryItem subtitle='Включает диапазон одним пропсом range'>
         <StoryRow>
           <Datepicker min={Date.now() - 7 * 24 * 3600 * 1000} range showDayOfWeek/>
+        </StoryRow>
+      </StoryItem>
+      <StoryItem subtitle='Кастомная кнопка'>
+        <StoryRow>
+          <Datepicker defaultValue={Date.now()}>
+            <Button> Открыть календарь </Button>
+          </Datepicker>
         </StoryRow>
       </StoryItem>
       <StoryItem subtitle='Disabled'>

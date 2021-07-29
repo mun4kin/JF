@@ -1,7 +1,7 @@
 import React, { FC, InputHTMLAttributes } from 'react';
 import './Checkbox.scss';
-import { ReactComponent as CheckClearOutline } from '@openvtb/admiral-icons/build/service/CheckClearOutline.svg';
-import { ReactComponent as MinusOutline } from '@openvtb/admiral-icons/build/service/MinusOutline.svg';
+import { Success, Reduce } from '../../../assets/icons';
+
 
 export interface ICheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   /** Лейбл */
@@ -41,7 +41,7 @@ const Checkbox: FC<ICheckboxProps> = ({
   const checkIcon = !halfChecked && icon && (
     <span className={`rf-checkbox__check ${roundClass}`}>
       <span className='rf-checkbox__mark'>
-        <CheckClearOutline/>
+        <Success/>
       </span>
     </span>
   );
@@ -49,7 +49,7 @@ const Checkbox: FC<ICheckboxProps> = ({
   /** Иконка полу-чека */
   const halfCheckIcon = halfChecked && icon && (
     <span className='rf-checkbox__half-check'>
-      <MinusOutline/>
+      <Reduce/>
     </span>
   );
 

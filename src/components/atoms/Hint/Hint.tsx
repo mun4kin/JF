@@ -1,9 +1,7 @@
 import React, { ReactNode } from 'react';
 import './Hint.scss';
 import { VariantClassic } from '../../../types';
-
-
-import { ReactComponent as InfoSolid } from '@openvtb/admiral-icons/build/service/InfoSolid.svg';
+import { Info } from '../../../assets/icons';
 
 export interface IHintProps {
   /** основное сообщение*/
@@ -35,7 +33,7 @@ const Hint: React.FC<IHintProps> = ({
     <div style={ { maxWidth } } className={ `rf-hint__wrapper rf-hint__${variant} ${className} ` }>
       { icon === 'info' &&
       <div className='rf-hint__icon'>
-        <InfoSolid/>
+        <Info/>
       </div>
       }
       <div className='rf-hint__body'>

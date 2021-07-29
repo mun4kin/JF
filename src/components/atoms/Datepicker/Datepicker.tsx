@@ -1,8 +1,8 @@
 import React, {
+  ReactNode,
   useCallback, useEffect, useRef, useState
 } from 'react';
 import './Datepicker.scss';
-import { ReactComponent as CalendarOutline } from '@openvtb/admiral-icons/build/system/CalendarOutline.svg';
 import DatepickerCalendar from './DatepickerCalendar';
 import InputMask from 'react-input-mask';
 import {
@@ -11,6 +11,7 @@ import {
 import Input from '../Input';
 import { DateFormat, IDateVariants } from './DatepickerCalendar/datepicker.types';
 import useClickOutside from '../../../hooks/useClickOutside';
+import { Calendar } from '../../../assets/icons';
 
 export interface IDatepickerProps {
   name?: string;
@@ -34,6 +35,8 @@ export interface IDatepickerProps {
   format?: DateFormat;
   /** Ограничения на дни недели 0 - 6 */
   disableWeekDays?: number[];
+  /** Кастомная кнопка */
+  children?: ReactNode | ReactNode[];
 }
 
 const Datepicker: React.FC<IDatepickerProps> = ({
@@ -51,7 +54,8 @@ const Datepicker: React.FC<IDatepickerProps> = ({
   showTodayButton = true,
   position = 'left',
   format = 'dd.mm.yyyy',
-  disableWeekDays = [0, 6]
+  disableWeekDays = [0, 6],
+  children
 }: IDatepickerProps) => {
   const separator = format[2];
 
@@ -299,22 +303,28 @@ const Datepicker: React.FC<IDatepickerProps> = ({
     <div className='rf-datepicker' ref={ datepickerRef }>
       <div className={ `rf-datepicker__input-wrapper ${disabledClass} ${readOnlyClass}` }
         ref={ inputRef }
-        onFocus={ () => toggleCalendar(true) }>
-        <InputMask
-          mask={ mask }
-          name={ name }
-          placeholder={ placeholder }
-          value={ inputValue }
-          disabled={ disabled }
-          readOnly={ readOnly }
-          onKeyPress={ onKeyPress }
-          onChange={ onDatepickerChange }>
-          <Input/>
-        </InputMask>
+        onClick={ () => toggleCalendar(true) }>
+        {
+          children || (
+            <>
+              <InputMask
+                mask={ mask }
+                name={ name }
+                placeholder={ placeholder }
+                value={ inputValue }
+                disabled={ disabled }
+                readOnly={ readOnly }
+                onKeyPress={ onKeyPress }
+                onChange={ onDatepickerChange }>
+                <Input/>
+              </InputMask>
 
-        <button className='rf-datepicker__calendar-button'>
-          <CalendarOutline/>
-        </button>
+              <button className='rf-datepicker__calendar-button'>
+                <Calendar/>
+              </button>
+            </>
+          )
+        }
       </div>
       { showCalendar && (
         <DatepickerCalendar
