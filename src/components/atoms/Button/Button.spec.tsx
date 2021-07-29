@@ -62,4 +62,9 @@ describe('Test <Button/> component', () => {
     const { container } = render(<Button size='xl'> Button </Button>);
     expect(container.getElementsByClassName('rf--xl')).toHaveLength(1);
   });
+  
+  it('should be round', () => {
+    const { container } = render(<Button round> Button </Button>);
+    expect(container.getElementsByClassName('rf-button--round')).toHaveLength(1);
+  });
 });

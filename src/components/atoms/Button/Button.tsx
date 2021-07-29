@@ -28,6 +28,8 @@ export interface IButtonProps extends Omit<HTMLProps<HTMLButtonElement>, 'size'>
   fullWidth?: boolean;
   /** цвет шрифта ТЕКСТОВОЙ кнопки */
   textColor?: VariantClassic;
+  /** Круглая кнопка */
+  round?: boolean;
 }
 
 const Button: FC<IButtonProps> = ({
@@ -37,6 +39,7 @@ const Button: FC<IButtonProps> = ({
   buttonType = 'primary',
   preloader,
   textColor = 'default',
+  round = false,
   ...props
 }: IButtonProps) => {
 
@@ -51,6 +54,7 @@ const Button: FC<IButtonProps> = ({
   };
 
   const widthClass = fullWidth ? 'rf-button__full-width' : '';
+  const roundClass = round ? 'rf-button--round' : '';
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -101,7 +105,7 @@ const Button: FC<IButtonProps> = ({
       style={ { minWidth: `${minWidth}px` } }
       onMouseDown={ onMouseDown }
 
-      className={ `rf-button ${classesMap[buttonType]} ${sizeClass[size]} ${widthClass} ${pressedClass} ${props.className || ''} ${colorClass}` }>
+      className={ `rf-button ${classesMap[buttonType]} ${sizeClass[size]} ${widthClass} ${pressedClass} ${props.className || ''} ${colorClass} ${roundClass}` }>
       { preloader === undefined ? props.children : preloader ? <Preloader size='s' variant='white'/> : props.children }
 
     </button>
