@@ -1,0 +1,20 @@
+@import "../../../styles/mixins";
+
+.rf-form-group {
+  width: 100%;
+}
+
+.rf-form-group__label {
+  margin-bottom: 8px;
+  @include caption;
+}
+
+.rf-form-group__message {
+  margin-top: 8px;
+  @include caption;
+  color: var(--status-danger);
+}
+
+.rf-form-group__required {
+  color: var(--status-danger);
+}

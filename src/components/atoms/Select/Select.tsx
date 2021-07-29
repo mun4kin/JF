@@ -4,11 +4,11 @@ import React, {
 import './Select.scss';
 import { ChevronDown, Close } from '../../../assets/icons';
 
-import Tag from '../Tag';
 import { IOption } from '../../../types';
 import useClickOutside from '../../../hooks/useClickOutside';
 import Checkbox from '../Checkbox';
 import Preloader from '../Preloader';
+import Chip from '../Chip';
 
 export interface ISelectProps {
   /** Варианты выбора */
@@ -230,9 +230,9 @@ const Select: FC<ISelectProps> = ({
     <div className='rf-select__tags' ref={ tagsRef } onClick={ () => !disabled && toggleDropdown(true) }>
       { values.map((t: IOption) => (
         <div className='rf-select__tag' key={ t.value }>
-          <Tag onRemove={ () => onValueChange(t) } onClick={noop} disabled={ disabled }>
+          <Chip type='secondary' size='s' onRemove={ () => onValueChange(t) } onClick={noop} disabled={ disabled }>
             { t.label }
-          </Tag>
+          </Chip>
         </div>
       )) }
     </div>
