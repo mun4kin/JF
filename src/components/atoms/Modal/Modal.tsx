@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import './Modal.scss';
 import { createPortal } from 'react-dom';
-import { Close } from '../../../assets/icons';
+import { Close } from '../../../index';
 
 export interface IModalProps {
   /** Контент модалки */

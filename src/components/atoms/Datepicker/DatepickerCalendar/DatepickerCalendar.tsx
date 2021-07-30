@@ -10,7 +10,7 @@ import {
   DateFormat,
   IDatepickerActivePeriod, IDatepickerDay, IDatepickerPeriodType, IDatepickerStack
 } from './datepicker.types';
-import { ChevronLeft } from '../../../../assets/icons';
+import { ChevronLeft } from '../../../../index';
 
 interface IDatepickerCalendarProps {
   value: string;

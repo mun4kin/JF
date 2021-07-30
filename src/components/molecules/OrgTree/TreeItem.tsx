@@ -5,8 +5,8 @@ import { ITreeOption } from '../../../types';
 import './TreeItem.scss';
 import Tree from './Tree';
 import ResizeObserver from 'resize-observer-polyfill';
-import { Circle, Up } from '../../../assets/icons';
 import HLine from './lines/hline';
+import { Circle, Up } from '../../../index';
 
 interface IFolderItemProps {
   id: string;

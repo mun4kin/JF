@@ -1,6 +1,6 @@
 import React, { HTMLProps, useState } from 'react';
 import './Search.scss';
-import { Close, SearchIcon } from '../../../assets/icons';
+import { Close, SearchIcon } from '../../../index';
 
 export interface ISearchProps extends HTMLProps<HTMLInputElement> {
   onClear?: () => void;

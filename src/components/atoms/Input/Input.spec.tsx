@@ -4,7 +4,7 @@ import Input from './Input';
 
 describe('Test <Input/> component', () => {
   it('should have clear button', () => {
-    const { container } = render(<Input />);
-    // expect(wrapper.find('.rf-input__action-clear')).toHaveLength(1);
+    const { container } = render(<Input onClear={jest.fn} defaultValue='Test' />);
+    expect(container.getElementsByClassName('rf-input__action')).toHaveLength(1);
   });
 });

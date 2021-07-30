@@ -1,8 +1,8 @@
 import React from 'react';
 import './CompletePopup.scss';
-import { Button } from '../../../index';
-import { CircleConfirm, CircleReject } from '../../../assets/icons';
-
+import {
+  Button, CircleConfirm, CircleReject
+} from '../../../index';
 
 export interface ICompletePopupProps {
   label: string;

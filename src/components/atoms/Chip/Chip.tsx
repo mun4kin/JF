@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 import './Chip.scss';
 import { Size } from '../../../types';
-import { Close } from '../../../assets/icons/index';
 import { sizeClass } from '../../../utils/helpers';
+import { Close } from '../../../index';
 
 export interface ITagProps {
   children: ReactNode | ReactNode[];

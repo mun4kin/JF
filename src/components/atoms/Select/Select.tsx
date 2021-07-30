@@ -2,13 +2,13 @@ import React, {
   FC, ReactNode, useCallback, useEffect, useRef, useState
 } from 'react';
 import './Select.scss';
-import { ChevronDown, Close } from '../../../assets/icons';
 
 import { IOption } from '../../../types';
 import useClickOutside from '../../../hooks/useClickOutside';
-import Checkbox from '../Checkbox';
-import Preloader from '../Preloader';
 import Chip from '../Chip';
+import {
+  Checkbox, ChevronDown, Close, Preloader
+} from '../../../index';
 
 export interface ISelectProps {
   /** Варианты выбора */
@@ -214,10 +214,12 @@ const Select: FC<ISelectProps> = ({
       }
     }
 
-    return (<div className={`rf-select__list-element ${disabledClass} ${activeClass}`} key={ o.value }>
-      { multiselect ? <Checkbox label={label} checked={active} onChange={handleChange} fullWidth/> :
-        <div className='rf-select__list-element-single' onClick={ handleChange }>{label}</div>}
-    </div>);
+    return (
+      <div className={`rf-select__list-element ${disabledClass} ${activeClass}`} key={ o.value }>
+        { multiselect ? <Checkbox label={label} checked={active} onChange={handleChange} fullWidth/> :
+          <div className='rf-select__list-element-single' onClick={ handleChange }>{label}</div>}
+      </div>
+    );
   });
 
   // -------------------------------------------------------------------------------------------------------------------

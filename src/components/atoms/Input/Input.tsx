@@ -6,7 +6,7 @@ import { fromEvent } from 'rxjs';
 import {
   debounceTime, distinctUntilChanged, map
 } from 'rxjs/operators';
-import { Close } from '../../../assets/icons';
+import { Close } from '../../../index';
 
 export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size'> {
   /** Возможность очистки поля по клику */

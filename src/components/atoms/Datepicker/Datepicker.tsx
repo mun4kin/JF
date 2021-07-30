@@ -11,7 +11,7 @@ import {
 import Input from '../Input';
 import { DateFormat, IDateVariants } from './DatepickerCalendar/datepicker.types';
 import useClickOutside from '../../../hooks/useClickOutside';
-import { Calendar } from '../../../assets/icons';
+import { Calendar } from '../../../index';
 
 export interface IDatepickerProps {
   name?: string;
