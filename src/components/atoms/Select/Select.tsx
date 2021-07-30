@@ -7,8 +7,9 @@ import { IOption } from '../../../types';
 import useClickOutside from '../../../hooks/useClickOutside';
 import Chip from '../Chip';
 import {
-  Checkbox, ChevronDown, Close, Preloader
+  ChevronDown, Close, Preloader
 } from '../../../index';
+import Checkbox from '../Checkbox/Checkbox';
 
 export interface ISelectProps {
   /** Варианты выбора */
@@ -258,9 +259,10 @@ const Select: FC<ISelectProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   const openClass = showDropdown ? 'rf-select__wrapper--open' : '';
+  const multiselectClass = multiselect ? 'rf-select--multi' : '';
 
   return (
-    <div className='rf-select' ref={ componentNode }>
+    <div className={`rf-select ${multiselectClass}`} ref={ componentNode }>
       <div className={`rf-select__wrapper ${openClass}`}>
         <input
           className='rf-select__input'

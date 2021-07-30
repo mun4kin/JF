@@ -80,7 +80,7 @@
   cursor: default;
 }
 
-.rf-select__list-element--active {
+.rf-select:not(.rf-select--multi) .rf-select__list-element--active {
   background-color: var(--background-secondary);
 }
 
