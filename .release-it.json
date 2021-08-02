@@ -1,6 +1,5 @@
 {
   "hooks": {
-    "before:init": ["lint-staged --config .lintstagedrc.json && jest"],
     "after:bump": "npm run build && cp package.json dist"
   },
   "npm": {

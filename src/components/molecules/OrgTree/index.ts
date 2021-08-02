@@ -1,3 +1,3 @@
-import Tree from './Tree';
+import OrgTree from './OrgTree';
 
-export default Tree;
+export default OrgTree;
