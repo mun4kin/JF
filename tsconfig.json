@@ -16,7 +16,8 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "jsx": "react",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true
   },
   "files": [ "./src/index.ts","custom.d.ts"],
   "include": ["src"],

@@ -102,3 +102,8 @@ export {
   CircleReject,
   Circle
 };
+
+// --------------------------Переменные---------------------------------------------------------------------------------
+import variables from './styles/variables.json';
+
+export { variables };
