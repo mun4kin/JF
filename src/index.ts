@@ -25,6 +25,7 @@ import Tag from './components/atoms/Tag';
 import Textarea from './components/atoms/Textarea';
 import Tooltip from './components/atoms/Tooltip';
 import OrgTree from './components/molecules/OrgTree';
+import FatalError from './components/molecules/FatalError';
 import CompletePopup from './components/popups/CompletePopup';
 
 export {
@@ -53,6 +54,7 @@ export {
   Tooltip,
   OrgTree,
   CompletePopup,
+  FatalError,
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------
