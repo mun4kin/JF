@@ -1,5 +1,6 @@
 {
   "hooks": {
-    "before:init": ["lint-staged --config .lintstagedrc.json && jest"]
+    "before:init": ["lint-staged --config .lintstagedrc.json && jest"],
+    "after:bump": "npm run build"
   }
 }
