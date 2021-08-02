@@ -93,21 +93,25 @@
 }
 
 @mixin text-l-16 {
+  @include text;
   font-size: 16px;
   line-height: 24px;
 }
 
 @mixin text-m-16 {
+  @include text;
   font-size: 16px;
   line-height: 20px;
 }
 
 @mixin text-s-14 {
+  @include text;
   font-size: 14px;
   line-height: 20px;
 }
 
 @mixin text-xs-14 {
+  @include text;
   font-size: 14px;
   line-height: 16px;
 }
