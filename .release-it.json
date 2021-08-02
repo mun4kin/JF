@@ -2,5 +2,8 @@
   "hooks": {
     "before:init": ["lint-staged --config .lintstagedrc.json && jest"],
     "after:bump": "npm run build"
+  },
+  "npm": {
+    "publishPath": "dist"
   }
 }
