@@ -49,8 +49,11 @@ const FolderItem: React.FC<IFolderItemProps> = ({
 
   const handleChange = (e: React.MouseEvent) => {
     e.stopPropagation();
-    toggleFolder(!showFolder);
     onChange && onChange(item);
+  };
+
+  const openFolder = () => {
+    toggleFolder(!showFolder);
   };
 
   // ---------------------------------------------------------------------------------------------------------------------------------------
@@ -112,7 +115,7 @@ const FolderItem: React.FC<IFolderItemProps> = ({
         <HLine className='rf-tree__item--h' data-id={`d-${depth}`}/>
         {/* <div className='rf-tree__item--h' data-id={`d-${depth}`}/>*/}
         {
-          item.children && item.children.length > 0 ? <Up className={`rf-tree__item-label-icon ${rotateIconClass}`}/> :
+          item.children && item.children.length > 0 ? <Up className={`rf-tree__item-label-icon ${rotateIconClass}`} onClick={openFolder}/> :
             <Circle className='rf-tree__item-label-icon'/>
         }
         { item.label }

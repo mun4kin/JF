@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import StoryItem from '../../storybook/StoryItem';
 import Story from '../../storybook/Story';
 import { ITreeOption } from '../../../types';
@@ -13,13 +13,20 @@ export default {
 
 export const tree = () => {
 
-  const [data, setData] = useState<ITreeOption[]>(list);
+  const [data, setData] = useState<ITreeOption[]>([]);
 
   const [activeItem, setActiveItem] = useState<ITreeOption | undefined>(undefined);
 
   const onChange = (o: ITreeOption) => {
     setActiveItem(o);
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setData(list);
+    }, 500);
+  }, []);
+
 
   return (
     <Story name='OrgTree' width={600}>

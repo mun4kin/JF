@@ -19,7 +19,7 @@ export interface ITreeProps {
   activeItem?: ITreeOption | undefined;
 }
 
-const Folder: React.FC<ITreeProps> = ({ id, list, onChange, parent, depth = 0, open = true, activeItem }: ITreeProps) => {
+const Folder: React.FC<ITreeProps> = ({ id, list, onChange, depth = 0, open = true, activeItem }: ITreeProps) => {
 
   // ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -30,9 +30,9 @@ const Folder: React.FC<ITreeProps> = ({ id, list, onChange, parent, depth = 0, o
   // ---------------------------------------------------------------------------------------------------------------------------------------
 
   const listJSX = list.map((item: ITreeOption, i: number) => {
-    item.parent = parent;
     return (
-      <TreeItem id={id} key={item.value} item={item} onChange={onChange} depth={depth + 1} open={open} activeItem={activeItem} last={i === list.length - 1}/>
+      <TreeItem id={id} key={item.value} item={item} onChange={onChange}
+        depth={depth + 1} open={open} activeItem={activeItem} last={i === list.length - 1}/>
     );
   });
 

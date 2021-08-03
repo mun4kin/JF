@@ -21,6 +21,7 @@
   text-align: center;
   background-color: var(--background-secondary);
   border: 1px solid var(--background-secondary);
+  @include text-s-14;
 }
 
 .rf-segment__item:first-of-type {
@@ -43,14 +44,4 @@
   border: 2px solid var(--basic-primary);
   transition: transform 0.3s;
   z-index: 10;
-}
-
-.rf-segment {
-  .rf-radio {
-    height: 100%;
-  }
-
-  .rf-radio__label {
-    @include button-m-16;
-  }
 }

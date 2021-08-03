@@ -106,6 +106,13 @@ export const list: ITreeOption[] = [
     value: '2',
     label: 'Департамент нетехнологического развития системы водоснабжения',
     checked: false,
-    children: []
+    children: [
+      {
+        value: '2_1',
+        label: 'Департамент нетехнологического развития системы водоснабжения_1',
+        checked: false,
+        children: []
+      }
+    ]
   }
 ];
