@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import './Story.scss';
 
 interface IProps {
+  /** */
   name: string;
   width?: number;
   height?: number;
