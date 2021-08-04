@@ -1,4 +1,6 @@
-import React, { HTMLProps, useState } from 'react';
+import React, {
+  HTMLProps, useEffect, useState
+} from 'react';
 import './Search.scss';
 import { Close, SearchIcon } from '../../../index';
 
@@ -11,6 +13,10 @@ const Search: React.FC<ISearchProps> = ({ onClear, ...props }: ISearchProps) => 
   // -------------------------------------------------------------------------------------------------------------------
 
   const [value, setValue] = useState<string>(props.value ? props.value.toString() : '');
+
+  useEffect(() => {
+    setValue(props.value ? props.value.toString() : '');
+  }, [props.value]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
