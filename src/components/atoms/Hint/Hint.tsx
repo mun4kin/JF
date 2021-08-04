@@ -18,12 +18,12 @@ export interface IHintProps {
 
 
 const Hint: React.FC<IHintProps> = ({
-  children = 'Текстовое сообщение',
+  children,
   button,
   className = '',
   variant = 'default',
   icon,
-  title = 'Заголовок сообщения',
+  title,
   maxWidth = '648px',
 
 }: IHintProps) => {
@@ -37,9 +37,9 @@ const Hint: React.FC<IHintProps> = ({
       </div>
       }
       <div className='rf-hint__body'>
-        <div className='rf-hint__title-text'>   { title }</div>
-        <div className='rf-hint__message'> { children } </div>
-        { button && <div className='rf-hint__button'> { button } </div>}
+        { title && <div className='rf-hint__title-text'> { title }</div> }
+        { children && <div className='rf-hint__message'> { children } </div> }
+        { button && <div className='rf-hint__button'> { button } </div> }
       </div>
     </div>
   );
