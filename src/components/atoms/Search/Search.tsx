@@ -42,7 +42,7 @@ const Search: React.FC<ISearchProps> = ({ onClear, ...props }: ISearchProps) => 
         onChange={ onChange }
       />
       <SearchIcon className='rf-search__search-icon'/>
-      { onClear && <Close className='rf-search__close-icon' onClick={ onClearClick }/> }
+      { value.length > 0 && onClear && <Close className='rf-search__close-icon' onClick={ onClearClick }/> }
     </div>
   );
 };
