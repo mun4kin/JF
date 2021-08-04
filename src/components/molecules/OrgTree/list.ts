@@ -5,7 +5,14 @@ export const list: ITreeOption[] = [
     value: '0',
     label: 'ВТБ ПАО',
     checked: false,
-    children: []
+    children: [
+      {
+        value: '0',
+        label: 'Шапка',
+        checked: false,
+        children: []
+      }
+    ]
   },
   {
     value: '1',

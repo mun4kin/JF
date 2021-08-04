@@ -31,7 +31,7 @@ const Folder: React.FC<ITreeProps> = ({ id, list, onChange, depth = 0, open = tr
 
   const listJSX = list.map((item: ITreeOption, i: number) => {
     return (
-      <TreeItem id={id + '_' + i} key={item.value + '_' + i} item={item} onChange={onChange}
+      <TreeItem id={id} key={item.value + '_' + depth + '_' + i} item={item} onChange={onChange}
         depth={depth + 1} open={open} activeItem={activeItem} last={i === list.length - 1}/>
     );
   });
