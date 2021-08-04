@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import './Story.scss';
 
 interface IProps {
-  /** */
+  /** n */
   name: string;
   width?: number;
   height?: number;
