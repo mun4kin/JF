@@ -58,6 +58,11 @@ const Tabs: FC<ITabsProps> = ({ list, type = 'underline', children }: ITabsProps
     }
 
     setActive(i);
+
+    if (list[i]?.handler) {
+      // @ts-ignore
+      list[i].handler(refs.current[i].current);
+    }
   };
 
   // -------------------------------------------------------------------------------------------------------------------

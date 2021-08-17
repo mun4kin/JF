@@ -35,6 +35,8 @@ export interface ITab {
   active?: boolean;
   /** Ссылка */
   url?: string;
+  /** Действие при клике на вкладку */
+  handler?: (element?: HTMLElement) => void;
 }
 
 /** Элемент выпадающего списка */
