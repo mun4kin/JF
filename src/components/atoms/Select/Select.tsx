@@ -16,10 +16,10 @@ export interface ISelectProps {
   options: IOption[];
   /** Изменение значения */
   onChange: (option: IOption[]) => void;
+  /** Значение */
+  values: IOption[];
   /** Поиск внутри селекта */
   onSearch?: (query: string) => void;
-  /** Значение по умолчанию */
-  defaultValues?: IOption[];
   /** Множественный выбор */
   multiselect?: boolean;
   /** Плейсхолдер */
@@ -43,7 +43,7 @@ const Select: FC<ISelectProps> = ({
   options,
   onChange,
   onSearch,
-  defaultValues = [],
+  values = [],
   multiselect = false,
   placeholder = '',
   disabled = false,
@@ -72,7 +72,7 @@ const Select: FC<ISelectProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   const [inputValue, setInputValue] = useState<string>(() =>
-    defaultValues.length > 0 && !multiselect ? defaultValues[0].label : '');
+    values.length > 0 && !multiselect ? values[0].label : '');
   const openDropdown = () => {
     toggleDropdown(true);
   };
@@ -84,7 +84,7 @@ const Select: FC<ISelectProps> = ({
     toggleDropdown(true);
 
     if (!multiselect) {
-      setValues([]);
+      setSelectValues([]);
     }
 
     onSearch && onSearch('');
@@ -93,7 +93,7 @@ const Select: FC<ISelectProps> = ({
   /** Очистка при изменении извне через clearHook */
   useEffect(() => {
     if (!multiselect) {
-      setValues([]);
+      setSelectValues([]);
     }
 
     if (clearHook === undefined) {
@@ -123,37 +123,43 @@ const Select: FC<ISelectProps> = ({
 
   // -------------------------------------------------------------------------------------------------------------------
 
-  const [values, setValues] = useState<IOption[]>(() => defaultValues);
+  const [selectValues, setSelectValues] = useState<IOption[]>(() => values);
+
+  useEffect(() => {
+    setSelectValues(values);
+  }, [values]);
+
+
   const [selectedMap, setSelectedMap] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    if (!values) {
+    if (!selectValues) {
       return;
     }
 
-    const map: Record<string, boolean> = values.reduce((acc: Record<string, boolean>, o: IOption) => {
+    const map: Record<string, boolean> = selectValues.reduce((acc: Record<string, boolean>, o: IOption) => {
       acc[o.value] = true;
       return acc;
     }, {});
 
-    onChange(values);
+    onChange(selectValues);
     setSelectedMap(map);
 
-  }, [values]);
+  }, [selectValues]);
 
   const onValueChange = (option: IOption) => {
     if (multiselect) {
-      const index = values.findIndex((o: IOption) => option.value === o.value);
+      const index = selectValues.findIndex((o: IOption) => option.value === o.value);
 
       if (index >= 0) {
-        setValues((values: IOption[]) => values.filter((_: IOption, i: number) => i !== index));
+        setSelectValues((selectValues: IOption[]) => selectValues.filter((_: IOption, i: number) => i !== index));
       } else {
-        if (values.length < maxOptions) {
-          setValues((values: IOption[]) => [...values, option]);
+        if (selectValues.length < maxOptions) {
+          setSelectValues((selectValues: IOption[]) => [...selectValues, option]);
         }
       }
     } else {
-      setValues([option]);
+      setSelectValues([option]);
     }
   };
 
@@ -229,9 +235,9 @@ const Select: FC<ISelectProps> = ({
 
   const tagsRef = useRef<HTMLDivElement>(null);
 
-  const tagsJSX = multiselect && values.length > 0 && (
+  const tagsJSX = multiselect && selectValues.length > 0 && (
     <div className='rf-select__tags' ref={ tagsRef } onClick={ () => !disabled && toggleDropdown(true) }>
-      { values.map((t: IOption) => (
+      { selectValues.map((t: IOption) => (
         <div className='rf-select__tag' key={ t.value }>
           <Chip type='secondary' size='s' onRemove={ () => onValueChange(t) } onClick={noop} disabled={ disabled }>
             { t.label }
@@ -271,7 +277,7 @@ const Select: FC<ISelectProps> = ({
           value={ inputValue }
           disabled={ disabled }
           readOnly={ readOnly }
-          placeholder={ disabled || (multiselect && tagsPosition === 'inside' && values.length === maxOptions) ? '' : placeholder }/>
+          placeholder={ disabled || (multiselect && tagsPosition === 'inside' && selectValues.length === maxOptions) ? '' : placeholder }/>
         { closeButton }
         { chevronButton }
       </div>

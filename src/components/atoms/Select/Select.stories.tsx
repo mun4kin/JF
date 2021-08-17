@@ -1,4 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, {
+  useEffect, useRef, useState
+} from 'react';
 import Select from './Select';
 import { IOption } from '../../../types';
 import StoryItem from '../../storybook/StoryItem';
@@ -20,7 +22,7 @@ for (let i = 1; i < 15; i++) {
 }
 
 export const select = () => {
-  const [values, setValues] = useState<IOption[]>([list[3]]);
+  const [values, setValues] = useState<IOption[]>([]);
 
 
   const onChange = (options: IOption[]) => {
@@ -50,11 +52,19 @@ export const select = () => {
     filterWithDelay(query);
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      setValues([list[3]]);
+    }, 1000);
+  }, []);
+
+
   return (
-    <Story name='Select' description='Select кнопки'>
+    <Story name='Select' description='Select кнопки' width={400}>
       <StoryItem>
         <Select placeholder='Выберите значение'
           options={ filteredOptions }
+          values={values}
           tagsPosition='outside'
           onChange={onChange}
           onSearch={onSearch}
