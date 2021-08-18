@@ -122,7 +122,7 @@ export const variants: Variant[] = [
 ];
 
 /** Размер */
-export type Size = 'xs' | 's' | 'm' | 'l' | 'xl';
+export type Size = 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl';
 
 /** Формат даты для дейтпикера */
 export type DateFormat = 'dd.mm.yy' | 'dd.mm.yyyy';

@@ -44,7 +44,7 @@ export const hint = (args: IHintProps) => {
     <Story name='Hint' description='Общее уведомление'>
       <StoryItem subtitle='Простое уведомление'>
         <Hint variant={ args.variant }
-          maxWidth={ args.maxWidth }
+          maxWidth={ args.maxWidth } showLine
           title={ args.title } button={ undefined }>
           { args.children }
         </Hint>

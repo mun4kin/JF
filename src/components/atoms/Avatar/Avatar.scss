@@ -34,3 +34,7 @@
 .rf-avatar.rf--xl {
   @include round(56px)
 }
+
+.rf-avatar.rf--xxl {
+  @include round(80px)
+}

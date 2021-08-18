@@ -5,6 +5,17 @@
   border-radius: var(--12);
   padding: var(--16);
   display: flex;
+  position: relative;
+}
+
+.rf-hint__wrapper.line:before {
+  content: '';
+  width: 8px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--12) 0 0 var(--12);
 }
 
 .rf-hint__title-text {
@@ -31,6 +42,10 @@
   .rf-hint__icon {
     color: var(--basic-primary)
   }
+
+  &:before {
+    background-color: var(--basic-primary);
+  }
 }
 
 .rf-hint__green {
@@ -38,6 +53,10 @@
 
   .rf-hint__icon {
     color: var(--status-success)
+  }
+
+  &:before {
+    background-color: var(--status-success);
   }
 }
 
@@ -47,6 +66,10 @@
   .rf-hint__icon {
     color: var(--status-warn)
   }
+
+  &:before {
+    background-color: var(--status-warn);
+  }
 }
 
 .rf-hint__red {
@@ -54,6 +77,10 @@
 
   .rf-hint__icon {
     color: var(--status-danger)
+  }
+
+  &:before {
+    background-color: var(--status-danger);
   }
 }
 
