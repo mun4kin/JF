@@ -32,7 +32,7 @@ export const segment = () => {
 
       <StoryItem>
         <StoryRow>
-          <Segment list={list} onChange={onChange}/>
+          <Segment list={list} onChange={onChange} width={100}/>
         </StoryRow>
       </StoryItem>
     </Story>
