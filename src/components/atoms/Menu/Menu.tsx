@@ -42,6 +42,7 @@ const Menu: React.FC<IListProps> = ({
 
   /** Клик по кнопке */
   const onClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
     e.preventDefault();
     onToggle();
   };
