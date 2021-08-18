@@ -27,6 +27,9 @@ import Tooltip from './components/atoms/Tooltip';
 import OrgTree from './components/molecules/OrgTree';
 import FatalError from './components/molecules/FatalError';
 import CompletePopup from './components/popups/CompletePopup';
+import Page from './components/pages/Page';
+import PageWithSections from './components/pages/PageWithSections';
+import { InputHook } from './components/atoms/Input/InputHook';
 
 export {
   Avatar,
@@ -55,6 +58,9 @@ export {
   OrgTree,
   CompletePopup,
   FatalError,
+  Page,
+  PageWithSections,
+  InputHook,
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------
