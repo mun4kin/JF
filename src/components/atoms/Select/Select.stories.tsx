@@ -5,6 +5,7 @@ import Select from './Select';
 import { IOption } from '../../../types';
 import StoryItem from '../../storybook/StoryItem';
 import Story from '../../storybook/Story';
+import Button from '../Button';
 
 export default {
   title: 'Form Controls/Select',
@@ -58,6 +59,11 @@ export const select = () => {
     }, 1000);
   }, []);
 
+  const [state, setState] = useState([list[0]]);
+
+  const onChange1 = (options: IOption[]) => {
+    console.log(options);
+  };
 
   return (
     <Story name='Select' description='Select кнопки' width={400}>
@@ -69,6 +75,18 @@ export const select = () => {
           onChange={onChange}
           onSearch={onSearch}
           multiselect
+          preloader={loading}/>
+      </StoryItem>
+
+      <StoryItem description='Изменяемое значение извне'>
+
+        <Button onClick={() => setState([list[1]])}>Set State</Button>
+        <Select placeholder='Выберите значение'
+          options={ filteredOptions }
+          values={state}
+          tagsPosition='outside'
+          onChange={onChange1}
+          onSearch={onSearch}
           preloader={loading}/>
       </StoryItem>
     </Story>

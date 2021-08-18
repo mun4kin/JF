@@ -144,6 +144,7 @@ const Select: FC<ISelectProps> = ({
 
     onChange(selectValues);
     setSelectedMap(map);
+    // selectValues.length && setInputValue(multiselect ? '' : selectValues[0]?.label);
 
   }, [selectValues]);
 
