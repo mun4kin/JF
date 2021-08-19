@@ -1,0 +1,47 @@
+.rf-phone-input {
+  display: flex;
+}
+
+.rf-phone-input.invalid {
+  .rf-input__field {
+    border-color: var(--danger-500);
+  }
+
+  .rf-phone-input__field .rf-input__field {
+    border-left-color: var(--base-300);
+  }
+}
+
+.rf-phone-input--focus {
+
+  .rf-input__field {
+    border-color: var(--accent-500);
+  }
+}
+
+.rf-phone-input__select {
+  width: 80px;
+
+  .rf-input__field {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+  }
+}
+
+.rf-phone-input__field {
+  width: 100%;
+
+  .rf-input__field {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+.rf-phone-input__hidden {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

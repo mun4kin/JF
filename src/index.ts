@@ -29,6 +29,7 @@ import FatalError from './components/molecules/FatalError';
 import CompletePopup from './components/popups/CompletePopup';
 import Page from './components/pages/Page';
 import PageWithSections from './components/pages/PageWithSections';
+
 import { InputHook } from './components/atoms/Input/InputHook';
 
 export {
@@ -59,6 +60,8 @@ export {
   CompletePopup,
   FatalError,
   Page,
+  PDFViewer,
+  CertReader,
   PageWithSections,
   InputHook,
 };
@@ -113,5 +116,7 @@ export {
 
 // --------------------------Переменные---------------------------------------------------------------------------------
 import variables from './styles/variables.json';
+import PDFViewer from './components/molecules/PDFViewer/PDFViewer';
+import CertReader from './components/molecules/CertReader';
 
 export { variables };
