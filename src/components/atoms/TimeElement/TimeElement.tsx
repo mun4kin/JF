@@ -61,14 +61,14 @@ const TimeElement: FC<ITimepickerProps> = ({ updateTime, min, max, value }: ITim
   const itemsHour = arrayTimeHours.map((itemRow: string[], id) => (
     <div key={id} className='rf-time-element__item-row'>
       {itemRow.map((item) => (
-        <Button
-          buttonType='text'
+        <button
+          // buttonType='text'
           key={item}
           disabled={!isValidTime(item, 'h')}
           className='rf-time-element'
           onClick={clickHandler}>
           {item}
-        </Button>
+        </button>
       ))}
     </div>
   ));
@@ -81,14 +81,14 @@ const TimeElement: FC<ITimepickerProps> = ({ updateTime, min, max, value }: ITim
       {itemRow.map((item) => {
         const t = (time || '00') + item;
         return (
-          <Button
-            buttonType='text'
+          <button
+            // buttonType='text'
             key={item}
             disabled={!isValidTime(t, 'm')}
             className='rf-time-element'
             onClick={(e: React.MouseEvent) => applyTimeHandler(e, onClose)}>
             {t}
-          </Button>
+          </button>
         );
       })}
     </div>

@@ -9,10 +9,34 @@
 .rf-time-element {
   box-sizing: border-box;
   @include text-m-16();
-  margin-right: 16px;
+  margin-right: 4px;
+  padding: 6px 12px;
+  border-radius: 4px;
   letter-spacing: normal;
-  min-width: 66px;
+  width: 66px;
+  background-color: var(--background-tertiary);
 }
+
+.rf-time-element:disabled {
+  color: var(--text-tertiary);
+  background-color: var(--background-card);
+  pointer-events: none;
+}
+
+.rf-time-element:hover {
+  color: var(--text-inversion);
+  background-color: var(--basic-hover);
+}
+
+.rf-time-element:active {
+  color: var(--text-inversion);
+  background-color: var(--basic-press);
+}
+
+//.rf-time-element:disabled {
+//  color: var(--text-tertiary);
+//  background-color: var(--background-card);
+//}
 
 .rf-time-element__wrapper {
   max-width: 300px;

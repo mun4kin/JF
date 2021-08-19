@@ -142,25 +142,31 @@ const Select: FC<ISelectProps> = ({
       return acc;
     }, {});
 
-    onChange(selectValues);
     setSelectedMap(map);
-    // selectValues.length && setInputValue(multiselect ? '' : selectValues[0]?.label);
+    setInputValue(multiselect ? '' : clearOnSelect ? '' : selectValues[0].label);
 
   }, [selectValues]);
 
   const onValueChange = (option: IOption) => {
+    let result = undefined;
+
     if (multiselect) {
       const index = selectValues.findIndex((o: IOption) => option.value === o.value);
 
       if (index >= 0) {
-        setSelectValues((selectValues: IOption[]) => selectValues.filter((_: IOption, i: number) => i !== index));
+        result = selectValues.filter((_: IOption, i: number) => i !== index);
       } else {
         if (selectValues.length < maxOptions) {
-          setSelectValues((selectValues: IOption[]) => [...selectValues, option]);
+          result = [...selectValues, option];
         }
       }
     } else {
-      setSelectValues([option]);
+      result = [option];
+    }
+
+    if (result) {
+      setSelectValues(result);
+      onChange(result);
     }
   };
 
