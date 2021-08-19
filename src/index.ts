@@ -31,6 +31,7 @@ import Page from './components/pages/Page';
 import PageWithSections from './components/pages/PageWithSections';
 
 import { InputHook } from './components/atoms/Input/InputHook';
+import Timepicker from './components/atoms/Timepicker';
 
 export {
   Avatar,
@@ -64,6 +65,7 @@ export {
   CertReader,
   PageWithSections,
   InputHook,
+  Timepicker
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------
@@ -89,6 +91,7 @@ import CircleAlt from './assets/icons/CircleAlt';
 import CircleConfirm from './assets/icons/CircleConfirm';
 import CircleReject from './assets/icons/CircleReject';
 import Circle from './assets/icons/Circle';
+import Time from './assets/icons/Time';
 
 export {
   Close,
@@ -111,7 +114,8 @@ export {
   CircleAlt,
   CircleConfirm,
   CircleReject,
-  Circle
+  Circle,
+  Time
 };
 
 // --------------------------Переменные---------------------------------------------------------------------------------

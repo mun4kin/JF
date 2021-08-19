@@ -5,6 +5,7 @@ import Select from './Select';
 import { IOption } from '../../../types';
 import StoryItem from '../../storybook/StoryItem';
 import Story from '../../storybook/Story';
+import Button from '../Button';
 
 export default {
   title: 'Form Controls/Select',
@@ -58,10 +59,22 @@ export const select = () => {
     }, 1000);
   }, []);
 
+  const [state, setState] = useState([list[0]]);
+  const [state1, setState1] = useState([list[1]]);
+
+  const onChange1 = (options: IOption[]) => {
+    console.log(options);
+    setState(options);
+  };
+
+  const onChange2 = (options: IOption[]) => {
+    console.log(options);
+    setState1(options);
+  };
 
   return (
     <Story name='Select' description='Select кнопки' width={400}>
-      <StoryItem>
+      <StoryItem description='Multiselect'>
         <Select placeholder='Выберите значение'
           options={ filteredOptions }
           values={values}
@@ -69,6 +82,28 @@ export const select = () => {
           onChange={onChange}
           onSearch={onSearch}
           multiselect
+          preloader={loading}/>
+      </StoryItem>
+
+      <StoryItem description='Изменяемое значение извне'>
+        <Button onClick={() => setState([list[1]])}>Set State</Button>
+        <div style={{ height: '20px' }}/>
+        <Select placeholder='Выберите значение'
+          options={ filteredOptions }
+          values={state}
+          tagsPosition='outside'
+          onChange={onChange1}
+          onSearch={onSearch}
+          preloader={loading}/>
+      </StoryItem>
+
+      <StoryItem description='Readonly Select'>
+        <Select placeholder='Выберите значение'
+          readOnly
+          options={ list }
+          values={state1}
+          tagsPosition='outside'
+          onChange={onChange2}
           preloader={loading}/>
       </StoryItem>
     </Story>
