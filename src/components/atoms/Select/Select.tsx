@@ -143,7 +143,7 @@ const Select: FC<ISelectProps> = ({
     }, {});
 
     setSelectedMap(map);
-    setInputValue(multiselect ? '' : clearOnSelect ? '' : selectValues[0].label);
+    setInputValue(multiselect ? '' : clearOnSelect ? '' : selectValues[0]?.label || '');
 
   }, [selectValues]);
 
