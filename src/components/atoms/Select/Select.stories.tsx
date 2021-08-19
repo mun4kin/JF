@@ -60,14 +60,21 @@ export const select = () => {
   }, []);
 
   const [state, setState] = useState([list[0]]);
+  const [state1, setState1] = useState([list[1]]);
 
   const onChange1 = (options: IOption[]) => {
     console.log(options);
+    setState(options);
+  };
+
+  const onChange2 = (options: IOption[]) => {
+    console.log(options);
+    setState1(options);
   };
 
   return (
     <Story name='Select' description='Select кнопки' width={400}>
-      <StoryItem>
+      <StoryItem description='Multiselect'>
         <Select placeholder='Выберите значение'
           options={ filteredOptions }
           values={values}
@@ -79,14 +86,24 @@ export const select = () => {
       </StoryItem>
 
       <StoryItem description='Изменяемое значение извне'>
-
         <Button onClick={() => setState([list[1]])}>Set State</Button>
+        <div style={{ height: '20px' }}/>
         <Select placeholder='Выберите значение'
           options={ filteredOptions }
           values={state}
           tagsPosition='outside'
           onChange={onChange1}
           onSearch={onSearch}
+          preloader={loading}/>
+      </StoryItem>
+
+      <StoryItem description='Readonly Select'>
+        <Select placeholder='Выберите значение'
+          readOnly
+          options={ list }
+          values={state1}
+          tagsPosition='outside'
+          onChange={onChange2}
           preloader={loading}/>
       </StoryItem>
     </Story>

@@ -112,6 +112,10 @@ const Select: FC<ISelectProps> = ({
   };
 
   useEffect(() => {
+    if (readOnly) {
+      return;
+    }
+
     if (onSearch) {
       onSearch(inputValue);
       return;
