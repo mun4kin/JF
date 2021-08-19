@@ -29,6 +29,7 @@ import FatalError from './components/molecules/FatalError';
 import CompletePopup from './components/popups/CompletePopup';
 import Page from './components/pages/Page';
 import PageWithSections from './components/pages/PageWithSections';
+import FindUsers from './components/popups/FindUsers';
 
 import { InputHook } from './components/atoms/Input/InputHook';
 import Timepicker from './components/atoms/Timepicker';
@@ -65,7 +66,8 @@ export {
   CertReader,
   PageWithSections,
   InputHook,
-  Timepicker
+  Timepicker,
+  FindUsers
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------

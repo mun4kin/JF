@@ -47,7 +47,7 @@ const Tabs: FC<ITabsProps> = ({ list, type = 'underline', children }: ITabsProps
   useEffect(() => {
     const index = list.findIndex((t: ITab) => (isRouting ? t.url === pathname : t.active));
     setActive(index >= 0 && !list[index].disabled ? index : 0);
-  }, [list, pathname]);
+  }, [list, pathname, isRouting]);
 
   /** Устанавливаем активную вкладку */
   const onClick = (e: MouseEvent, i: number, element: HTMLDivElement | null) => {
