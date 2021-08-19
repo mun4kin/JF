@@ -30,6 +30,9 @@ import CompletePopup from './components/popups/CompletePopup';
 import Page from './components/pages/Page';
 import PageWithSections from './components/pages/PageWithSections';
 import FindUsers from './components/popups/FindUsers';
+import Structure from './components/molecules/Structure';
+import PDFViewer from './components/molecules/PDFViewer';
+import CertReader from './components/molecules/CertReader';
 
 import { InputHook } from './components/atoms/Input/InputHook';
 import Timepicker from './components/atoms/Timepicker';
@@ -62,12 +65,13 @@ export {
   CompletePopup,
   FatalError,
   Page,
-  PDFViewer,
-  CertReader,
   PageWithSections,
   InputHook,
   Timepicker,
-  FindUsers
+  FindUsers,
+  Structure,
+  PDFViewer,
+  CertReader,
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------
@@ -122,7 +126,5 @@ export {
 
 // --------------------------Переменные---------------------------------------------------------------------------------
 import variables from './styles/variables.json';
-import PDFViewer from './components/molecules/PDFViewer/PDFViewer';
-import CertReader from './components/molecules/CertReader';
 
 export { variables };
