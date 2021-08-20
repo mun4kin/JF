@@ -62,7 +62,7 @@ const TimeElement: FC<ITimepickerProps> = ({ updateTime, min, max, value }: ITim
     <div key={id} className='rf-time-element__item-row'>
       {itemRow.map((item) => (
         <button
-          // buttonType='text'
+          type='button'
           key={item}
           disabled={!isValidTime(item, 'h')}
           className='rf-time-element'
@@ -82,7 +82,7 @@ const TimeElement: FC<ITimepickerProps> = ({ updateTime, min, max, value }: ITim
         const t = (time || '00') + item;
         return (
           <button
-            // buttonType='text'
+            type='button'
             key={item}
             disabled={!isValidTime(t, 'm')}
             className='rf-time-element'
@@ -105,9 +105,6 @@ const TimeElement: FC<ITimepickerProps> = ({ updateTime, min, max, value }: ITim
         </div>
         <div className={'rf-time-element__column'}>
           <div className='rf-time-element__header-container'>
-            <Button style={{ paddingRight: '4px' }} onClick={() => setTranslate(false)} buttonType='text'>
-              <ChevronLeft className='rf-time-element__icon' />
-            </Button>
             <div className='rf-time-element__name'>Выберите минуты</div>
           </div>
           {itemsMinutes}
