@@ -10,7 +10,9 @@ const buttonTypes: ButtonType[] = [
   'ghost',
   'danger',
   'icon',
+  'iconFill',
   'text',
+  'white'
 ];
 
 export default {
@@ -46,7 +48,7 @@ export const button = (args: IButtonProps) => {
   return (
     <Story name='Button (Кнопка)'>
       <Button { ...args }>
-        { args.buttonType === 'icon' ? 'i' : 'Button' }
+        { args.buttonType === 'icon' || args.buttonType === 'iconFill' ? 'i' : 'Button' }
       </Button>
     </Story>
   );

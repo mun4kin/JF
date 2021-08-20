@@ -13,7 +13,9 @@ export type ButtonType =
   | 'ghost'
   | 'danger'
   | 'icon'
-  | 'text';
+  | 'iconFill'
+  | 'text'
+  | 'white';
 
 export interface IButtonProps extends Omit<HTMLProps<HTMLButtonElement>, 'size'> {
   /** Внешний вид */
@@ -30,6 +32,8 @@ export interface IButtonProps extends Omit<HTMLProps<HTMLButtonElement>, 'size'>
   textColor?: VariantClassic;
   /** Круглая кнопка */
   round?: boolean;
+  /** Условие, по которому кнопка нажата */
+  pressedCondition?: boolean;
 }
 
 const Button: FC<IButtonProps> = ({
@@ -40,6 +44,7 @@ const Button: FC<IButtonProps> = ({
   preloader,
   textColor = 'default',
   round = false,
+  pressedCondition,
   ...props
 }: IButtonProps) => {
 
@@ -50,7 +55,9 @@ const Button: FC<IButtonProps> = ({
     ghost: 'rf-button--ghost',
     danger: 'rf-button--danger',
     icon: 'rf-button--icon',
+    iconFill: 'rf-button--iconFill',
     text: 'rf-button--text',
+    white: 'rf-button--white',
   };
 
   const widthClass = fullWidth ? 'rf-button__full-width' : '';
@@ -76,7 +83,7 @@ const Button: FC<IButtonProps> = ({
     };
   }, []);
 
-  const pressedClass = pressed ? 'rf-button--pressed' : '';
+  const pressedClass = pressed || pressedCondition ? 'rf-button--pressed' : '';
   const colorClass = buttonType === 'text' ? `rf-button--text-${textColor}` : '';
 
   // -------------------------------------------------------------------------------------------------------------------

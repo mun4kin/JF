@@ -142,6 +142,7 @@
 
 // Icon
 
+.rf-button--iconFill,
 .rf-button--icon {
 
   &.rf--s {
@@ -181,6 +182,16 @@
 .rf-button--icon:disabled {
   background-color: transparent;
   color: var(--text-tertiary);
+}
+
+.rf-button--iconFill {
+  background-color: var(--background-secondary);
+  color: var(--basic-tertiary);
+}
+
+.rf-button--iconFill.rf-button--pressed {
+  background-color: var(--basic-primary);
+  color: var(--background-primary);
 }
 
 // Text
@@ -291,4 +302,24 @@
 
 .rf-button--round {
   border-radius: 50%;
+}
+
+// White
+
+.rf-button--white {
+  background-color: var(--background-primary);
+  color: var(--basic-primary);
+  box-shadow: 0 2px 6px rgba(25, 59, 104, 0.15);
+}
+
+.rf-button--white:hover {
+  background-color: var(--background-primary);
+}
+
+.rf-button--white.rf-button--pressed {
+  background-color: var(--background-primary);
+}
+
+.rf-button--white:disabled {
+  background-color: var(--basic-disable);
 }
