@@ -4,6 +4,7 @@ import './styles/index.scss';
 import Avatar from './components/atoms/Avatar';
 import Badge from './components/atoms/Badge';
 import Button from './components/atoms/Button';
+import ButtonPages from './components/atoms/ButtonPages';
 import Checkbox from './components/atoms/Checkbox';
 import Chip from './components/atoms/Chip';
 import Datepicker from './components/atoms/Datepicker';
@@ -72,6 +73,7 @@ export {
   Structure,
   PDFViewer,
   CertReader,
+  ButtonPages
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------
