@@ -45,8 +45,13 @@ const Tabs: FC<ITabsProps> = ({ list, type = 'underline', children }: ITabsProps
   const [active, setActive] = useState<number>(0);
 
   useEffect(() => {
-    const index = list.findIndex((t: ITab) => (isRouting ? t.url === pathname : t.active));
-    setActive(index >= 0 && !list[index].disabled ? index : 0);
+    setActive((i: number) => {
+      const index = list.findIndex((t: ITab) => {
+        return isRouting ? t.url === pathname : t.active;
+      });
+
+      return index >= 0 && !list[index].disabled ? index : i;
+    });
   }, [list, pathname, isRouting]);
 
   /** Устанавливаем активную вкладку */
@@ -77,9 +82,9 @@ const Tabs: FC<ITabsProps> = ({ list, type = 'underline', children }: ITabsProps
     const handler = (e: MouseEvent) => onClick(e, i, refs.current[i].current);
 
     return (
-      <div key={i} className='rf-tabs__link' ref={refs.current[i]}>
-        <button className={`rf-tabs__button ${className}`} disabled={t.disabled} onClick={handler}>
-          {t.label}
+      <div key={ i } className='rf-tabs__link' ref={ refs.current[i] }>
+        <button className={ `rf-tabs__button ${className}` } disabled={ t.disabled } onClick={ handler }>
+          { t.label }
         </button>
       </div>
     );
@@ -98,14 +103,14 @@ const Tabs: FC<ITabsProps> = ({ list, type = 'underline', children }: ITabsProps
   const typeClass = type === 'buttons' ? 'rf-tabs--buttons' : '';
 
   return (
-    <div className={`rf-tabs ${typeClass}`}>
-      <nav className={'rf-tabs__navigation '}>
-        <div className='rf-tabs__navigation-list'>{nav}</div>
-        <div className='rf-tabs__navigation-line' ref={lineRef} />
+    <div className={ `rf-tabs ${typeClass}` }>
+      <nav className={ 'rf-tabs__navigation ' }>
+        <div className='rf-tabs__navigation-list'>{ nav }</div>
+        <div className='rf-tabs__navigation-line' ref={ lineRef }/>
       </nav>
       {
         ((isRouting && children) || (!isRouting && list.length > 0)) && (
-          <div className='rf-tabs__content'>{isRouting && children ? children : list[active].tab}</div>
+          <div className='rf-tabs__content'>{ isRouting && children ? children : list[active].tab }</div>
         )
       }
     </div>
