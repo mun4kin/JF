@@ -34,6 +34,8 @@ import FindUsers from './components/popups/FindUsers';
 import Structure from './components/molecules/Structure';
 import PDFViewer from './components/molecules/PDFViewer';
 import CertReader from './components/molecules/CertReader';
+import Notification from './components/molecules/Notification';
+import Notifications, { sendNotification } from './components/molecules/Notifications';
 
 import { InputHook } from './components/atoms/Input/InputHook';
 import Timepicker from './components/atoms/Timepicker';
@@ -73,7 +75,10 @@ export {
   Structure,
   PDFViewer,
   CertReader,
-  ButtonPages
+  ButtonPages,
+  Notification,
+  Notifications,
+  sendNotification
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------

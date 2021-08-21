@@ -3,9 +3,7 @@ import React, {
 } from 'react';
 import './TimeElement.scss';
 import { arrayTimeHours, arrayTimeMinutes } from './timeData';
-import Button from '../Button';
 import { MenuContext } from '../Menu/Menu';
-import { ChevronLeft } from '../../../index';
 
 export interface ITimepickerProps {
   updateTime: (newTime: string) => void;
