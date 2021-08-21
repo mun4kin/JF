@@ -32,6 +32,8 @@ import Page from './components/pages/Page';
 import PageWithSections from './components/pages/PageWithSections';
 import FindUsers from './components/popups/FindUsers';
 import Structure from './components/molecules/Structure';
+import PDFViewer from './components/molecules/PDFViewer';
+import CertReader from './components/molecules/CertReader';
 
 import Notification from './components/molecules/Notification';
 import Notifications, { sendNotification } from './components/molecules/Notifications';
@@ -72,8 +74,8 @@ export {
   Timepicker,
   FindUsers,
   Structure,
-  // PDFViewer,
-  // CertReader,
+  PDFViewer,
+  CertReader,
   ButtonPages,
   Notification,
   Notifications,
@@ -132,5 +134,6 @@ export {
 
 // --------------------------Переменные---------------------------------------------------------------------------------
 import variables from './styles/variables.json';
+import { download } from './utils/download';
 
-export { variables };
+export { variables, download };
