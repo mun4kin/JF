@@ -31,7 +31,9 @@ const PDFViewer: React.FC<IProps> = ({ file }: IProps) => {
     setCurrentPage(1);
   }, [file]);
 
-  const onDocumentLoadSuccess = ({ numPages: nextNumPages }: { numPages: number }) => setNumPages(nextNumPages);
+  const onDocumentLoadSuccess = useCallback(({ numPages }: { numPages: number }) => {
+    setNumPages(numPages);
+  }, []);
 
   // -------------------------------------------------------------------------------------------------------------------
 
