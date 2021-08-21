@@ -33,6 +33,7 @@ import PageWithSections from './components/pages/PageWithSections';
 import FindUsers from './components/popups/FindUsers';
 import Structure from './components/molecules/Structure';
 import CertReader from './components/molecules/CertReader';
+import PDFViewer from './components/molecules/PDFViewer';
 
 import Notification from './components/molecules/Notification';
 import Notifications, { sendNotification } from './components/molecules/Notifications';
@@ -73,7 +74,7 @@ export {
   Timepicker,
   FindUsers,
   Structure,
-  // PDFViewer,
+  PDFViewer,
   CertReader,
   ButtonPages,
   Notification,

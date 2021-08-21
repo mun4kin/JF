@@ -9,10 +9,10 @@ import { Document, Page } from 'react-pdf';
 import * as pdfjsLib from 'pdfjs-dist/build/pdf';
 // @ts-ignore
 import PDFJSWorker from 'pdfjs-dist/build/pdf.worker.entry';
-import Button from '../../atoms/Button';
-import Arrow from '../../../assets/icons/ChevronLeft';
 import DownloadIcon from '../../../assets/icons/Download';
 import { download } from '../../../utils/download';
+import ButtonPages from '../../atoms/ButtonPages/ButtonPages';
+import { Button } from '../../../index';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJSWorker;
 
@@ -36,11 +36,8 @@ const PDFViewer: React.FC<IProps> = ({ file }: IProps) => {
   // -------------------------------------------------------------------------------------------------------------------
 
   /** Переключение страницы */
-  const nextPage = useCallback((num: number) => {
-    setCurrentPage((currentPage: number) => {
-      const sum = currentPage + num;
-      return sum > 0 && sum <= numPages ? sum : currentPage;
-    });
+  const onPageChange = useCallback((page: number) => {
+    setCurrentPage(page);
   }, []);
 
   // -------------------------------------------------------------------------------------------------------------------
@@ -53,25 +50,15 @@ const PDFViewer: React.FC<IProps> = ({ file }: IProps) => {
           <Page pageNumber={ currentPage }/>
         </Document>
         <div className='pdf-document__download'>
-          <button onClick={ () => {
+          <Button buttonType='white' size='s' onClick={() => {
             download(file, file.fileName);
-          } }> Скачать
-          </button>
-          <DownloadIcon className='pdf-document__icon'/>
+          }}>
+            Скачать
+            <DownloadIcon className='pdf-document__icon'/>
+          </Button>
         </div>
         <div className='pdf-document__pager'>
-          <Button buttonType='text' onClick={ () => nextPage(-1) }>
-            <div className={ currentPage > 1 ? 'pdf-document__pager-button--active' : 'pdf-document__pager-button' }>
-              <Arrow/>
-            </div>
-          </Button>
-          <div className='pdf-document__pager-text'>{ `${currentPage} / ${numPages}` }</div>
-          <Button buttonType='text' onClick={ () => nextPage(1) }>
-            <div
-              className={ currentPage < numPages ? 'pdf-document__pager-button--active' : 'pdf-document__pager-button' }>
-              <Arrow transform={ 'rotate(180)' }/>
-            </div>
-          </Button>
+          <ButtonPages max={numPages} onChange={onPageChange}/>
         </div>
       </div>
       }
