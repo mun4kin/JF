@@ -1,8 +1,6 @@
 import React from 'react';
 import Notification from './Notification';
 import { INotification } from '../../molecules/Notifications/Notifications';
-import { variants } from '../../../utils/helpers';
-import { Variant } from '../../../types';
 import Story from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
 import StoryItem from '../../storybook/StoryItem';
@@ -13,7 +11,7 @@ export default {
 };
 
 export const notificationsItem = () => {
-  const messages: INotification[] = variants.map((variant: Variant) => ({
+  const messages: INotification[] = ['red', 'yellow', 'green'].map((variant: any) => ({
     message: 'Сообщение с уведомлением о том, что данные могли быть сохранены и переданы в управляющий комитет',
     variant
   }));

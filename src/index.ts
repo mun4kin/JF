@@ -33,7 +33,7 @@ import PageWithSections from './components/pages/PageWithSections';
 import FindUsers from './components/popups/FindUsers';
 import Structure from './components/molecules/Structure';
 import PDFViewer from './components/molecules/PDFViewer';
-import CertReader from './components/molecules/CertReader';
+// import CertReader from './components/molecules/CertReader';
 import Notification from './components/molecules/Notification';
 import Notifications, { sendNotification } from './components/molecules/Notifications';
 
@@ -74,7 +74,7 @@ export {
   FindUsers,
   Structure,
   PDFViewer,
-  CertReader,
+  // CertReader,
   ButtonPages,
   Notification,
   Notifications,
