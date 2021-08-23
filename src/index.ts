@@ -34,6 +34,7 @@ import FindUsers from './components/popups/FindUsers';
 import Structure from './components/molecules/Structure';
 import CertReader from './components/molecules/CertReader';
 import PDFViewer from './components/molecules/PDFViewer';
+import Employee from './components/molecules/Employee';
 
 import Notification from './components/molecules/Notification';
 import Notifications, { sendNotification } from './components/molecules/Notifications';
@@ -79,7 +80,8 @@ export {
   ButtonPages,
   Notification,
   Notifications,
-  sendNotification
+  sendNotification,
+  Employee
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------
