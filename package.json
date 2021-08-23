@@ -1,6 +1,6 @@
 {
   "name": "juicyfront",
-  "version": "1.0.45",
+  "version": "1.0.46",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -81,7 +81,6 @@
     "ts-jest": "^27.0.3",
     "typescript": "^4.3.5",
     "url-loader": "^4.1.1",
-    "webpack": "^5.51.1",
     "webpack-cli": "^4.7.2",
     "x----x----x": "*"
   },
