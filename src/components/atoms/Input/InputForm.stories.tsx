@@ -4,7 +4,6 @@ import StoryItem from '../../storybook/StoryItem';
 import Input from './Input';
 import { useForm, useWatch } from 'react-hook-form';
 import Button from '../Button';
-import { InputHook } from './InputHook';
 
 export default {
   title: 'Form Controls/InputHook',
@@ -23,7 +22,7 @@ export const InputFormStories = () => {
     console.log(`Эффект получил новое значение из безконтрольного инпута! :: ${value}`);
   }, [value]);
 
-  const inputJSX = <InputHook {...register('test')} onClear={() => {}} />;
+  const inputJSX = <Input {...register('test')} onClear={() => {}} />;
 
   const onSubmit = (val: any) => {
     console.log(val);
