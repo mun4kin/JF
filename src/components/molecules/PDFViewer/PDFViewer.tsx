@@ -13,7 +13,6 @@ import ButtonPages from '../../atoms/ButtonPages/ButtonPages';
 import { Button } from '../../../index';
 import { Page, Document } from 'react-pdf';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJSWorker;
 
 export interface IProps {
   file: IRequestAttachment;
@@ -24,7 +23,10 @@ const PDFViewer: React.FC<IProps> = ({ file }: IProps) => {
   const [numPages, setNumPages] = useState(1);
   /** Текущая страница */
   const [currentPage, setCurrentPage] = useState(1);
-
+  useEffect(() => {
+    console.log('!!!');
+    pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJSWorker;
+  }, []);
   useEffect(() => {
     setNumPages(1);
     setCurrentPage(1);
