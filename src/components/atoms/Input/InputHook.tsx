@@ -88,7 +88,7 @@ const Input = React.forwardRef((props: IInputProps, ref: React.Ref<HTMLInputElem
 
   /** Кнопка поиска и сброса */
   const closeButton = onClear && value.length > 0 && (
-    <button className='rf-input__action' onClick={ clearInput }>
+    <button type='button' className='rf-input__action' onClick={ clearInput }>
       <Close/>
     </button>
   );
@@ -104,7 +104,7 @@ const Input = React.forwardRef((props: IInputProps, ref: React.Ref<HTMLInputElem
         type={ props.type || 'text' }
         { ...attrs }
       />
-      { icon ? <button className='rf-input__action'>{ icon }</button> : closeButton }
+      { icon ? <button type='button' className='rf-input__action'>{ icon }</button> : closeButton }
     </div>
   );
 });
