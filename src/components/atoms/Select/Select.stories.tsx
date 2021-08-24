@@ -74,38 +74,40 @@ export const select = () => {
 
   return (
     <Story name='Select' description='Select кнопки' width={400}>
-      <StoryItem description='Multiselect'>
-        <Select placeholder='Выберите значение'
-          options={ filteredOptions }
-          values={values}
-          tagsPosition='outside'
-          onChange={onChange}
-          onSearch={onSearch}
-          multiselect
-          preloader={loading}/>
-      </StoryItem>
+      <form action=''>
+        <StoryItem description='Multiselect'>
+          <Select placeholder='Выберите значение'
+            options={ filteredOptions }
+            values={values}
+            tagsPosition='outside'
+            onChange={onChange}
+            onSearch={onSearch}
+            multiselect
+            preloader={loading}/>
+        </StoryItem>
 
-      <StoryItem description='Изменяемое значение извне'>
-        <Button onClick={() => setState([list[1]])}>Set State</Button>
-        <div style={{ height: '20px' }}/>
-        <Select placeholder='Выберите значение'
-          options={ filteredOptions }
-          values={state}
-          tagsPosition='outside'
-          onChange={onChange1}
-          onSearch={onSearch}
-          preloader={loading}/>
-      </StoryItem>
+        <StoryItem description='Изменяемое значение извне'>
+          <Button onClick={() => setState([list[1]])}>Set State</Button>
+          <div style={{ height: '20px' }}/>
+          <Select placeholder='Выберите значение'
+            options={ filteredOptions }
+            values={state}
+            tagsPosition='outside'
+            onChange={onChange1}
+            onSearch={onSearch}
+            preloader={loading}/>
+        </StoryItem>
 
-      <StoryItem description='Readonly Select'>
-        <Select placeholder='Выберите значение'
-          readOnly
-          options={ list }
-          values={state1}
-          tagsPosition='outside'
-          onChange={onChange2}
-          preloader={loading}/>
-      </StoryItem>
+        <StoryItem description='Readonly Select'>
+          <Select placeholder='Выберите значение'
+            readOnly
+            options={ list }
+            values={state1}
+            tagsPosition='outside'
+            onChange={onChange2}
+            preloader={loading}/>
+        </StoryItem>
+      </form>
     </Story>
   );
 };
