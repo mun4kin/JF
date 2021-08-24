@@ -87,6 +87,7 @@ export {
 // --------------------------Иконки-------------------------------------------------------------------------------------
 
 import Close from './assets/icons/Close';
+import Refresh from './assets/icons/Refresh';
 import SearchIcon from './assets/icons/Search';
 import Success from './assets/icons/Success';
 import Reduce from './assets/icons/Reduce';
@@ -110,6 +111,7 @@ import Circle from './assets/icons/Circle';
 import Time from './assets/icons/Time';
 
 export {
+  Refresh,
   Close,
   SearchIcon,
   Success,
