@@ -261,13 +261,13 @@ const Select: FC<ISelectProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   const closeButton = !disabled && !readOnly && inputValue.length > 0 && (
-    <button className='rf-select__button' onClick={ onClear }>
+    <button type='button' className='rf-select__button' onClick={ onClear }>
       <Close/>
     </button>
   );
 
   const chevronButton = !disabled && (readOnly || inputValue.length === 0) && (
-    <button className={`rf-select__button ${showDropdown ? 'rf-select__button--rotate' : ''}`}
+    <button type='button' className={`rf-select__button ${showDropdown ? 'rf-select__button--rotate' : ''}`}
       onClick={ () => toggleDropdown((state: boolean) => !state) }>
       <ChevronDown/>
     </button>
