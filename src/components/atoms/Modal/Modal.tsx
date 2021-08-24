@@ -63,7 +63,7 @@ const Modal: FC<IModalProps> = ({
           className='rf-modal__wrapper'
           onClick={ (e: React.MouseEvent) => e.stopPropagation() }>
           { onClose && (
-            <button className='rf-modal__close-button' onClick={ onClose }>
+            <button type='button' className='rf-modal__close-button' onClick={ onClose }>
               <Close/>
             </button>
           ) }

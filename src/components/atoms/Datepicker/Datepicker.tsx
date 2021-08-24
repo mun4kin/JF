@@ -319,7 +319,7 @@ const Datepicker: React.FC<IDatepickerProps> = ({
                 <Input/>
               </InputMask>
 
-              <button className='rf-datepicker__calendar-button'>
+              <button type='button' className='rf-datepicker__calendar-button'>
                 <Calendar/>
               </button>
             </>
