@@ -11,7 +11,8 @@
     "build": "rimraf dist && tsc && webpack --config webpack-lib.config.js && yarn copy",
     "copy": "cp webpack.config.js dist/ && cp .eslintrc.json dist/ && cp .stylelintrc.json dist/ && cp commitlint.config.js dist/ && cp changelog.config.js dist/ && cp .lintstagedrc.json dist/ && cp src/styles/mixins.scss dist/styles/ && cp src/styles/common.scss dist/styles/ && cp src/styles/variables.scss dist/styles/ && cp src/styles/fonts.scss dist/styles/",
     "deploy": "yarn build-storybook && firebase deploy",
-    "release": "release-it"
+    "release": "release-it",
+    "semantic-release": "cd dist && semantic-release"
   },
   "repository": {
     "type": "git",
@@ -76,6 +77,7 @@
     "rxjs": "^7.2.0",
     "sass": "^1.35.2",
     "sass-loader": "10.1.1",
+    "semantic-release": "^17.3.1",
     "scoped-css-loader": "^1.0.0",
     "swiper": "^6.8.2",
     "ts-jest": "^27.0.3",
@@ -133,5 +135,13 @@
     "setupFilesAfterEnv": [
       "./setupTests.ts"
     ]
-  }
+  },
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/github",
+    "@semantic-release/npm",
+    "@semantic-release/git"
+  ]
 }
