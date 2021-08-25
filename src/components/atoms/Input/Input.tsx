@@ -68,7 +68,7 @@ const Input: FC<IInputProps> = ({
 
   /** Кнопка поиска и сброса */
   const closeButton = onClear && value.length > 0 && (
-    <button className='rf-input__action' onClick={ clearInput }>
+    <button type='button' className='rf-input__action' onClick={ clearInput }>
       <Close/>
     </button>
   );
@@ -84,7 +84,7 @@ const Input: FC<IInputProps> = ({
         autoComplete='off'
         type={ props.type || 'text' }
       />
-      { icon ? <button className='rf-input__action'>{ icon }</button> : closeButton }
+      { icon ? <button type='button' className='rf-input__action'>{ icon }</button> : closeButton }
     </div>
   );
 };

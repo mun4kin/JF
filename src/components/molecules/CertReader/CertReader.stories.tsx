@@ -22,7 +22,6 @@ export const sCertReader = () => {
     console.log(result);
   };
   const errorHandle = (e:any) => {
-    debugger;
     setSign(undefined);
     console.error('Ошибка: ', e);
   };

@@ -74,7 +74,7 @@ export const select = () => {
 
   return (
     <Story name='Select' description='Select кнопки' width={400}>
-      <form action=''>
+      <form action='' onSubmit={() => console.log('submit')}>
         <StoryItem description='Multiselect'>
           <Select placeholder='Выберите значение'
             options={ filteredOptions }
