@@ -27,7 +27,7 @@ export const select = () => {
 
 
   const onChange = (options: IOption[]) => {
-    // console.log(options);
+    console.log(options);
   };
 
   const [filteredOptions, setFilteredOptions] = useState<IOption[]>(list);
