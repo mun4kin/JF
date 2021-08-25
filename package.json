@@ -9,7 +9,7 @@
     "test": "jest",
     "commit": "git add . && node ./node_modules/cz-customizable/standalone.js",
     "build": "rimraf dist && tsc && webpack --config webpack-lib.config.js && yarn copy",
-    "copy": "cp webpack.config.js dist/ && cp .eslintrc.json dist/ && cp .stylelintrc.json dist/ && cp commitlint.config.js dist/ && cp changelog.config.js dist/ && cp .lintstagedrc.json dist/ && cp src/styles/mixins.scss dist/styles/ && cp src/styles/common.scss dist/styles/ && cp src/styles/variables.scss dist/styles/ && cp src/styles/fonts.scss dist/styles/",
+    "copy": "cp webpack-lib.config.js dist/ && cp webpack.config.js dist/ && cp .eslintrc.json dist/ && cp .stylelintrc.json dist/ && cp commitlint.config.js dist/ && cp changelog.config.js dist/ && cp .lintstagedrc.json dist/ && cp src/styles/mixins.scss dist/styles/ && cp src/styles/common.scss dist/styles/ && cp src/styles/variables.scss dist/styles/ && cp src/styles/fonts.scss dist/styles/",
     "deploy": "yarn build-storybook && firebase deploy",
     "release": "release-it",
     "semantic-release": "cd dist && semantic-release"
