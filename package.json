@@ -9,7 +9,7 @@
     "test": "jest",
     "commit": "git add . && node ./node_modules/cz-customizable/standalone.js",
     "build": "rimraf dist && tsc && webpack --config webpack-lib.config.js && yarn copy",
-    "copy": "cp webpack.config.js dist/ && cp .eslintrc.json dist/ && cp .stylelintrc.json dist/ && cp commitlint.config.js dist/ && cp changelog.config.js dist/ && cp .lintstagedrc.json dist/ && cp src/styles/mixins.scss dist/styles/ && cp src/styles/common.scss dist/styles/ && cp src/styles/variables.scss dist/styles/ && cp src/styles/fonts.scss dist/styles",
+    "copy": "shx cp webpack.config.js dist/ && shx cp .eslintrc.json dist/ && shx cp .stylelintrc.json dist/ && shx cp commitlint.config.js dist/ && shx  cp changelog.config.js dist/ && shx  cp .lintstagedrc.json dist/ && shx cp src/styles/mixins.scss dist/styles/ && shx cp src/styles/common.scss dist/styles/ && shx cp src/styles/variables.scss dist/styles/ && shx cp src/styles/fonts.scss dist/styles",
     "deploy": "yarn build-storybook && firebase deploy",
     "release": "release-it"
   },
@@ -82,6 +82,7 @@
     "typescript": "^4.3.5",
     "url-loader": "^4.1.1",
     "webpack-cli": "^4.7.2",
+    "shx": "^0.3.3",
     "x----x----x": "*"
   },
   "dependencies": {
