@@ -11,7 +11,7 @@ const dividor = __dirname.split('/').length - 1 ? '/' : '\\';
 
 const __project = __dirname
   .split(dividor)
-  .slice(0, -3)
+  .slice(0, -2)
   .join(dividor);
 
 
@@ -26,7 +26,7 @@ const envKeys = Object.keys(fileEnv)
     return prev;
   }, {});
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-envKeys['process.env.REACT_APP_V'] = `"${require('../../../package.json').version}"`;
+envKeys['process.env.REACT_APP_V'] = `"${require('../../package.json').version}"`;
 // =========================================================================
 
 
