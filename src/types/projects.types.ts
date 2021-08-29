@@ -25,6 +25,14 @@ export interface IUser {
   departmentId?: string;
   /** Почта */
   email?: string;
+  /** Телефон */
+  phone?:string
+  /** Мобильный телефон */
+  mobilePhone?:string
+  /** Внутренний телефон */
+  internalPhone?:string
+  /** Руководитель или нет*/
+  manager:boolean
   /** Оклад */
   salary?: number;
   /** Валюта */
