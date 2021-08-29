@@ -1,6 +1,6 @@
 {
   "hooks": {
-    "after:bump": "npm run build && cp package.json dist"
+    "after:bump": "npm run build && shx cp package.json dist"
   },
   "npm": {
     "publishPath": "dist"
