@@ -32,7 +32,7 @@ export interface IUser {
   /** Внутренний телефон */
   internalPhone?:string
   /** Руководитель или нет*/
-  manager:boolean
+  manager?:boolean
   /** Оклад */
   salary?: number;
   /** Валюта */
