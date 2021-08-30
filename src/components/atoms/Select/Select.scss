@@ -3,6 +3,41 @@
 .rf-select {
   width: 100%;
   position: relative;
+
+  &.rf-select__wrapper--tag {
+    & .rf-select__wrapper {
+      position: absolute;
+      border: none;
+      background-color: var(--background-tertiary);
+      height: 28px;
+      max-width: 55px;
+      border-radius: 16px;
+      right: 8px;
+      bottom: 6px;
+    }
+
+    & .rf-select__button {
+      display: none;
+    }
+
+    & .rf-select__input {
+      height: 28px;
+      padding: 0 10px;
+      background-color: var(--background-tertiary);
+      text-align: center;
+      cursor: pointer;
+
+      &:disabled {
+        color: var(--text-tertiary);
+      }
+    }
+
+    & .rf-select__list {
+      width: 65px;
+      right: 3px;
+      text-align: center;
+    }
+  }
 }
 
 .rf-select__wrapper {

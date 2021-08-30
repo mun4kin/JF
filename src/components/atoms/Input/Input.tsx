@@ -15,12 +15,14 @@ export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size'> {
   debounce?: number;
   /** Иконка */
   icon?: ReactNode;
+  variant?: 'base' | 'inline';
 }
 
 const Input: FC<IInputProps> = ({
   onClear,
   debounce = 300,
   icon,
+  variant = 'base',
   ...props
 }: IInputProps) => {
   /** Ref */
@@ -80,7 +82,7 @@ const Input: FC<IInputProps> = ({
       <input
         { ...props }
         ref={ ref }
-        className='rf-input__field'
+        className={`rf-input__field ${variant === 'inline' ? 'rf-input--inline' : ''}`}
         autoComplete='off'
         type={ props.type || 'text' }
       />
