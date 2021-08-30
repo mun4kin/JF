@@ -41,6 +41,7 @@ import Notifications, { sendNotification } from './components/molecules/Notifica
 
 import { InputHook } from './components/atoms/Input/InputHook';
 import Timepicker from './components/atoms/Timepicker';
+import Confirm from './components/popups/Confirm';
 
 export {
   Avatar,
@@ -81,7 +82,8 @@ export {
   Notification,
   Notifications,
   sendNotification,
-  Employee
+  Employee,
+  Confirm
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------
