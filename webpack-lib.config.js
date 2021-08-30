@@ -7,7 +7,7 @@ module.exports = {
   output: {
     filename: 'index.js',
     publicPath: '',
-    path: path.join(__dirname, 'distJuicy'),
+    path: path.join(__dirname, 'dist'),
     libraryTarget: 'commonjs'
   },
   resolve: {
