@@ -6,6 +6,7 @@ import { IOption } from '../../../types';
 import StoryItem from '../../storybook/StoryItem';
 import Story from '../../storybook/Story';
 import Button from '../Button';
+import InputNumber from '../InputNumber';
 
 export default {
   title: 'Form Controls/Select',
@@ -72,6 +73,13 @@ export const select = () => {
     setState1(options);
   };
 
+  const currencies = [
+    {
+      label: 'Р',
+      value: '1'
+    }
+  ];
+
   return (
     <Story name='Select' description='Select кнопки' width={400}>
       <form action='' onSubmit={() => console.log('submit')}>
@@ -107,6 +115,21 @@ export const select = () => {
             onChange={onChange2}
             preloader={loading}/>
         </StoryItem>
+
+        <StoryItem description='Tag Select'>
+          <div style={{ position: 'relative' }}>
+            <InputNumber defaultValue={'1200.60'} floatPoints={2} />
+            <Select placeholder='Выберите значение'
+              readOnly
+              variant='tag'
+              options={ currencies }
+              values={state1}
+              onChange={onChange2}
+              preloader={loading}/>
+          </div>
+
+        </StoryItem>
+
       </form>
     </Story>
   );
