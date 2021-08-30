@@ -37,6 +37,7 @@ export interface ISelectProps {
   clearOnSelect?: boolean;
   /** Любое изменяемое значение (зависимость). При изменении этого параметра очищается селект */
   clearHook?: any;
+  variant?: 'base' | 'tag';
 }
 
 const Select: FC<ISelectProps> = ({
@@ -52,7 +53,8 @@ const Select: FC<ISelectProps> = ({
   preloader = false,
   tagsPosition = 'inside',
   clearOnSelect = false,
-  clearHook
+  clearHook,
+  variant = 'base'
 }: ISelectProps) => {
 
   const [showDropdown, toggleDropdown] = useState(false);
@@ -277,9 +279,10 @@ const Select: FC<ISelectProps> = ({
 
   const openClass = showDropdown ? 'rf-select__wrapper--open' : '';
   const multiselectClass = multiselect ? 'rf-select--multi' : '';
+  const tagClass = variant === 'tag' ? 'rf-select__wrapper--tag' : '';
 
   return (
-    <div className={`rf-select ${multiselectClass}`} ref={ componentNode }>
+    <div className={`rf-select ${multiselectClass} ${tagClass}`} ref={ componentNode }>
       <div className={`rf-select__wrapper ${openClass}`}>
         <input
           className='rf-select__input'

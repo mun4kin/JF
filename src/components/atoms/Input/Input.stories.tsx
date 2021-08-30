@@ -29,6 +29,32 @@ const inputsData: any[] = [
     name: 'rtf4',
     placeholder: 'Неактивное поле ввода',
     disabled: true
+  },
+  {
+    name: 'rtf5',
+    placeholder: 'Инлайн',
+    disabled: false,
+    variant: 'inline'
+  },
+  {
+    name: 'rtf6',
+    placeholder: 'Инлайн невалидное поле',
+    disabled: false,
+    variant: 'inline',
+    className: 'invalid'
+  },
+  {
+    name: 'rtf7',
+    placeholder: 'Инлайн фокус',
+    disabled: false,
+    variant: 'inline',
+    autofocus: true
+  },
+  {
+    name: 'rtf8',
+    placeholder: 'Инлайн неактивное поле',
+    disabled: true,
+    variant: 'inline',
   }
 ];
 
@@ -41,6 +67,7 @@ export const input = () => {
         placeholder={r.placeholder}
         disabled={r.disabled}
         onClear={r.clear}
+        variant={r.variant}
       />
     </StoryRow>
   ));

@@ -23,6 +23,10 @@ interface IBrowserCert{
   name: string;
   /** персональный ключ*/
   thumbprint: string;
+  /** Дата выпуска сертификата */
+  validFrom: string;
+  /** Дата срока годности сертификата */
+  validTo: string;
 }
 
 export interface ICertResult {

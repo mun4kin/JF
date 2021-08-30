@@ -37,15 +37,15 @@
 }
 
 .rf-input.invalid .rf-input__field {
-  border-color: var(--status-danger);
+  border: 1px solid var(--status-danger);
 }
 
 .rf-input__field:hover {
-  border-color: var(--basic-hover);
+  border: 1px solid var(--basic-hover);
 }
 
 .rf-input__field:focus {
-  border-color: var(--basic-hover);
+  border: 1px solid var(--basic-hover);
 }
 
 .rf-input__field:disabled {
@@ -62,6 +62,18 @@
 
 .rf-input__field:disabled::placeholder {
   color: var(--text-secondary);
+}
+
+.rf-input__field.rf-input--inline {
+  border: 1px solid transparent;
+
+  &:hover {
+    border: 1px solid var(--basic-hover);
+  }
+
+  &:focus {
+    border: 1px solid var(--basic-hover);
+  }
 }
 
 /** [START] file-input */
