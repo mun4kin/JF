@@ -181,8 +181,6 @@ const PageWithSections: React.FC<IPageWithSectionsProps> = ({
       actionMenuRef.current.style.bottom = 'auto';
       actionMenuRef.current.style.top = sectionsRef.current.offsetHeight + pageHeaderRef.current.offsetHeight + 'px';
     }
-
-    actionMenuRef.current.style.left = `${sectionsRef.current.offsetLeft || 0}px`;
   };
 
 
