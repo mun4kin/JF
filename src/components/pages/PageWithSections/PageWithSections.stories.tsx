@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  CSSProperties, useEffect, useState
+} from 'react';
 
 import PageWithSections from './PageWithSections';
 import { IPageSection } from '../../../types/projects.types';
@@ -77,14 +79,21 @@ export const pageWithSections = () => {
     }
   ];
 
-  const shellAsideStyle: any = {
+  const shellAsideStyle: CSSProperties = {
     position: 'fixed',
     top: '20px',
     bottom: '20px',
     left: '20px',
+    zIndex: 1000,
     width: '80px',
+    padding: '20px',
     borderRadius: '20px',
-    backgroundColor: 'white'
+    boxShadow: '0 4px 10px rgb(0 0 0 / 4%)',
+    backgroundColor: 'var(--base-000)',
+    flexShrink: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
   };
 
   const [loaded, setLoaded] = useState(false);
@@ -103,15 +112,10 @@ export const pageWithSections = () => {
 
   return (
     <BrowserRouter>
-      <div style={{
-        padding: '0 20px',
-        backgroundColor: 'var(--base-150)'
-      }}>
 
-        <div style={shellAsideStyle}/>
-        <div style={{ marginLeft: '120px' }}>
-          <PageWithSections navigation={navigation} sections={sections} actionMenu={actionMenu} preloader={!loaded} title='Изменение графика рабочего времени' backUrl='/'/>
-        </div>
+      <div style={shellAsideStyle}/>
+      <div style={{ marginLeft: '120px' }}>
+        <PageWithSections navigation={navigation} sections={sections} actionMenu={actionMenu} preloader={!loaded} title='Изменение графика рабочего времени' backUrl='/'/>
       </div>
     </BrowserRouter>
   );
