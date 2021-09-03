@@ -286,7 +286,7 @@ const Select: FC<ISelectProps> = ({
       <div className={`rf-select__wrapper ${openClass}`}>
         <input
           className='rf-select__input'
-          onClick={ openDropdown }
+          onMouseDown={ openDropdown }
           onChange={ onSelectSearch }
           value={ inputValue }
           disabled={ disabled }
