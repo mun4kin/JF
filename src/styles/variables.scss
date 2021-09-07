@@ -66,5 +66,13 @@
   --16: 16px;
   --20: 20px;
   --24: 24px;
-  --32: 32px
+  --32: 32px;
 }
+
+// Брейкпоинты
+$mobile: 320px;
+$mobileLarge: 700px;
+$tablet: 768px;
+$desktopMin: 1024px;
+$desktopMiddle: 1280px;
+$desktop: 1440px;

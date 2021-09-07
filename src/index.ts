@@ -35,7 +35,9 @@ import Structure from './components/molecules/Structure';
 import CertReader from './components/molecules/CertReader';
 import PDFViewer from './components/molecules/PDFViewer';
 import Employee from './components/molecules/Employee';
-
+import Tile from './components/atoms/Tile';
+import Column from './components/atoms/Column';
+import Row from './components/atoms/Row';
 import Notification from './components/molecules/Notification';
 import Notifications, { sendNotification } from './components/molecules/Notifications';
 
@@ -83,7 +85,10 @@ export {
   Notifications,
   sendNotification,
   Employee,
-  Confirm
+  Confirm,
+  Tile,
+  Row,
+  Column
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------

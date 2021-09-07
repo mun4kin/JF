@@ -12,7 +12,13 @@ export const tile = () => {
   return (
     <Story name='Tile (Плитка)'>
       <StoryItem description='Плитка оборачивает контент в стилизованный блок'>
-        <Tile>Контент</Tile>
+        <div style={{
+          backgroundColor: '#F1F2F4',
+          padding: '20px',
+          width: '600px'
+        }}>
+          <Tile>Контент</Tile>
+        </div>
       </StoryItem>
     </Story>
   );
