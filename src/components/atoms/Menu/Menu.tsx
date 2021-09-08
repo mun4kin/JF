@@ -85,7 +85,7 @@ const Menu: React.FC<IListProps> = ({
 
   /** Пересчитываем координаты, если не помещается*/
   const rearrangePosition = () => {
-    if (contentRef.current && toggleRef.current && menuRef.current) {
+    if (contentRef.current && toggleRef.current) {
       const toggleRect: DOMRect = toggleRef.current.getBoundingClientRect();
       const listRect: DOMRect = contentRef.current.getBoundingClientRect();
 
