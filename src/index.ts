@@ -38,6 +38,7 @@ import Employee from './components/molecules/Employee';
 import Tile from './components/atoms/Tile';
 import Column from './components/atoms/Column';
 import Row from './components/atoms/Row';
+import UserPhoto from './components/atoms/UserPhoto';
 import Notification from './components/molecules/Notification';
 import Notifications, { sendNotification } from './components/molecules/Notifications';
 
@@ -88,7 +89,8 @@ export {
   Confirm,
   Tile,
   Row,
-  Column
+  Column,
+  UserPhoto
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------
