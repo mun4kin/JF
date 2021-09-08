@@ -16,7 +16,7 @@ export interface IListProps {
   /** Класс */
   className?: string;
   /** Положение слева или справа */
-  position?: 'left' | 'right';
+  position?: 'left' | 'right' | 'top-left' | 'top-right';
   /** Блок, относительно которого выравнивается меню */
   relativeBlock?: HTMLElement;
 }
@@ -101,7 +101,12 @@ const Menu: React.FC<IListProps> = ({
           minGap;
       }
 
-      if (position === 'left') {
+      if (position === 'top-right' || position === 'top-left') {
+        top = -listRect.height - minGap;
+        // debugger;
+      }
+
+      if (position === 'left' || position === 'top-left') {
         if (toggleRect.left + listRect.width > relativeBlock.offsetWidth) {
           left = relativeBlock.offsetWidth - listRect.width - toggleRect.left - minGap;
         }

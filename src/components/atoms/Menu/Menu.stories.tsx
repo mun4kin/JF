@@ -101,6 +101,13 @@ export const menu = () => {
                 </Button>
               </Menu>
             </StoryCol>
+            <StoryCol>
+              <Menu list={list} position='top-right'>
+                <Button buttonType='secondary'>
+                  Правое меню слева
+                </Button>
+              </Menu>
+            </StoryCol>
           </StoryRow>
         </StoryItem>
         <StoryItem description='Выпадающий список с произвольным контентом'>
@@ -109,6 +116,30 @@ export const menu = () => {
               <Menu position='right' content={content}>
                 <Button buttonType='secondary'>
                   Тут контент 😏
+                </Button>
+              </Menu>
+            </StoryCol>
+          </StoryRow>
+          <div style={{ height: '300px' }}></div>
+          <StoryRow>
+            <StoryCol>
+              <Menu list={list} position='top-left'>
+                <Button buttonType='secondary'>
+                top-left
+                </Button>
+              </Menu>
+            </StoryCol>
+            <StoryCol>
+              <Menu list={list} position='top-right'>
+                <Button buttonType='secondary'>
+                top-right
+                </Button>
+              </Menu>
+            </StoryCol>
+            <StoryCol>
+              <Menu list={list} position='top-left' content={content}>
+                <Button buttonType='secondary'>
+                top-left custom content
                 </Button>
               </Menu>
             </StoryCol>
