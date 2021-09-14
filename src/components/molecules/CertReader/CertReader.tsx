@@ -19,7 +19,7 @@ export interface IProps {
   /** название кнопки*/
   buttonTitle?:string
   /** фильтр сертификатов */
-  filter: (cert: Certificate) => Promise<boolean>;
+  filter?: (cert: Certificate) => Promise<boolean>;
   /** пропсы для кнопки */
   btnProps?: IButtonProps;
 }
@@ -53,9 +53,9 @@ const CertReader: React.FC<IProps> = ({ file,
   useEffect(() => {
     async function getCertificates() {
       try {
-        const certs = await getUserCertificates();
+        let certs = await getUserCertificates();
         const filteredAsync = await Promise.all(certs.map(filter));
-        certs.filter((_cert, i) => filteredAsync[i]);
+        certs = certs.filter((_cert, i) => filteredAsync[i]);
 
         if (certs.length) {
           setCerts(certs);
