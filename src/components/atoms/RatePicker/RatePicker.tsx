@@ -1,7 +1,12 @@
 import React, {
-  FC, InputHTMLAttributes, useState
+  FC, InputHTMLAttributes, useState, useEffect
 } from 'react';
 import './RatePicker.scss';
+
+
+export type PickerType =
+  'primary'
+  | 'tertiary';
 
 export interface IPickerProps extends InputHTMLAttributes<HTMLLabelElement> {
 
@@ -9,6 +14,8 @@ export interface IPickerProps extends InputHTMLAttributes<HTMLLabelElement> {
   sizePicker?: number
   /** Заданное значение выбранного диапазона*/
   defaultPickedValue?: number
+  /** Заданный цвет выбранного диапазона*/
+  pickedType?: string
 
   /** Текст контента диапазона*/
   textContent?: string,
@@ -22,13 +29,13 @@ export interface IPickerProps extends InputHTMLAttributes<HTMLLabelElement> {
 }
 
 
-const RatePicker: FC<IPickerProps> = ({ defaultPickedValue = 0, getRate = () => { }, sizePicker = 10, textContent = '', isUnderline = true, isReverse = false, ...props }: IPickerProps) => {
+const RatePicker: FC<IPickerProps> = ({ pickedType = 'primary', defaultPickedValue = 0, getRate = () => { }, sizePicker = 10, textContent = '', isUnderline = true, isReverse = false, ...props }: IPickerProps) => {
 
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(defaultPickedValue);
 
-  /*  useEffect(() => {
+  useEffect(() => {
     setRating(defaultPickedValue);
-  }); */
+  }, [defaultPickedValue]);
 
 
   if (sizePicker < 1) {
@@ -55,9 +62,9 @@ const RatePicker: FC<IPickerProps> = ({ defaultPickedValue = 0, getRate = () => 
       <p className='fs-rate-content'>{textContent}</p>
       <div className='fs-rate-picker-items'>
         {
-          rates.map((item) => <div key={item.toString()} className={`rf-rate-picker-item ${item === 1 && 'rf-rate-picker-item-rounded-left'} ${rates.length === item && 'rf-rate-picker-item-rounded-right'}`} >
+          rates.map((item) => <div key={item.toString()} className={`rf-rate-picker-item ${isReverse && item === 1 && 'rf-rate-picker-item-rounded-right'} ${isReverse && rates.length === item && 'rf-rate-picker-item-rounded-left'} ${!isReverse && item === 1 && 'rf-rate-picker-item-rounded-left'} ${!isReverse && rates.length === item && 'rf-rate-picker-item-rounded-right'}`} >
             <input type='radio' id={`input-${item}`} value={item} />
-            <label className={+rating >= item ? 'rf-rate-picked' : ''} onClick={clickRateHandler} htmlFor={`input-${item}`} {...props}>{item}</label>
+            <label className={+rating >= item && !isReverse ? `rf-rate-picked-${pickedType}` : isReverse && +rating <= item ? `rf-rate-picked-${pickedType}` : ''} onClick={clickRateHandler} htmlFor={`input-${item}`} {...props}>{item}</label>
           </div >)
         }
       </div>

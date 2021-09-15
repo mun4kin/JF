@@ -44,7 +44,11 @@
   }
 }
 
-.rf-rate-picked{
+.rf-rate-picked-primary{
   background-color: var(--basic-primary);
   color: var( --text-inversion);
+}
+
+.rf-rate-picked-tertiary{
+  background-color: var(--background-tertiary);
 }
