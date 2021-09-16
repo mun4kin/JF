@@ -51,7 +51,6 @@ const CertReader: React.FC<IProps> = ({ file,
   // ===================================================================================================================
   /** асинхронное получение серификатов с ключа*/
   useEffect(() => {
-    debugger;
     async function getCertificates() {
       try {
         let certs = await getUserCertificates();
