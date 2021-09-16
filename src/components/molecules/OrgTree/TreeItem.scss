@@ -6,7 +6,7 @@
   cursor: pointer;
 }
 
-.rf-tree__item > .rf-tree__item--v {
+.rf-tree__item .rf-tree__item--v {
   content: '';
   position: absolute;
   width: 2px;

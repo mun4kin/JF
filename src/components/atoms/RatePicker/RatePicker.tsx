@@ -4,10 +4,6 @@ import React, {
 import './RatePicker.scss';
 
 
-export type PickerType =
-  'primary'
-  | 'tertiary';
-
 export interface IPickerProps extends InputHTMLAttributes<HTMLLabelElement> {
 
   /** Величина диапазона*/
@@ -29,7 +25,13 @@ export interface IPickerProps extends InputHTMLAttributes<HTMLLabelElement> {
 }
 
 
-const RatePicker: FC<IPickerProps> = ({ isActive = true, defaultPickedValue = 0, getRate = () => { }, sizePicker = 10, textContent = '', isUnderline = true, isReverse = false, ...props }: IPickerProps) => {
+const RatePicker: FC<IPickerProps> = ({ isActive = true,
+  defaultPickedValue = 0,
+  getRate = () => { },
+  sizePicker = 10,
+  textContent = '',
+  isUnderline = true,
+  isReverse = false, ...props }: IPickerProps) => {
 
   const [rating, setRating] = useState(defaultPickedValue);
 
@@ -92,7 +94,6 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true, defaultPickedValue = 0,
       <div className='fs-rate-picker-items'>
         {rateComponent}
       </div>
-
     </div >
   );
 };
