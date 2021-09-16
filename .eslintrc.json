@@ -92,9 +92,7 @@
       "warn",
       {
         "code": 140,
-        "tabWidth": 2,
-        "ignoreStrings": true,
-        "ignoreTemplateLiterals": true
+        "tabWidth": 2
       }
     ],
     "multiline-comment-style": 0,
