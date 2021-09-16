@@ -4,10 +4,10 @@
 
 .fs-rate-content{
   display: inline-block;
-  width: 640px;
   margin-bottom: 16px;
   padding-left: 4px;
   box-sizing: content-box;
+  word-break: break-all;
 }
 
 .fs-rate-picker-items{
