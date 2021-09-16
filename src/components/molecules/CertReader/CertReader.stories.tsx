@@ -35,7 +35,9 @@ export const sCertReader = () => {
           Проверить работу плагина
         </a>
         <div className='cert__wrapper' >
-          <CertReader file={file} onSuccess={successHandle} onError={errorHandle}/>
+          <CertReader
+            filter={async(cert) => !!~cert.issuerName.toLowerCase().indexOf('vtb')}
+            file={file} onSuccess={successHandle} onError={errorHandle}/>
         </div>
         <div className={sign ? 'cert__success' : 'cert__error'}>{sign ? `Подписано ${sign.cert}` : 'не подписано'}</div>
 
