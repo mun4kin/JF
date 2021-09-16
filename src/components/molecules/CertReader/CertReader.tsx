@@ -45,7 +45,7 @@ const CertReader: React.FC<IProps> = ({ file,
   onError,
   buttonTitle = 'Подписать ЭЦП (цифровая подпись)',
   btnProps = {},
-  filter = async (cert: Certificate) => new Promise<boolean>(() => true) }: IProps) => {
+  filter = async (cert: Certificate) => true }: IProps) => {
   /** все доступные сертификаты*/
   const [ certs, setCerts ] = useState<null|Certificate[]>(null);
   // ===================================================================================================================
@@ -72,7 +72,7 @@ const CertReader: React.FC<IProps> = ({ file,
   /** формирование меню*/
   const menuBuilder = (certs:Certificate[]):IListElement[] => {
     return certs.map((item:Certificate) => {
-      const l = `${item.name} +  ( ${item.issuerName})`;
+      const l = `${item.name}  ( ${item.issuerName})`;
       return {
         label: l.length < 100 ? l : l.slice(0, 100) + '...',
         value: item.thumbprint,
