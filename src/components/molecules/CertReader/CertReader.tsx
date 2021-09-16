@@ -61,6 +61,7 @@ const CertReader: React.FC<IProps> = ({ file,
           setCerts(certs);
         }
       } catch (e) {
+
         setCerts(null);
         onError(e);
       }
@@ -71,8 +72,9 @@ const CertReader: React.FC<IProps> = ({ file,
   /** формирование меню*/
   const menuBuilder = (certs:Certificate[]):IListElement[] => {
     return certs.map((item:Certificate) => {
+      const l = `${item.name} +  ( ${item.issuerName})`;
       return {
-        label: item.name + ` ( ${item.issuerName})`,
+        label: l.length < 100 ? l : l.slice(0, 100) + '...',
         value: item.thumbprint,
         handler: async() => {
           try {
