@@ -1,0 +1,47 @@
+.fs-rate-picker{
+  border-bottom: 1px solid var(--background-secondary);
+}
+
+.fs-rate-content{
+  display: inline-block;
+  margin-bottom: 16px;
+  width:648px;
+  box-sizing: border-box;
+}
+
+.fs-rate-picker-items{
+  display: flex;
+  padding-left: 4px;
+  margin-bottom: 16px;
+  flex-direction: row;
+  input{
+    display: none;
+  }
+  label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    height: 40px;
+    border:1px solid var(--background-secondary);
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+}
+
+.rf-label-low{
+  border-top-left-radius:7px;
+  border-bottom-left-radius: 7px;
+  background-color: var(--special-softGreen);
+  color: var(--status-success);
+}
+.rf-label-medium{
+  color: var(--status-warn);
+  background-color: var(--special-softYellow);
+}
+.rf-label-hight{
+  border-top-right-radius:7px;
+  border-bottom-right-radius: 7px;
+  color: var(--status-danger);
+  background-color:#FFE5E7;
+}
