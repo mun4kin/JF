@@ -53,7 +53,12 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
     }
   };
 
-  const rates = Array.from(Array(sizePicker), (_, index) => index + 1);
+  let rates = Array.from(Array(sizePicker), (_, index) => index + 1);
+
+  if (isReverse) {
+    rates = rates.reverse();
+  }
+
   const rateComponent = rates.map((item) =>
     <div
       key={item.toString()}
