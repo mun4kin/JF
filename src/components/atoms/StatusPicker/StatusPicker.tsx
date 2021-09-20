@@ -4,51 +4,36 @@ import './StatusPicker.scss';
 
 export interface IPickerProps extends React.MouseEvent<HTMLElement> {
   /** Получить значение оценки*/
-  getRate?: (value: number, pos: number) => number | void
+  getRate?: (value: number, arr: string[][], pos: number) => number | void
 
-  pickedId: number | number[],
-  pickedValues: number[]
-
+  pickedValues: Array<Array<string>>
   position: number
 }
 
 
-const StatusPicker: FC<IPickerProps> = ({ getRate = () => { }, pickedId = 0, position, pickedValues,
+const StatusPicker: FC<IPickerProps> = ({ getRate = () => { }, pickedValues, position,
   ...props }: IPickerProps) => {
 
   const [statusValue, setStatus] = useState(0);
 
+  const clickStatusHandler = (selectIndex: number) => (e: React.ChangeEvent<HTMLLabelElement>) => {
+    const res = +e?.target?.htmlFor;
+    console.log(pickedValues);
 
-  const clickStatusHandler = (e: React.ChangeEvent<HTMLLabelElement>) => {
-    if (typeof e?.target?.htmlFor === 'string') {
-      if (pickedValues.find(index => index === +e.target.htmlFor)) {
+    const newArr = pickedValues.map((pv, index) => {
 
-      } else {
-        const res = +e?.target?.htmlFor;
-        setStatus(+e?.target?.htmlFor);
-        getRate(res, position);
+      if (index === selectIndex) {
+        pv = pv.map((a, i) => res - 1 === i ? a = '0' : 'X');
+        return pv;
       }
 
-      /*       if (typeof pickedId !== 'number' && pickedId.find(index => index === +e.target.htmlFor)) {
-        getRate(+e?.target?.htmlFor, position);
-        setStatus(0);
-      } else {
-        if (statusValue === +e?.target?.htmlFor) {
-          console.log('=');
+      return pv = pv.map((a, i) => res - 1 === i ? a = 'X' : a);
 
-          const res = +e?.target?.htmlFor;
-          setStatus(0);
-          getRate(res, position);
-        } else {
-          setStatus(+e?.target?.htmlFor);
-          getRate(status[+e?.target?.htmlFor - 1].value, position);
-        }
 
-      } */
+    });
+    setStatus(+e?.target?.htmlFor);
+    getRate(res, newArr, position);
 
-    } else {
-      setStatus(0);
-    }
   };
 
   const status = [
@@ -74,7 +59,7 @@ const StatusPicker: FC<IPickerProps> = ({ getRate = () => { }, pickedId = 0, pos
 
 
   const statusComponent = status.map((item, index) => {
-
+    /*   console.log(statusArray); */
 
     return <div
       key={item.id.toString()}
@@ -84,12 +69,8 @@ const StatusPicker: FC<IPickerProps> = ({ getRate = () => { }, pickedId = 0, pos
         id={item.id.toString()}
         value={item.value} />
       <label
-        className={`rf-label-${statusValue === index + 1 ?
-          item.color :
-          pickedValues.find(id => id === item.id) ?
-            'disabled' :
-            ''}`}
-        onClick={clickStatusHandler}
+        className={`rf-label-${pickedValues[position][index] !== '' ? pickedValues[position][index] === '0' ? item.color : 'disabled' : ''}`}
+        onClick={pickedValues[position][index] === '' || pickedValues[position][index] === '0' ? clickStatusHandler(position) : null}
         htmlFor={item.id.toString()}
         {...props}>
         {item.name}

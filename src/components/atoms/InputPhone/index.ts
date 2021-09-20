@@ -1,3 +1,3 @@
-export {
-  default, IInputPhoneProps, IInputPhoneCountry
-} from './InputPhone';
+import InputPhone from './InputPhone';
+
+export default InputPhone;

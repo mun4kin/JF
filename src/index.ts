@@ -122,8 +122,6 @@ import CircleConfirm from './assets/icons/CircleConfirm';
 import CircleReject from './assets/icons/CircleReject';
 import Circle from './assets/icons/Circle';
 import Time from './assets/icons/Time';
-import FlagGB from './assets/icons/FlagGB';
-import FlagRU from './assets/icons/FlagRU';
 
 export {
   Refresh,
@@ -148,9 +146,7 @@ export {
   CircleConfirm,
   CircleReject,
   Circle,
-  Time,
-  FlagGB,
-  FlagRU
+  Time
 };
 
 // --------------------------Переменные---------------------------------------------------------------------------------

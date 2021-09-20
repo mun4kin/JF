@@ -1,1 +1,3 @@
-export { default, MenuContext } from './Menu';
+import Menu from './Menu';
+
+export default Menu;
