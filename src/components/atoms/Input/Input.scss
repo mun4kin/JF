@@ -12,6 +12,7 @@
   transition: 0.15s ease-in;
   vertical-align: top;
   width: 100%;
+  height: 40px;
 
   &--invalid, &.invalid {
     border-color: var(--status-danger);
@@ -44,6 +45,11 @@
   }
 
   &__adornment {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    color: var(--text-secondary);
+
     & svg {
       display: block;
     }
@@ -61,7 +67,7 @@
 .rf-input__field {
   @include text-l-16;
   width: 100%;
-  height: 40px;
+  height: 100%;
   transition: 0.15s ease-in;
   background: transparent;
   color: var(--text-primary);
