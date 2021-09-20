@@ -6,7 +6,7 @@ import { fromEvent } from 'rxjs';
 import {
   debounceTime, distinctUntilChanged, map
 } from 'rxjs/operators';
-import { Close } from '../../../index';
+import Close from '../../../assets/icons/Close';
 
 export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size'> {
   /** Возможность очистки поля по клику */
@@ -16,6 +16,10 @@ export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size'> {
   /** Иконка */
   icon?: ReactNode;
   variant?: 'base' | 'inline';
+  /* Контент для вставки в начало инпута */
+  startAdornment?: ReactNode;
+  /* Контент для вставки в конец инпута */
+  endAdornment?: ReactNode;
 }
 
 const Input: FC<IInputProps> = ({
@@ -23,12 +27,19 @@ const Input: FC<IInputProps> = ({
   debounce = 300,
   icon,
   variant = 'base',
+  startAdornment,
+  endAdornment,
+  disabled,
+  onFocus,
+  onBlur,
   ...props
 }: IInputProps) => {
   /** Ref */
   const ref = useRef<HTMLInputElement>(null);
   /** Значение поля */
   const [value, setValue] = useState<string>(props.defaultValue?.toString() || props.value?.toString() || '');
+  /** Находится ли инпут в состоянии фокуса */
+  const [isFocused, setFocused] = useState(false);
 
   // ------------------------------------------------------------------------------------------------------------------
 
@@ -70,24 +81,55 @@ const Input: FC<IInputProps> = ({
 
   /** Кнопка поиска и сброса */
   const closeButton = onClear && value.length > 0 && (
-    <button type='button' className='rf-input__action' onClick={ clearInput }>
+    <button type='button' className='rf-input__action' onClick={ clearInput } aria-label='Сбросить'>
       <Close/>
     </button>
   );
 
   // ------------------------------------------------------------------------------------------------------------------
 
+  const onInputFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+    setFocused(true);
+
+    if (onFocus) {
+      onFocus(event);
+    }
+  };
+
+  const onInputBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    setFocused(false);
+
+    if (onBlur) {
+      onBlur(event);
+    }
+  };
+
+  // ------------------------------------------------------------------------------------------------------------------
+
   return (
-    <div className={ `rf-input ${props.className || ''}` }>
+    <label
+      className={`
+        rf-input 
+        ${variant === 'inline' ? 'rf-input--inline' : ''} 
+        ${disabled ? 'rf-input--disabled' : ''} 
+        ${isFocused ? 'rf-input--focused' : ''} 
+        ${props.className || ''}`
+      }
+    >
+      {!!startAdornment && <div className='rf-input__adornment rf-input__adornment--start'>{startAdornment}</div>}
       <input
         { ...props }
         ref={ ref }
-        className={`rf-input__field ${variant === 'inline' ? 'rf-input--inline' : ''}`}
+        className={'rf-input__field'}
         autoComplete='off'
         type={ props.type || 'text' }
+        disabled={disabled}
+        onFocus={onInputFocus}
+        onBlur={onInputBlur}
       />
+      {!!endAdornment && <div className='rf-input__adornment rf-input__adornment--end'>{endAdornment}</div>}
       { icon ? <button type='button' className='rf-input__action'>{ icon }</button> : closeButton }
-    </div>
+    </label>
   );
 };
 

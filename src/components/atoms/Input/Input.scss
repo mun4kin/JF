@@ -2,22 +2,76 @@
 @import "../../../styles/variables";
 
 .rf-input {
+  align-items: center;
+  background-color: var(--background-primary);
+  border-radius: 8px;
+  border: 1px solid var(--basic-tertiary);
+  display: inline-flex;
+  padding: 0 16px;
   position: relative;
-  display: inline-block;
+  transition: 0.15s ease-in;
   vertical-align: top;
   width: 100%;
+  height: 40px;
+
+  &--invalid, &.invalid {
+    border-color: var(--status-danger);
+  }
+
+  &:hover {
+    border-color: var(--basic-hover);
+  }
+
+  &--focused {
+    border-color: var(--basic-hover);
+  }
+
+  &--inline {
+    border: 1px solid transparent;
+
+    &:hover {
+      border: 1px solid var(--basic-hover);
+    }
+  
+    &.rf-input--focused {
+      border: 1px solid var(--basic-hover);
+    }
+  }
+
+  &--disabled {
+    @include disabled();
+    background-color: var(--background-tertiary);
+    border-color: var(--background-tertiary);
+  }
+
+  &__adornment {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    color: var(--text-secondary);
+
+    & svg {
+      display: block;
+    }
+
+    &--start {
+      margin-right: 8px;
+    }
+  
+    &--end {
+      margin-left: 8px;
+    }
+  }
 }
 
 .rf-input__field {
-  width: 100%;
-  padding: 0 16px;
-  height: 40px;
   @include text-l-16;
+  width: 100%;
+  height: 100%;
   transition: 0.15s ease-in;
-  border: 1px solid var(--basic-tertiary);
-  border-radius: 8px;
-  background-color: var(--background-primary);
+  background: transparent;
   color: var(--text-primary);
+  border: 0;
 
   &.invalid {
     border-color: var(--status-danger);
@@ -36,22 +90,8 @@
   }
 }
 
-.rf-input.invalid .rf-input__field {
-  border: 1px solid var(--status-danger);
-}
-
-.rf-input__field:hover {
-  border: 1px solid var(--basic-hover);
-}
-
-.rf-input__field:focus {
-  border: 1px solid var(--basic-hover);
-}
-
 .rf-input__field:disabled {
   @include disabled();
-  background-color: var(--background-tertiary);
-  border-color: var(--background-tertiary);
   color: var(--text-tertiary);
 }
 
@@ -62,18 +102,6 @@
 
 .rf-input__field:disabled::placeholder {
   color: var(--text-secondary);
-}
-
-.rf-input__field.rf-input--inline {
-  border: 1px solid transparent;
-
-  &:hover {
-    border: 1px solid var(--basic-hover);
-  }
-
-  &:focus {
-    border: 1px solid var(--basic-hover);
-  }
 }
 
 /** [START] file-input */
