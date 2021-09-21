@@ -1,15 +1,15 @@
-.fs-rate-picker{
+.rate-picker{
   border-bottom: 1px solid var(--background-secondary);
 }
 
-.fs-rate-content{
+.rate-picker__content{
   display: inline-block;
   margin-bottom: 16px;
   width:648px;
   box-sizing: border-box;
 }
 
-.fs-rate-picker-items{
+.rate-picker__container{
   display: flex;
   padding-left: 4px;
   margin-bottom: 16px;
@@ -28,7 +28,7 @@
     cursor: pointer;
   }
 }
-.rf-rate-picker-item-rounded-left{
+.rate-picker__container__item_rounded-left{
   label{
     border-top-left-radius:7px;
     border-bottom-left-radius: 7px;
@@ -36,18 +36,18 @@
 }
 
 
-.rf-rate-picker-item-rounded-right{
+.rate-picker__container__item_rounded-right{
   label{
     border-top-right-radius:7px;
     border-bottom-right-radius: 7px;
   }
 }
 
-.rf-rate-picked-primary{
+.rate-picker__label_picked_primary{
   background-color: var(--basic-primary);
   color: var( --text-inversion);
 }
 
-.rf-rate-picked-tertiary{
+.rate-picker__label_picked_tertiary{
   background-color: var(--background-tertiary);
 }

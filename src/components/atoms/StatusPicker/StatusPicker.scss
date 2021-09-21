@@ -1,15 +1,8 @@
-.fs-rate-picker{
+.block__status-picker{
   border-bottom: 1px solid var(--background-secondary);
 }
 
-.fs-rate-content{
-  display: inline-block;
-  margin-bottom: 16px;
-  width:648px;
-  box-sizing: border-box;
-}
-
-.fs-rate-picker-items{
+.block__status-picker-container{
   display: flex;
   padding-left: 4px;
   margin-bottom: 16px;
@@ -28,25 +21,35 @@
     cursor: pointer;
   }
 }
+.block__status-picker-container-items:first-child{
+  label{
+    border-top-left-radius:7px;
+    border-bottom-left-radius: 7px;
+  }
+ 
+}
+.block__status-picker-container-items:last-child{
+  label{
+    border-top-right-radius:7px;
+    border-bottom-right-radius: 7px;
+  }
+}
 
-.rf-label-low{
-  border-top-left-radius:7px;
-  border-bottom-left-radius: 7px;
+.status-picker__label-low{
   background-color: var(--special-softGreen);
   color: var(--status-success);
 }
-.rf-label-medium{
+.status-picker__label-medium{
   color: var(--status-warn);
   background-color: var(--special-softYellow);
 }
-.rf-label-hight{
-  border-top-right-radius:7px;
-  border-bottom-right-radius: 7px;
+.status-picker__label-high{
+
   color: var(--status-danger);
   background-color:#FFE5E7;
 }
 
-.rf-label-disabled{
+.status-picker__label-disabled{
   color: var(--text-tertiary);
   background-color:var(--background-secondary);
 }

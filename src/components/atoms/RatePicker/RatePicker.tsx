@@ -59,34 +59,39 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
     rates = rates.reverse();
   }
 
-  const rateComponent = rates.map((item) =>
-    <div
+  const rateComponent = rates.map((item) => {
+
+    const labelClassName = +rating >= item && !isReverse ?
+      `rate-picker__label_picked_${isActive ?
+        'primary' :
+        'tertiary'}` :
+      isReverse && +rating <= item ?
+        `rate-picker__label_picked_${isActive ?
+          'primary' :
+          'tertiary'}` :
+        '';
+    const containerClassName = `
+    ${isReverse && item === 1 ? 'rate-picker__container__item_rounded-right' : ''}
+      ${isReverse && rates.length === item ? 'rate-picker__container__item_rounded-left' : ''}
+       ${!isReverse && item === 1 ? 'rate-picker__container__item_rounded-left' : ''} 
+       ${!isReverse && rates.length === item ? 'rate-picker__container__item_rounded-right' : ''}`;
+
+    return <div
       key={item.toString()}
-      className={`rf-rate-picker-item
-       ${isReverse && item === 1 ? 'rf-rate-picker-item-rounded-right' : ''}
-         ${isReverse && rates.length === item ? 'rf-rate-picker-item-rounded-left' : ''}
-          ${!isReverse && item === 1 ? 'rf-rate-picker-item-rounded-left' : ''} 
-          ${!isReverse && rates.length === item ? 'rf-rate-picker-item-rounded-right' : ''}`} >
+      className={containerClassName} >
       <input
         type='radio'
         id={`input-${item}`}
         value={item} />
       <label
-        className={+rating >= item && !isReverse ?
-          `rf-rate-picked-${isActive ?
-            'primary' :
-            'tertiary'}` :
-          isReverse && +rating <= item ?
-            `rf-rate-picked-${isActive ?
-              'primary' :
-              'tertiary'}` :
-            ''}
+        className={labelClassName}
         onClick={clickRateHandler}
         htmlFor={`input-${item}`}
         {...props}>
         {item}
       </label>
-    </div >);
+    </div >;
+  });
 
   if (isReverse) {
     rates.reverse();
@@ -94,9 +99,9 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
 
 
   return (
-    <div className={isUnderline ? 'fs-rate-picker' : ''} >
-      <p className='fs-rate-content'>{textContent}</p>
-      <div className='fs-rate-picker-items'>
+    <div className={isUnderline ? 'rate-picker' : ''} >
+      <p className='rate-picker__content'>{textContent}</p>
+      <div className='rate-picker__container'>
         {rateComponent}
       </div>
     </div >
