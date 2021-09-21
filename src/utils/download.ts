@@ -2,7 +2,7 @@ import { IRequestAttachment } from '../types/projects.types';
 
 export const download = (file: IRequestAttachment, name: string) => {
   // @ts-ignore
-  if (window.navigator && window.navigator.msSaveBlob) {
+  if (window.navigator && window.navigator.msSaveOrOpenBlob) {
 
     const tmp = (file.base64 || '').split(';base64,');
     const byteCharacters = atob(tmp[1]);
