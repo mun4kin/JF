@@ -1,10 +1,10 @@
 import React, {
-  FC, InputHTMLAttributes, useState, useEffect
+  FC, useState, useEffect
 } from 'react';
 import './RatePicker.scss';
 
 
-export interface IPickerProps extends InputHTMLAttributes<HTMLLabelElement> {
+export interface IPickerProps extends React.MouseEvent<HTMLLabelElement> {
 
   /** Величина диапазона*/
   sizePicker?: number

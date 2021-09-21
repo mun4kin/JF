@@ -30,7 +30,7 @@ export const statusPicker = (args: IPickerProps) => {
             flexDirection: 'column'
           }}>
             {arrayData.map((item, index) => {
-              return <StatusPicker {...args} position={index} pickedValues={arrayData} getRate={statusHandler} />;
+              return <StatusPicker key={index} {...args} position={index} pickedValues={arrayData} getRate={statusHandler} />;
             })}
           </div>
         </StoryRow>
