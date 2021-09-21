@@ -14,6 +14,7 @@ export const download = (file: IRequestAttachment, name: string) => {
 
     const byteArray = new Uint8Array(byteNumbers);
     const blob = new Blob([byteArray], { type: tmp[0].split(':')[1] });
+    // @ts-ignore
     window.navigator.msSaveOrOpenBlob(blob, name);
   } else {
 
