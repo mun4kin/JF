@@ -17,7 +17,7 @@ export const tooltip = () => {
       <StoryItem description='Подсказка при наведении на элемент.'>
         <StoryRow>
           <StoryCol>
-            <Tooltip>
+            <Tooltip background='white'>
               <Button>Hover me</Button>
               <div>Tooltip text</div>
             </Tooltip>

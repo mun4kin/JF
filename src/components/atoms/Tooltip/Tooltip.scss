@@ -22,12 +22,11 @@ $radius: 8px;
 .rf-tooltip__inner {
   position: relative;
   padding: 16px;
-  color: var(--text-static-white);
   font-weight: normal;
   font-size: 14px;
   line-height: 18px;
-  background: var(--basic-tertiary);
   border-radius: $radius;
+  box-shadow: 0 2px 6px rgba(25, 59, 104, 0.15);
 }
 
 .rf-tooltip__inner::after {
@@ -37,8 +36,7 @@ $radius: 8px;
   display: block;
   width: 10px;
   height: 10px;
-  background-color: var(--basic-tertiary);
-  //box-shadow: var(--shadow-strong);
+  box-shadow: 0 2px 6px rgba(25, 59, 104, 0.15);
   transform: translate(-50%, -50%) rotate(45deg);
 }
 
@@ -60,4 +58,22 @@ $radius: 8px;
 .rf-tooltip__inner--top::after {
   top: 100%;
   left: 50%;
+}
+
+.rf-tooltip--default .rf-tooltip__inner {
+  background: var(--basic-tertiary);
+  color: var(--text-static-white);
+}
+
+.rf-tooltip--default .rf-tooltip__inner::after {
+  background: var(--basic-tertiary);
+}
+
+.rf-tooltip--white .rf-tooltip__inner {
+  background: var(--background-primary);
+  color: var(--text-primary);
+}
+
+.rf-tooltip--white .rf-tooltip__inner::after {
+  background: var(--background-primary);
 }
