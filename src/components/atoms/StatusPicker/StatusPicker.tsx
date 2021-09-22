@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, InputHTMLAttributes } from 'react';
 import './StatusPicker.scss';
 
 
-export interface IPickerProps extends React.MouseEvent<HTMLLabelElement> {
+export interface IPickerProps extends InputHTMLAttributes<HTMLLabelElement> {
   /** Получить значение оценки*/
   getRate?: (value: number, arr: string[][], pos: number) => number | void
   /** Схема компонентов*/
