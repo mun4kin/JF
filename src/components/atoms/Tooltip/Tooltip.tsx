@@ -119,6 +119,8 @@ export interface ITooltipProps {
   className?: string;
   /** Портал в элемент - по умолчанию body */
   portal?: boolean;
+  /** Цвет тултипа */
+  background?: 'default' | 'white';
 }
 
 const Tooltip: FC<ITooltipProps> = ({
@@ -126,7 +128,8 @@ const Tooltip: FC<ITooltipProps> = ({
   position = 'right',
   isVisible = true,
   className = '',
-  portal = false
+  portal = false,
+  background = 'default'
 }: ITooltipProps) => {
   const [tooltipRect, setTooltipRect] = useState<DOMRect | null>(null);
 
@@ -162,7 +165,7 @@ const Tooltip: FC<ITooltipProps> = ({
 
   return (
     <div
-      className='rf-tooltip'
+      className={`rf-tooltip rf-tooltip--${background}`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={stopPropagation}
