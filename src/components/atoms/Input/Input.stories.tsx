@@ -3,7 +3,6 @@ import Input from './Input';
 import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
 import StoryRow from '../../storybook/StoryRow';
-import Calendar from '../../../assets/icons/Calendar';
 
 export default {
   title: 'Form Controls/Input',
@@ -56,16 +55,6 @@ const inputsData: any[] = [
     placeholder: 'Инлайн неактивное поле',
     disabled: true,
     variant: 'inline',
-  },
-  {
-    name: 'rtf9',
-    placeholder: 'Иконка справа',
-    endAdornment: <Calendar />,
-  },
-  {
-    name: 'rtf10',
-    placeholder: 'Иконка слева',
-    startAdornment: <Calendar />,
   }
 ];
 
@@ -79,8 +68,6 @@ export const input = () => {
         disabled={r.disabled}
         onClear={r.clear}
         variant={r.variant}
-        startAdornment={r.startAdornment}
-        endAdornment={r.endAdornment}
       />
     </StoryRow>
   ));
