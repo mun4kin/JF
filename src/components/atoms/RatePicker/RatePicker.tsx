@@ -71,10 +71,10 @@ const RatePicker: FC<IPickerProps> = ({ isActive = true,
           'tertiary'}` :
         '';
     const containerClassName = `
-    ${isReverse && item === 1 ? 'rate-picker__container__item_rounded-right' : ''}
-      ${isReverse && rates.length === item ? 'rate-picker__container__item_rounded-left' : ''}
-       ${!isReverse && item === 1 ? 'rate-picker__container__item_rounded-left' : ''} 
-       ${!isReverse && rates.length === item ? 'rate-picker__container__item_rounded-right' : ''}`;
+    ${isReverse && item === 1 ? 'rate-picker__item--right' : ''}
+      ${isReverse && rates.length === item ? 'rate-picker__item--left' : ''}
+       ${!isReverse && item === 1 ? 'rate-picker__item--left' : ''} 
+       ${!isReverse && rates.length === item ? 'rate-picker__item--right' : ''}`;
 
     return <div
       key={item.toString()}

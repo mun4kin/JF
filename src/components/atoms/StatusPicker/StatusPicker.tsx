@@ -25,20 +25,21 @@ const StatusPicker: FC<IPickerProps> = ({ getRate = () => { }
 
   const statusColors = ['low', 'medium', 'high'];
 
-  const clickStatusHandler = (selectIndex: number) => (e: React.MouseEvent<HTMLLabelElement>) => {
+  const clickStatusHandler = (selectIndex: number, currentIndex: number) => (e: React.MouseEvent<HTMLLabelElement>) => {
+    if (pickedValues[position][currentIndex] === '' || pickedValues[position][currentIndex] === '0') {
+      const { htmlFor } = e.target as HTMLLabelElement;
+      const res = +htmlFor;
 
-    const { htmlFor } = e.target as HTMLLabelElement;
-    const res = +htmlFor;
+      const newArr = pickedValues.map((pv, index) => {
+        if (index === selectIndex) {
+          pv = pv.map((a, i) => res - 1 === i ? a = '0' : 'X');
+          return pv;
+        }
 
-    const newArr = pickedValues.map((pv, index) => {
-      if (index === selectIndex) {
-        pv = pv.map((a, i) => res - 1 === i ? a = '0' : 'X');
-        return pv;
-      }
-
-      return pv = pv.map((a, i) => res - 1 === i ? a = 'X' : a);
-    });
-    getRate(res, newArr, position);
+        return pv = pv.map((a, i) => res - 1 === i ? a = 'X' : a);
+      });
+      getRate(res, newArr, position);
+    }
   };
 
   const status: StatusLabelType[] = [
@@ -57,7 +58,7 @@ const StatusPicker: FC<IPickerProps> = ({ getRate = () => { }
   ];
 
   const statusComponent = status.map((item: StatusLabelType, index: number) => {
-    const statusComponentLabelClass = `status-picker__label-${pickedValues[position][index] !== '' ?
+    const statusComponentLabelClass = `status-picker__label--${pickedValues[position][index] !== '' ?
       pickedValues[position][index] === '0' ?
         statusColors[item.value - 1] :
         'disabled' :
@@ -65,7 +66,7 @@ const StatusPicker: FC<IPickerProps> = ({ getRate = () => { }
 
     return <div
       key={item.value}
-      className='block__status-picker-container-items'
+      className='status-picker__items'
     >
       <input
         type='radio'
@@ -73,7 +74,7 @@ const StatusPicker: FC<IPickerProps> = ({ getRate = () => { }
         value={item.value} />
       <label
         className={statusComponentLabelClass}
-        onClick={pickedValues[position][index] === '' || pickedValues[position][index] === '0' ? clickStatusHandler(position) : undefined}
+        onClick={clickStatusHandler(position, index)}
         htmlFor={item.value.toString()}
         {...props}>
         {item.name}
@@ -83,8 +84,8 @@ const StatusPicker: FC<IPickerProps> = ({ getRate = () => { }
 
 
   return (
-    <div className={'block__status-picker'} >
-      < div className='block__status-picker-container' >
+    <div className={'status-picker'} >
+      < div className='status-picker__container' >
         {statusComponent}
       </ div>
     </div >
