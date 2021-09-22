@@ -11,7 +11,9 @@
 }
 
 .story__wrapper {
-  margin-top: 24px;
+  &:not(:first-child) {
+    margin-top: 24px;
+  }
 }
 
 .story__description {

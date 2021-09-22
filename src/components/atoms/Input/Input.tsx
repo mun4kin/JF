@@ -16,6 +16,10 @@ export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size'> {
   /** Иконка */
   icon?: ReactNode;
   variant?: 'base' | 'inline';
+  /** Контент для вставки в начало инпута */
+  startAdornment?: ReactNode;
+  /** Контент для вставки в конец инпута */
+  endAdornment?: ReactNode;
 }
 
 const Input: FC<IInputProps> = ({
