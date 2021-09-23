@@ -43,6 +43,7 @@ import Row from './components/atoms/Row';
 import UserPhoto from './components/atoms/UserPhoto';
 import Notification from './components/molecules/Notification';
 import Notifications, { sendNotification } from './components/molecules/Notifications';
+import Card from './components/molecules/Card';
 
 import { InputHook } from './components/atoms/Input/InputHook';
 import Timepicker from './components/atoms/Timepicker';
@@ -94,7 +95,8 @@ export {
   Tile,
   Row,
   Column,
-  UserPhoto
+  UserPhoto,
+  Card
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------
