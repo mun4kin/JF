@@ -44,6 +44,7 @@ import UserPhoto from './components/atoms/UserPhoto';
 import Notification from './components/molecules/Notification';
 import Notifications, { sendNotification } from './components/molecules/Notifications';
 import Card from './components/molecules/Card';
+import Toast from './components/atoms/Toast';
 
 import { InputHook } from './components/atoms/Input/InputHook';
 import Timepicker from './components/atoms/Timepicker';
@@ -96,7 +97,8 @@ export {
   Row,
   Column,
   UserPhoto,
-  Card
+  Card,
+  Toast
 };
 
 // --------------------------Иконки-------------------------------------------------------------------------------------

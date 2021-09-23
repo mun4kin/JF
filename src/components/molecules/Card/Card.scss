@@ -71,7 +71,11 @@
 }
 
 .rf-card__user-accent {
-  margin-right: 10px;
+  margin-right: 12px;
+}
+
+.rf-card__user-accent_number {
+  margin-right: 8px;
 }
 
 .rf-card__icon-wrapper {
@@ -79,5 +83,17 @@
   align-items: center;
   justify-content: center;
   color: var(--text-secondary);
-  margin-right: 15px;
+  margin-right: 16px;
+
+  cursor: pointer;
+}
+
+.rf-card__tooltip-text {
+  display: block;
+  white-space:nowrap;
+}
+
+.rf-card__toast-text {
+  @include text-xs-14();
+  color: var(--text-secondary);
 }
