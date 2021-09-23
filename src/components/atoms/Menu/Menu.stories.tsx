@@ -1,4 +1,4 @@
-import Menu, { MenuContext } from './Menu';
+import Menu, { MenuContext, IListProps } from './Menu';
 import React from 'react';
 import { IListElement, IMenuContext } from '../../../types';
 import { Button } from '../../../index';
@@ -10,10 +10,18 @@ import { BrowserRouter } from 'react-router-dom';
 
 export default {
   title: 'Menu',
-  component: Menu
+  component: Menu,
+  argTypes: {
+    children: { control: null },
+    list: { control: null },
+    content: { control: null },
+    className: { control: null },
+    position: { control: null },
+    relativeBlock: { control: null }
+  }
 };
 
-export const menu = () => {
+export const menu = ({ portal }: IListProps) => {
   const list: IListElement[] = [
     {
       value: '1',
@@ -75,11 +83,11 @@ export const menu = () => {
 
   return (
     <BrowserRouter>
-      <Story name='Menu (Меню 🙄)' height={600}>
+      <Story name='Menu (Меню 🙄)'>
         <StoryItem description='Выпадающий список с действиями'>
           <StoryRow>
             <StoryCol>
-              <Menu list={list} position='right'>
+              <Menu list={list} position='right' portal={portal}>
                 <Button buttonType='secondary'>
                   Правое меню слева
                 </Button>
@@ -87,7 +95,7 @@ export const menu = () => {
             </StoryCol>
 
             <StoryCol>
-              <Menu list={list}>
+              <Menu list={list} portal={portal}>
                 <Button buttonType='secondary'>
                   Левое меню
                 </Button>
@@ -95,16 +103,23 @@ export const menu = () => {
             </StoryCol>
 
             <StoryCol>
-              <Menu position='right' list={list}>
+              <Menu position='right' list={list} portal={portal}>
                 <Button buttonType='secondary'>
                   Правое меню
                 </Button>
               </Menu>
             </StoryCol>
             <StoryCol>
-              <Menu list={list} position='top-right'>
+              <Menu list={list} position='top-right' portal={portal}>
                 <Button buttonType='secondary'>
-                  Правое меню слева
+                  Верхнее меню
+                </Button>
+              </Menu>
+            </StoryCol>
+            <StoryCol>
+              <Menu list={list} position='left' portal={portal}>
+                <Button buttonType='secondary'>
+                  Левое меню справа
                 </Button>
               </Menu>
             </StoryCol>
@@ -113,7 +128,7 @@ export const menu = () => {
         <StoryItem description='Выпадающий список с произвольным контентом'>
           <StoryRow>
             <StoryCol>
-              <Menu position='right' content={content}>
+              <Menu position='right' content={content} portal={portal}>
                 <Button buttonType='secondary'>
                   Тут контент 😏
                 </Button>
@@ -123,23 +138,30 @@ export const menu = () => {
           <div style={{ height: '300px' }}></div>
           <StoryRow>
             <StoryCol>
-              <Menu list={list} position='top-left'>
+              <Menu list={list} position='top-left' portal={portal}>
                 <Button buttonType='secondary'>
                 top-left
                 </Button>
               </Menu>
             </StoryCol>
             <StoryCol>
-              <Menu list={list} position='top-right'>
+              <Menu list={list} position='top-right' portal={portal}>
                 <Button buttonType='secondary'>
                 top-right
                 </Button>
               </Menu>
             </StoryCol>
             <StoryCol>
-              <Menu list={list} position='top-left' content={content}>
+              <Menu list={list} position='top-left' content={content} portal={portal}>
                 <Button buttonType='secondary'>
                 top-left custom content
+                </Button>
+              </Menu>
+            </StoryCol>
+            <StoryCol>
+              <Menu list={list} position='left' portal={portal}>
+                <Button buttonType='secondary'>
+                  Левое меню
                 </Button>
               </Menu>
             </StoryCol>

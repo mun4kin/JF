@@ -58,6 +58,7 @@ export interface IListElement {
 /** Контекст меню */
 export interface IMenuContext {
   onClose: () => void;
+  show: boolean;
 }
 
 /** Результат обработки файла */
