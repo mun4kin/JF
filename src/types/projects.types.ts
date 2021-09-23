@@ -99,6 +99,8 @@ export interface IPageSection {
   id: string;
   title?: ReactNode;
   component: ReactNode;
+  /** отключение бекграунда*/
+  hideBackground?:boolean
 }
 
 /** Возвращаемое значение календаря */

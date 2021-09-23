@@ -28,7 +28,8 @@ export const pageWithSections = () => {
     {
       id: 'org',
       title: 'Организационные данные',
-      component: <div style={{ height: '300px' }}> Организационные данные </div>
+      component: <div style={{ height: '300px' }}> Организационные данные </div>,
+      hideBackground: true
     },
     {
       id: 'test1',
