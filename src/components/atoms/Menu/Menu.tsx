@@ -27,7 +27,7 @@ export interface IListProps {
    */
   portal?: boolean;
   /** Меню будет отображено рядом с указанным элементом вместо тоггла */
-  anchorEl?: HTMLElement;
+  anchorElement?: HTMLElement;
 }
 
 /** Контекст для передачи функций работы с меню. */
@@ -43,7 +43,7 @@ const Menu: React.FC<IListProps> = ({
   position = 'left',
   className = '',
   portal,
-  anchorEl,
+  anchorElement,
   ...props
 }: IListProps) => {
   // Обратная совместимость с версией без поратала
@@ -55,22 +55,21 @@ const Menu: React.FC<IListProps> = ({
   const toggleRef = useRef<HTMLDivElement>(null);
 
   /** Флаг отображения выпадающего списка  */
-  const [show, toggle] = useState<boolean>(false);
+  const [show, setShow] = useState<boolean>(false);
 
   /** Клик по кнопке */
   const onClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
     e.preventDefault();
     onToggle();
   };
 
   /** Изменение состояния выпадающего списка */
   const onToggle = () => {
-    toggle(!show);
+    setShow(!show);
   };
 
   const onClose = () => {
-    toggle(false);
+    setShow(false);
   };
 
   // -------------------------------------------------------------------------------------------------------------------
@@ -88,11 +87,15 @@ const Menu: React.FC<IListProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   /** Функция для отслеживания клика вне элемента */
-  const handleClickOutside = useCallback(() => {
-    onClose();
-  }, [toggle]);
+  const handleClickOutside = useCallback((event: MouseEvent) => {
+    if (event.target && toggleRef.current && toggleRef.current.contains(event.target as HTMLElement)) {
+      return;
+    }
 
-  useClickOutside(menuRef, handleClickOutside);
+    onClose();
+  }, [setShow, toggleRef]);
+
+  useClickOutside(contentRef, handleClickOutside);
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -117,7 +120,7 @@ const Menu: React.FC<IListProps> = ({
   /** Пересчитываем координаты, если не помещается*/
   const rearrangePosition = () => {
     if (contentRef.current && toggleRef.current) {
-      const toggleRect: DOMRect = (anchorEl || toggleRef.current).getBoundingClientRect();
+      const toggleRect: DOMRect = (anchorElement || toggleRef.current).getBoundingClientRect();
       const listRect: DOMRect = contentRef.current.getBoundingClientRect();
 
       if (portal) {
@@ -205,7 +208,7 @@ const Menu: React.FC<IListProps> = ({
     } else {
       setCoordinates(clearCoordinates());
     }
-  }, [show, portal, anchorEl]);
+  }, [show, portal, anchorElement]);
   // -------------------------------------------------------------------------------------------------------------------
 
   const menu = (
