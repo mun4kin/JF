@@ -3,8 +3,10 @@ import StoryItem from '../../storybook/StoryItem';
 import React from 'react';
 import Card, { ICard } from './Card';
 import { usersMocks } from '../../popups/FindUsers/users.mocks';
+import { variants } from '../../../types';
 
 const data: ICard = {
+  id: '',
   title: 'Надбавка за увеличение объёма продаж',
   subTitle: 'Вид заявки: Исполнение обязанностей',
   requestNumber: '347347347',
@@ -12,22 +14,19 @@ const data: ICard = {
   statusText: 'На согласовании',
   statusColor: 'yellow',
   user: usersMocks[0],
-  footer: [
-    {
-      text: 'Период',
-      value: '03.08.2020 — 07.09.2021'
-    },
-    {
-      text: 'Сумма',
-      value: '100 000 ₽'
-    }
-  ],
   onClick: () => {}
 };
 
 export default {
   title: 'Card',
-  component: Card
+  component: Card,
+  typeArgs: {
+    statusColor: {
+      options: variants,
+      control: { type: 'select' },
+      defaultValue: 'default'
+    }
+  }
 };
 
 export const card = () => {

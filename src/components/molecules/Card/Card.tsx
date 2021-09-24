@@ -1,38 +1,48 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
+
 import Tile from '../../atoms/Tile';
 import Tag from '../../atoms/Tag';
-import './Card.scss';
-import { IUser } from '../../../types/projects.types';
-import { Variant } from '../../../types';
 import UserPhoto from '../../atoms/UserPhoto';
+import Tooltip from '../../atoms/Tooltip';
+import Toast from '../../atoms/Toast';
+
 import Copy from '../../../assets/icons/Copy';
 
+import { Variant } from '../../../types';
+import { IUser } from '../../../types/projects.types';
+
+import './Card.scss';
+
 export interface ICard {
-  title: string;
-  subTitle?: string;
-  requestNumber: string;
   date: string;
-  statusText: string;
-  statusColor: Variant;
-  user: IUser;
-  footer: {
-    text: string;
-    value: string;
-  }[];
+  id: string;
   onClick: () => void;
+  requestNumber: string;
+  statusColor: Variant;
+  statusText: string;
+  subTitle?: string;
+  title: string;
+  user: IUser;
  }
 
 const Card: FC<ICard> = ({
-  title,
-  subTitle,
+  title = '',
+  subTitle = '',
   requestNumber,
   date,
   statusText,
-  statusColor,
+  statusColor = 'default',
   user,
-  footer,
   onClick
 }) => {
+
+  const [isCopied, setIsCopied] = useState(false);
+
+  const copyHandler = () => {
+    setIsCopied(true);
+    navigator.clipboard.writeText(user.id);
+  };
+
   return <div className='rf-card__wrapper' onClick={onClick}>
     <Tile>
       <div className='rf-card__row rf-card__row_first-row'>
@@ -54,11 +64,15 @@ const Card: FC<ICard> = ({
             <div className='rf-card__user-row'>
               <p className='rf-card__user-additional'>Табельный номер</p>
               <div className='rf-card__user-row'>
-                <p className='rf-card__user-accent'>{user.id}</p>
+                <p className='rf-card__user-accent rf-card__user-accent_number'>{user.id}</p>
                 <div className='rf-card__icon-wrapper'>
-                  <Copy onClick={() => {
-                    navigator.clipboard.writeText(user.id);
-                  }} id='copyIcon' />
+                  <Tooltip position='bottom'>
+                    <Copy onClick={copyHandler} id='copyIcon' />
+                    <div className='rf-card__tooltip-text'>Скопировать ТН</div>
+                  </Tooltip>
+                  <Toast isVisible={isCopied} setVisibility={setIsCopied}>
+                    <p className='rf-card__toast-text'>ТН скопирован</p>
+                  </Toast>
                 </div>
                 <p className='rf-card__user-additional'>Должность</p>
                 <div className='rf-card__user-row'>
@@ -68,18 +82,6 @@ const Card: FC<ICard> = ({
             </div>
           </div>
         </div>
-      </div>
-      <div className='rf-card__user-row'>
-        {footer.map(item => {
-          return (
-            <div className='rf-card__user-row'>
-              <p className='rf-card__user-additional'>{`${item.text}:`}</p>
-              <div className='rf-card__user-row with-icon'>
-                <p className='rf-card__user-accent'>{item.value}</p>
-              </div>
-            </div>
-          );
-        })}
       </div>
     </Tile>
   </div>;
