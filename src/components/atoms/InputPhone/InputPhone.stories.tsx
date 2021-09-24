@@ -1,9 +1,11 @@
 import React from 'react';
-import InputPhone from './InputPhone';
+import InputPhone, { IInputPhoneCountry } from './InputPhone';
 import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
-import { Button, FormGroup } from '../../../index';
-import StoryRow from '../../storybook/StoryRow';
+import { FormGroup } from '../../../index';
+
+import FlagGB from '../../../assets/icons/FlagGB';
+import FlagRU from '../../../assets/icons/FlagRU';
 
 
 export default {
@@ -11,38 +13,43 @@ export default {
   component: InputPhone
 };
 
+const COUNTRIES: IInputPhoneCountry[] = [
+  {
+    flag: FlagRU,
+    text: 'Россия',
+    code: 7
+  },
+  {
+    flag: FlagGB,
+    text: 'Великобритания',
+    code: 44
+  }
+];
 
 export const inputPhone = () => {
-
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-
-  };
-
   return (
     <Story name='InputPhone' description='Поле для ввода номера телефона. Доступен ввод только чисел.' width={600}>
-      <StoryItem>
-        <StoryRow>
-          <form onSubmit={onSubmit} style={{
-            display: 'flex',
-            marginTop: '24px'
-          }}>
-            <div style={{ width: '520px' }}>
-              <FormGroup label='Телефон'>
-                <div style={{ display: 'flex' }}>
-                  <div style={{ width: '100%' }}>
-                    <InputPhone name='phone' defaultValue='+79852586112' />
-                  </div>
-                  <div style={{ marginLeft: '24px' }}>
-                    <Button type='submit'>Отправить</Button>
-                  </div>
-                </div>
-              </FormGroup>
-            </div>
-          </form>
-        </StoryRow>
+      <StoryItem >
+        <FormGroup label='Номер телефона'>
+          <InputPhone name='phone' defaultValue='+79999999999' countries={COUNTRIES}/>
+        </FormGroup>
       </StoryItem>
+      <StoryItem >
+        <FormGroup label='Номер телефона'>
+          <InputPhone name='phone' defaultValue='+79999999999' countries={COUNTRIES} disabled />
+        </FormGroup>
+      </StoryItem>
+      <StoryItem >
+        <FormGroup label='Номер телефона'>
+          <InputPhone className='invalid' name='phone' defaultValue='+7999' countries={COUNTRIES} />
+        </FormGroup>
+      </StoryItem>
+      <StoryItem >
+        <FormGroup label='Номер телефона без выбора страны'>
+          <InputPhone name='phone' />
+        </FormGroup>
+      </StoryItem>
+      <div style={{ height: '300px' }}></div>
     </Story>
   );
 };
