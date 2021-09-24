@@ -67,3 +67,8 @@
   border-color: var(--basic-primary);
   border-top-color: transparent;
 }
+
+.preloader--inherit .preloader__circle {
+  border-color: currentColor;
+  border-top-color: transparent;
+}

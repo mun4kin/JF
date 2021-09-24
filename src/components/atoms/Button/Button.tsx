@@ -1,5 +1,5 @@
 import React, {
-  FC, HTMLProps, useEffect, useRef, useState
+  FC, HTMLProps, ReactNode
 } from 'react';
 import { Size, VariantClassic } from '../../../types';
 import { sizeClass } from '../../../utils/helpers';
@@ -32,8 +32,15 @@ export interface IButtonProps extends Omit<HTMLProps<HTMLButtonElement>, 'size'>
   textColor?: VariantClassic;
   /** Круглая кнопка */
   round?: boolean;
-  /** Условие, по которому кнопка нажата */
+  /**
+   * Условие, по которому кнопка нажата
+   * @deprecated
+   */
   pressedCondition?: boolean;
+  /** Контент для вставки в начало кнопки */
+  startAdornment?: ReactNode;
+  /** Контент для вставки в конец кнопки */
+  endAdornment?: ReactNode;
 }
 
 const Button: FC<IButtonProps> = ({
@@ -45,6 +52,9 @@ const Button: FC<IButtonProps> = ({
   textColor = 'default',
   round = false,
   pressedCondition,
+  children,
+  startAdornment,
+  endAdornment,
   ...props
 }: IButtonProps) => {
 
@@ -62,59 +72,23 @@ const Button: FC<IButtonProps> = ({
 
   const widthClass = fullWidth ? 'rf-button__full-width' : '';
   const roundClass = round ? 'rf-button--round' : '';
-
-  // -------------------------------------------------------------------------------------------------------------------
-
-  const [pressed, setPressed] = useState<boolean>(false);
-
-  /** Состояние pressed */
-  const onMouseDown = () => {
-    setPressed(true);
-  };
-
-  useEffect(() => {
-    const onMouseUp = () => {
-      setPressed(false);
-    };
-
-    window.addEventListener('mouseup', onMouseUp);
-    return () => {
-      window.removeEventListener('mouseup', onMouseUp);
-    };
-  }, []);
-
-  const pressedClass = pressed || pressedCondition ? 'rf-button--pressed' : '';
   const colorClass = buttonType === 'text' ? `rf-button--text-${textColor}` : '';
-
-  // -------------------------------------------------------------------------------------------------------------------
-
-  const [minWidth, setMinWidth] = useState(32);
-  const ref = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (ref.current) {
-        const { width } = ref.current.getBoundingClientRect();
-        setMinWidth(width);
-      }
-    });
-  }, [props.children]);
-
-
-  // -------------------------------------------------------------------------------------------------------------------
 
   return (
 
     <button
       { ...props }
-      ref={ ref }
       type={ type }
-      style={ { minWidth: `${minWidth}px` } }
-      onMouseDown={ onMouseDown }
-
-      className={ `rf-button ${classesMap[buttonType]} ${sizeClass[size]} ${widthClass} ${pressedClass} ${props.className || ''} ${colorClass} ${roundClass}` }>
-      { preloader === undefined ? props.children : preloader ? <Preloader size='s' variant='white'/> : props.children }
-
+      className={ `rf-button ${classesMap[buttonType]} ${sizeClass[size]} ${widthClass} ${props.className || ''} ${colorClass} ${roundClass}` }
+    >
+      <div data-testid='rf-button__content' className={`rf-button__content ${preloader ? 'rf-button__content--hidden' : ''}`}>
+        {!!startAdornment && <div className='rf-button__adornment rf-button__adornment--start'>{startAdornment}</div>}
+        {!!children && <div className='rf-button__text'>
+          {children}
+        </div>}
+        {!!endAdornment && <div className='rf-button__adornment rf-button__adornment--end'>{endAdornment}</div>}
+      </div>
+      {!!preloader && <Preloader size='s' variant='inherit'/>}
     </button>
   );
 };

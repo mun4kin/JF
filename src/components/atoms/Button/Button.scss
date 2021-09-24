@@ -17,30 +17,114 @@
   white-space: nowrap;
   @include button-m-16;
   user-select: none;
+
+  & svg {
+    display: block;
+  }
 }
 
 .rf-button.rf--s {
-  padding: 6px 16px;
   height: 32px;
+  min-width: 32px;
   @include button-s-14;
+
+  & .rf-button__text {
+    &:first-child {
+      margin-left: 16px;
+    }
+
+    &:last-child {
+      margin-right: 16px;
+    }
+  }
+
+  & .rf-button__adornment {
+    &:not(:last-child) {
+      margin-left: 14px;
+    }
+
+    &:not(:first-child) {
+      margin-right: 14px;
+    }
+  }
 }
 
 .rf-button.rf--m {
-  padding: 8px 20px;
   height: 40px;
+  min-width: 40px;
   @include button-m-16;
+
+  & .rf-button__text {
+    &:first-child {
+      margin-left: 20px;
+    }
+
+    &:last-child {
+      margin-right: 20px;
+    }
+  }
+
+  & .rf-button__adornment {
+    &:not(:last-child) {
+      margin-left: 18px;
+    }
+
+    &:not(:first-child) {
+      margin-right: 18px;
+    }
+  }
 }
 
 .rf-button.rf--l {
-  padding: 12px 24px;
   height: 48px;
+  min-width: 48px;
   @include button-m-16;
+
+  & .rf-button__text {
+    &:first-child {
+      margin-left: 24px;
+    }
+
+    &:last-child {
+      margin-right: 24px;
+    }
+  }
+
+  & .rf-button__adornment {
+    &:not(:last-child) {
+      margin-left: 22px;
+    }
+
+    &:not(:first-child) {
+      margin-right: 22px;
+    }
+  }
 }
 
 .rf-button.rf--xl {
-  padding: 16px 32px;
   height: 56px;
+  min-width: 56px;
   @include button-m-16;
+
+  & .rf-button__text {
+    &:first-child {
+      margin-left: 32px;
+    }
+
+    &:last-child {
+      margin-right: 32px;
+    }
+  }
+
+  & .rf-button__adornment {
+    &:not(:last-child) {
+      margin-left: 30px;
+    }
+
+    &:not(:first-child) {
+      margin-right: 30px;
+    }
+  }
 }
 
 .rf-button.rf-button__full-width {
@@ -51,6 +135,30 @@
   pointer-events: none;
 }
 
+.rf-button__content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &--hidden {
+    visibility: hidden;
+  }
+}
+
+.rf-button__adornment {
+  &--start {
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
+
+  &--end {
+    &:not(:first-child) {
+      margin-left: 8px;
+    }
+  }
+}
+
 // Primary
 
 .rf-button--primary {
@@ -58,11 +166,12 @@
   color: var(--text-static-white);
 }
 
-.rf-button--primary:hover {
+.rf-button--primary:hover,
+.rf-button--primary:focus-visible {
   background-color: var(--basic-hover);
 }
 
-.rf-button--primary.rf-button--pressed {
+.rf-button--primary:active {
   background-color: var(--basic-press);
 }
 
@@ -77,12 +186,13 @@
   color: var(--basic-primary);
 }
 
-.rf-button--light:hover {
+.rf-button--light:hover,
+.rf-button--light:focus-visible {
   background-color: var(--basic-primary-light);
   color: var(--text-static-white);
 }
 
-.rf-button--light.rf-button--pressed {
+.rf-button--light:active {
   background-color: var(--basic-press);
   color: var(--text-static-white);
 }
@@ -100,13 +210,14 @@
   color: var(--basic-primary);
 }
 
-.rf-button--secondary:hover {
+.rf-button--secondary:hover,
+.rf-button--secondary:focus-visible {
   background-color: var(--background-secondary);
   border-color: var(--basic-hover);
   color: var(--basic-hover);
 }
 
-.rf-button--secondary.rf-button--pressed {
+.rf-button--secondary:active {
   background-color: var(--background-secondary);
   border-color: var(--basic-press);
   color: var(--basic-press);
@@ -125,12 +236,13 @@
   color: var(--basic-primary);
 }
 
-.rf-button--ghost:hover {
+.rf-button--ghost:hover,
+.rf-button--ghost:focus-visible {
   background-color: var(--background-secondary);
   color: var(--basic-hover);
 }
 
-.rf-button--ghost.rf-button--pressed {
+.rf-button--ghost:active {
   background-color: var(--background-secondary);
   color: var(--basic-press);
 }
@@ -169,12 +281,13 @@
   color: var(--basic-primary);
 }
 
-.rf-button--icon:hover {
+.rf-button--icon:hover,
+.rf-button--icon:focus-visible {
   background-color: var(--background-secondary);
   color: var(--basic-hover);
 }
 
-.rf-button--icon.rf-button--pressed {
+.rf-button--icon:active {
   background-color: var(--background-secondary);
   color: var(--basic-press);
 }
@@ -189,7 +302,7 @@
   color: var(--basic-tertiary);
 }
 
-.rf-button--iconFill.rf-button--pressed {
+.rf-button--iconFill:active {
   background-color: var(--basic-primary);
   color: var(--background-primary);
 }
@@ -205,6 +318,22 @@
     width: auto;
     height: auto;
     padding: 0;
+
+    & .rf-button__adornment {
+      &:not(:last-child) {
+        margin-left: 0;
+      }
+  
+      &:not(:first-child) {
+        margin-right: 0;
+      }
+    }
+
+    & .rf-button__text {
+      &:first-child, &:last-child {
+        margin: 0
+      }
+    }
   }
 }
 
@@ -213,11 +342,12 @@
   color: var(--basic-primary);
 }
 
-.rf-button--text-default:hover {
+.rf-button--text-default:hover,
+.rf-button--text-default:focus-visible {
   color: var(--basic-hover);
 }
 
-.rf-button--text-default.rf-button--pressed {
+.rf-button--text-default:active {
   color: var(--basic-press);
 }
 
@@ -230,11 +360,12 @@
   color: var(--status-success);
 }
 
-.rf-button--text-green:hover {
+.rf-button--text-green:hover,
+.rf-button--text-green:focus-visible {
   color: var(--status-success-hover);
 }
 
-.rf-button--text-green.rf-button--pressed {
+.rf-button--text-green:active {
   color: var(--status-success-press);
 }
 
@@ -247,11 +378,12 @@
   color: var(--status-warn);
 }
 
-.rf-button--text-yellow:hover {
+.rf-button--text-yellow:hover,
+.rf-button--text-yellow:focus-visible {
   color: var(--status-warn-hover);
 }
 
-.rf-button--text-yellow.rf-button--pressed {
+.rf-button--text-yellow:active {
   color: var(--status-warn-press);
 }
 
@@ -264,11 +396,12 @@
   color: var(--status-danger);
 }
 
-.rf-button--text-red:hover {
+.rf-button--text-red:hover,
+.rf-button--text-red:focus-visible {
   color: var(--status-danger-hover);
 }
 
-.rf-button--text-red.rf-button--pressed {
+.rf-button--text-red:active {
   color: var(--status-danger-press);
 }
 
@@ -287,11 +420,12 @@
   color: var(--status-danger);
 }
 
-.rf-button--danger:hover {
+.rf-button--danger:hover,
+.rf-button--danger:focus-visible {
   color: var(--status-danger-hover);
 }
 
-.rf-button--danger.rf-button--pressed {
+.rf-button--danger:active {
   color: var(--status-danger-press);
 }
 
@@ -312,11 +446,12 @@
   box-shadow: 0 2px 6px rgba(25, 59, 104, 0.15);
 }
 
-.rf-button--white:hover {
+.rf-button--white:hover,
+.rf-button--white:focus-visible {
   background-color: var(--background-primary);
 }
 
-.rf-button--white.rf-button--pressed {
+.rf-button--white:active {
   background-color: var(--background-primary);
 }
 
