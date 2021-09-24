@@ -15,6 +15,8 @@ export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size'> {
   /** Иконка */
   icon?: ReactNode;
   variant?: 'base' | 'inline';
+  /** Переводит инпут в невалидный статус */
+  invalid?: boolean;
   /** Контент для вставки в начало инпута */
   startAdornment?: ReactNode;
   /** Контент для вставки в конец инпута */
@@ -24,6 +26,7 @@ export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size'> {
 }
 
 const Input: FC<IInputProps> = ({
+  className,
   onClear,
   debounce = 300,
   icon,
@@ -31,6 +34,7 @@ const Input: FC<IInputProps> = ({
   startAdornment,
   endAdornment,
   disabled,
+  invalid,
   onFocus,
   onBlur,
   onDebounce,
@@ -108,6 +112,9 @@ const Input: FC<IInputProps> = ({
 
   // ------------------------------------------------------------------------------------------------------------------
 
+  // Делаем проверку на className для обратной совместимости.
+  const isInvalid = invalid || className && className.indexOf('invalid') !== -1;
+
   return (
     <label
       className={`
@@ -115,7 +122,8 @@ const Input: FC<IInputProps> = ({
         ${variant === 'inline' ? 'rf-input--inline' : ''} 
         ${disabled ? 'rf-input--disabled' : ''} 
         ${isFocused ? 'rf-input--focused' : ''} 
-        ${props.className || ''}`
+        ${isInvalid ? 'rf-input--invalid' : ''}
+        ${className || ''}`
       }
     >
       {!!startAdornment && <div className='rf-input__adornment rf-input__adornment--start'>{startAdornment}</div>}

@@ -1,96 +1,80 @@
 import React from 'react';
 import Input from './Input';
-import Story from '../../storybook/Story';
-import StoryItem from '../../storybook/StoryItem';
-import StoryRow from '../../storybook/StoryRow';
+import FormGroup from '../FormGroup';
+
+import {
+  StoryDocs, StoryDocsH1, StoryDocsH2
+} from '../../storybook';
+
 import Calendar from '../../../assets/icons/Calendar';
+import ChevronDown from '../../../assets/icons/ChevronDown';
+import Info from '../../../assets/icons/Info';
+import Search from '../../../assets/icons/Search';
+import Success from '../../../assets/icons/Success';
 
 export default {
   title: 'Form Controls/Input',
   component: Input
 };
 
-const inputsData: any[] = [
-  {
-    name: 'rtf1',
-    placeholder: 'Введите текст',
-    clear: () => {}
-  },
-  {
-    name: 'rtf2',
-    placeholder: 'Фокус на поле',
-    autofocus: true
-  },
-  {
-    name: 'rtf3',
-    placeholder: 'Невалидное поле',
-    className: 'invalid'
-  },
-  {
-    name: 'rtf4',
-    placeholder: 'Неактивное поле ввода',
-    disabled: true
-  },
-  {
-    name: 'rtf5',
-    placeholder: 'Инлайн',
-    disabled: false,
-    variant: 'inline'
-  },
-  {
-    name: 'rtf6',
-    placeholder: 'Инлайн невалидное поле',
-    disabled: false,
-    variant: 'inline',
-    className: 'invalid'
-  },
-  {
-    name: 'rtf7',
-    placeholder: 'Инлайн фокус',
-    disabled: false,
-    variant: 'inline',
-    autofocus: true
-  },
-  {
-    name: 'rtf8',
-    placeholder: 'Инлайн неактивное поле',
-    disabled: true,
-    variant: 'inline',
-  },
-  {
-    name: 'rtf9',
-    placeholder: 'Иконка справа',
-    endAdornment: <Calendar />,
-  },
-  {
-    name: 'rtf10',
-    placeholder: 'Иконка слева',
-    startAdornment: <Calendar />,
-  }
-];
+const LABEL = 'Label';
 
 export const input = () => {
-  const inputsJSX = inputsData.map((r: any) => (
-    <StoryRow key={r.name}>
-      <Input
-        name={r.name}
-        className={r.className}
-        placeholder={r.placeholder}
-        disabled={r.disabled}
-        onClear={r.clear}
-        variant={r.variant}
-        startAdornment={r.startAdornment}
-        endAdornment={r.endAdornment}
-        onKeyUp={(i) => {
-          console.log(i);
-        }}
-      />
-    </StoryRow>
-  ));
-
   return (
-    <Story name='Input' description='Однострочное поле ввода' width={600}>
-      <StoryItem subtitle='Состояния инпута'>{inputsJSX}</StoryItem>
-    </Story>
+    <StoryDocs>
+      <StoryDocsH1>Input</StoryDocsH1>
+
+      <div style={{
+        display: 'grid',
+        gap: 32,
+        maxWidth: 400
+      }}>
+        <FormGroup label={LABEL}>
+          <Input placeholder='Введите тип обращения' onClear={() => {}} />
+        </FormGroup>
+        <FormGroup label={LABEL}>
+          <Input defaultValue='Тип обращения' placeholder='Введите тип обращения' onClear={() => {}} />
+        </FormGroup>
+        <FormGroup label={LABEL}>
+          <Input placeholder='Введите тип обращения' disabled />
+        </FormGroup>
+        <FormGroup label={LABEL}>
+          <Input defaultValue='Тип обращения' disabled />
+        </FormGroup>
+        <FormGroup label={LABEL} errorMessage='Additional text'>
+          <Input invalid />
+        </FormGroup>
+        <Input placeholder='Инлайн' variant='inline' />
+        <Input placeholder='Инлайн неактивное поле' variant='inline' disabled />
+        <Input placeholder='Инлайн невалидное поле' variant='inline' invalid />
+      </div>
+
+      <StoryDocsH2>Input Icons</StoryDocsH2>
+
+      <div style={{
+        display: 'grid',
+        gap: 32,
+        maxWidth: 400
+      }}>
+        <FormGroup label={LABEL}>
+          <Input endAdornment={<Search style={{ color: 'var(--basic-primary)' }}/>}/>
+        </FormGroup>
+        <FormGroup label={LABEL}>
+          <Input endAdornment={<Calendar style={{ color: 'var(--text-tertiary)' }} />}/>
+        </FormGroup>
+        <FormGroup label={LABEL}>
+          <Input endAdornment={<ChevronDown />}/>
+        </FormGroup>
+        <FormGroup label={LABEL}>
+          <Input endAdornment={<Success style={{ color: 'var(--status-success)' }}/>}/>
+        </FormGroup>
+        <FormGroup label={LABEL}>
+          <Input endAdornment={<Info />}/>
+        </FormGroup>
+        <FormGroup label={LABEL}>
+          <Input startAdornment={<Info />}/>
+        </FormGroup>
+      </div>
+    </StoryDocs>
   );
 };
