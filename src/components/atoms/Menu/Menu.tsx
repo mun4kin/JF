@@ -27,7 +27,7 @@ export interface IListProps {
    */
   portal?: boolean;
   /** Меню будет отображено рядом с указанным элементом вместо тоггла */
-  anchorElement?: HTMLElement;
+  anchorElement?: HTMLElement | null;
 }
 
 /** Контекст для передачи функций работы с меню. */

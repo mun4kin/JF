@@ -47,6 +47,8 @@ const InputPhone: React.FC<IInputPhoneProps> =
   const [displayValue, setDisplayValue] = useState<string>(defaultValue || '');
   const [country, setCountry] = useState(defaultCountry || countries[0]);
 
+  const [inputElement, setInputElement] = useState<HTMLLabelElement | null>(null);
+
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDisplayValue(event.target.value);
   };
@@ -106,10 +108,12 @@ const InputPhone: React.FC<IInputPhoneProps> =
         <Input
           {...props}
           name={`${name}-display`}
+          ref={setInputElement}
           data-testid='input-display'
           startAdornment={
             <Menu
-              className='rf-phone-input__country'
+              portal
+              anchorElement={inputElement}
               content={
                 countries.length > 1 && <MenuContext.Consumer>
                   {({ onClose }: IMenuContext) => (
@@ -143,12 +147,23 @@ const InputPhone: React.FC<IInputPhoneProps> =
                 </MenuContext.Consumer>
               }
             >
-              {disabled ? <FlagDisabled className='rf-phone-input__flag' /> : <country.flag className='rf-phone-input__flag' />}
-              {countries.length > 1 && (
-                <button className='rf-phone-input__button' type='button' disabled={disabled} aria-label='Выбрать страну'>
-                  <ChevronDown />
-                </button>
-              )}
+              <div className='rf-phone-input__country'>
+                {disabled ? <FlagDisabled className='rf-phone-input__flag' /> : <country.flag className='rf-phone-input__flag' />}
+                {countries.length > 1 && (
+                  <MenuContext.Consumer>
+                    {({ show }: IMenuContext) => (
+                      <button
+                        className={`rf-phone-input__button ${show ? 'rf-phone-input__button--rotate' : ''}`}
+                        type='button'
+                        disabled={disabled}
+                        aria-label='Выбрать страну'
+                      >
+                        <ChevronDown />
+                      </button>
+                    )}
+                  </MenuContext.Consumer>
+                )}
+              </div>
             </Menu>
           }/>
       </InputMask>
