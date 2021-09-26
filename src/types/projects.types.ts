@@ -164,4 +164,9 @@ export interface IRequestAttachment{
   /** Подписанты */
   signer?: IUser[];
 }
+/** тип для инпута с эффектом debounce*/
+export interface IDebounceResult{
+  event?:Event;
+  debounceString:string
+}
 export type TooltipPosition = 'top' | 'right' | 'bottom' | 'left';

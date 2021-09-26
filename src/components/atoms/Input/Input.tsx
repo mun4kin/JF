@@ -2,11 +2,10 @@ import React, {
   FC, HTMLProps, ReactNode, useEffect, useRef, useState
 } from 'react';
 import './Input.scss';
-import { fromEvent } from 'rxjs';
-import {
-  debounceTime, distinctUntilChanged, map
-} from 'rxjs/operators';
+import { fromEvent, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import Close from '../../../assets/icons/Close';
+import { IDebounceResult } from '../../../types/projects.types';
 
 export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size'> {
   /** Возможность очистки поля по клику */
@@ -20,6 +19,8 @@ export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size'> {
   startAdornment?: ReactNode;
   /** Контент для вставки в конец инпута */
   endAdornment?: ReactNode;
+  /** обработка нажатий с эффектом debounce */
+  onDebounce?:(result:IDebounceResult)=>void
 }
 
 const Input: FC<IInputProps> = ({
@@ -32,6 +33,7 @@ const Input: FC<IInputProps> = ({
   disabled,
   onFocus,
   onBlur,
+  onDebounce,
   ...props
 }: IInputProps) => {
   /** Ref */
@@ -45,29 +47,28 @@ const Input: FC<IInputProps> = ({
 
   useEffect(() => {
     /** Подписываемся на ввод текста */
-    let sub: any;
+    let sub: Subscription;
 
-    if (ref.current) {
+    if (ref.current && onDebounce) {
       sub = fromEvent(ref.current, 'keyup')
         .pipe(
-          map((e: Event) => e),
           debounceTime(debounce),
           distinctUntilChanged()
         )
-        .subscribe((e: any) => {
-          setValue(e.target.value);
-          props.onKeyUp && props.onKeyUp(e);
+        .subscribe((e: Event) => {
+          const debounceString = (e.target as HTMLInputElement).value;
+          setValue(debounceString);
+          onDebounce({
+            event: e,
+            debounceString
+          });
         });
     }
 
     return () => {
-      try {
-        sub && sub.unsubscribe();
-      } catch (e) {
-        console.log(e);
-      }
+      sub && sub.unsubscribe();
     };
-  }, [onClear, debounce, props.onKeyUp]);
+  }, [ debounce, onDebounce]);
 
   // ------------------------------------------------------------------------------------------------------------------
   /** Очистка поля ввода и сброс результатов поиска */
@@ -75,6 +76,7 @@ const Input: FC<IInputProps> = ({
     if (ref.current) {
       ref.current.value = '';
       setValue('');
+      onDebounce && onDebounce({ debounceString: '' });
       onClear && onClear();
     }
   };

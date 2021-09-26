@@ -81,6 +81,9 @@ export const input = () => {
         variant={r.variant}
         startAdornment={r.startAdornment}
         endAdornment={r.endAdornment}
+        onKeyUp={(i) => {
+          console.log(i);
+        }}
       />
     </StoryRow>
   ));
