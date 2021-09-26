@@ -1,3 +1,4 @@
-import HistoryCardFilter from './Card';
+import HistoryCardFilter from './HistoryCardFilter';
+
 
 export default HistoryCardFilter;
