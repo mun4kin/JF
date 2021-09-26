@@ -51,6 +51,7 @@ import Timepicker from './components/atoms/Timepicker';
 import Confirm from './components/popups/Confirm';
 
 export {
+  HistoryCardFilter,
   Avatar,
   Badge,
   Button,
@@ -156,5 +157,6 @@ export {
 // --------------------------Переменные---------------------------------------------------------------------------------
 import variables from './styles/variables.json';
 import { download } from './utils/download';
+import HistoryCardFilter from './components/molecules/HistoryCardFilter';
 
 export { variables, download };
