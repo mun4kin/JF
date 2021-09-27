@@ -2,7 +2,7 @@
 
 .rf-textarea {
   width: 100%;
-
+  position: relative;
 }
 
 .rf-textarea__wrapper {
@@ -55,7 +55,15 @@
 }
 
 .rf-textarea__max-length {
-  @include text-xs-14;
-  margin-top: 4px;
+  @include caption;
+  color: var(--text-secondary);
+  margin-top: 8px;
   text-align: right;
+}
+
+.rf-textarea__max-length--float {
+  margin-top: 0;
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 8px);
 }

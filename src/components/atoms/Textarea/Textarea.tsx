@@ -18,8 +18,13 @@ export interface ITextareaProps extends HTMLProps<HTMLTextAreaElement> {
   debounce?: number;
   /** Вернуть value */
   getValue?: (value: string) => void;
-    /** Переводит инпут в невалидный статус */
-    invalid?: boolean;
+  /** Переводит инпут в невалидный статус */
+  invalid?: boolean;
+  /**
+   * Показывать счетчик символов под инпутом.
+   * @default true
+   */
+  showMaxLength?: boolean;
 }
 
 const Textarea: FC<ITextareaProps> = ({
@@ -32,6 +37,7 @@ const Textarea: FC<ITextareaProps> = ({
   invalid,
   onFocus,
   onBlur,
+  showMaxLength = true,
   ...props
 }: ITextareaProps) => {
   /** Ссылка на поле */
@@ -79,12 +85,14 @@ const Textarea: FC<ITextareaProps> = ({
 
     return () => {
       try {
-        autoResize && sub && sub.unsubscribe();
+        if (sub) {
+          sub.unsubscribe();
+        }
       } catch (e) {
         console.log(e);
       }
     };
-  }, []);
+  }, [props.maxLength, autoResize]);
 
   // ------------------------------------------------------------------------------------------------------------------
 
@@ -128,7 +136,7 @@ const Textarea: FC<ITextareaProps> = ({
           onBlur={onInputBlur}
         />
       </div>
-      {props.maxLength && props.maxLength > 0 && (
+      {!!showMaxLength && !!props.maxLength && props.maxLength > 0 && (
         <p className='rf-textarea__max-length'>
           {value.length} / {props.maxLength}
         </p>

@@ -56,7 +56,7 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
     /** Подписываемся на ввод текста */
     let sub: Subscription;
 
-    if (inputRef.current && onDebounce) {
+    if (inputRef.current) {
       sub = fromEvent(inputRef.current, 'keyup')
         .pipe(
           debounceTime(debounce),
@@ -65,10 +65,13 @@ const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
         .subscribe((e: Event) => {
           const debounceString = (e.target as HTMLInputElement).value;
           setValue(debounceString);
-          onDebounce({
-            event: e,
-            debounceString
-          });
+
+          if (onDebounce) {
+            onDebounce({
+              event: e,
+              debounceString
+            });
+          }
         });
     }
 

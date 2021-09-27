@@ -1,10 +1,13 @@
 import React from 'react';
 import Input from './Input';
 import FormGroup from '../FormGroup';
+import { Story } from '@storybook/react';
 
 import {
   StoryDocs, StoryDocsH1, StoryDocsH2
 } from '../../storybook';
+import StoryContainer from '../../storybook/Story';
+import StoryRow from '../../storybook/StoryRow';
 
 import Calendar from '../../../assets/icons/Calendar';
 import ChevronDown from '../../../assets/icons/ChevronDown';
@@ -14,12 +17,18 @@ import Success from '../../../assets/icons/Success';
 
 export default {
   title: 'Form Controls/Input',
-  component: Input
+  component: Input,
+  argTypes: {
+    disabled: { type: 'boolean' },
+    icon: { control: null },
+    startAdornment: { control: null },
+    endAdornment: { control: null },
+  }
 };
 
 const LABEL = 'Label';
 
-export const input = () => {
+export const Demo = () => {
   return (
     <StoryDocs>
       <StoryDocsH1>Input</StoryDocsH1>
@@ -76,5 +85,27 @@ export const input = () => {
         </FormGroup>
       </div>
     </StoryDocs>
+  );
+};
+
+export const Playground: Story = (args) => {
+  return (
+    <StoryContainer>
+      <StoryRow>
+        <FormGroup label={LABEL}>
+          <Input placeholder='Введите тип обращения' onClear={() => {}} {...args} />
+        </FormGroup>
+      </StoryRow>
+      <StoryRow>
+        <FormGroup label={LABEL}>
+          <Input placeholder='Введите тип обращения' startAdornment={<Info />} {...args} />
+        </FormGroup>
+      </StoryRow>
+      <StoryRow>
+        <FormGroup label={LABEL}>
+          <Input placeholder='Введите тип обращения' endAdornment={<Info />} {...args} />
+        </FormGroup>
+      </StoryRow>
+    </StoryContainer>
   );
 };
