@@ -84,11 +84,9 @@ const StatusPicker: FC<IPickerProps> = ({ getRate = () => { }
 
 
   return (
-    <div className={'status-picker'} >
-      < div className='status-picker__container' >
-        {statusComponent}
-      </ div>
-    </div >
+    < div className='status-picker' >
+      {statusComponent}
+    </ div>
   );
 };
 export default StatusPicker;
