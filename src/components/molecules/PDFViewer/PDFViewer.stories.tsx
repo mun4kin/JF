@@ -17,9 +17,15 @@ export const sPDFViewer = () => {
   };
 
   return (
-    <Story name='Просмотр PDF'>
+    <Story name='Просмотр PDF' description='Компонент просматривает и листает pdf'>
 
-      <StoryItem description='Компонент просматривает и листает pdf'>
+      <div style={{ width: '400px' }}>
+        <StoryItem description='Ширина блока меньше ширины старницы pdf'>
+          <PDFViewer file={file} />
+        </StoryItem>
+      </div>
+
+      <StoryItem description='Ширина блока больше ширины старницы pdf'>
         <PDFViewer file={file} />
       </StoryItem>
 
