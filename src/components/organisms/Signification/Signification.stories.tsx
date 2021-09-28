@@ -32,16 +32,16 @@ const docInfo = <div className='doc__wrapper'>
 
 export const signification = () => {
   return <>
-    {/* <Story name='Подписание документов' description='Подписание документов с использованием цифровой (КЭП) или ручной подписи. После выбора того или иного способа подписания отображается соответствующая подсказка '>*/}
-    {/*  <StoryItem>*/}
-    {/*    <Signification*/}
-    {/*      onSignify={response}*/}
-    {/*      isSpoiler={false}*/}
-    {/*      hideButtons={['reject']}*/}
-    {/*      data={file}*/}
-    {/*      title='Приказ №384848483 от 30.08.2021'/>*/}
-    {/*  </StoryItem>*/}
-    {/* </Story>*/}
+    <Story name='Подписание документов' description='Подписание документов с использованием цифровой (КЭП) или ручной подписи. После выбора того или иного способа подписания отображается соответствующая подсказка '>
+      <StoryItem>
+        <Signification
+          onSignify={response}
+          isSpoiler={false}
+          hideButtons={['reject']}
+          data={file}
+          title='Приказ №384848483 от 30.08.2021'/>
+      </StoryItem>
+    </Story>
     <Story name='Подписание счетов' description='Подписание счетов с использованием цифровой (КЭП) подписи. Документ можно отклонить. В результате того или иного действия появляется соответствующая подсказка.'>
       <StoryItem>
         <Signification
