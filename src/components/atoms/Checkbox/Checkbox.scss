@@ -23,10 +23,8 @@
 
 .rf-checkbox__input {
   position: absolute;
-  top: -99999px;
   left: -9999px;
   opacity: 0;
-  display: none;
 }
 
 @mixin checkBox {
@@ -40,21 +38,11 @@
   border-radius: 3px;
   background-color: var(--background-primary);
   border: 1px solid var(--basic-tertiary);
-
   transition: 0.15s ease-in;
 }
 
 .rf-checkbox__check {
   @include checkBox;
-}
-
-.rf-checkbox__half-check {
-  @include checkBox;
-  color: var(--text-primary);
-
-  svg {
-    fill: var(--text-static-white);
-  }
 }
 
 .rf-checkbox__check--round {
@@ -70,16 +58,16 @@
   justify-content: center;
   opacity: 0;
   transition: 0.15s ease-in;
-  color: var(--text-static-white);
+  color: var(--background-primary);
 
   svg {
-    fill: var(--text-static-white);
+    color: var(--background-primary);
   }
 }
 
 .rf-checkbox__label {
   width: 100%;
-  margin-left: 10px;
+  margin-left: 8px;
   @include text-m-16;
   transition: 0.15s ease-in;
   order: 2;
@@ -112,30 +100,44 @@
   border-color: var(--basic-hover);
 }
 
-.rf-checkbox:not(.disabled):hover > .rf-checkbox__input:checked ~ .rf-checkbox__check {
-  background-color: var(--basic-press);
-  border-color: var(--basic-press);
+.rf-checkbox:not(.disabled):hover {
+  & > .rf-checkbox__input:checked, & > .rf-checkbox__input.rf-checkbox__input--half-checked {
+    & ~ .rf-checkbox__check {
+      background-color: var(--basic-press);
+      border-color: var(--basic-press);
+    }
+  }
 }
 
-.rf-checkbox__input:focus ~ .rf-checkbox__check {
-  background-color: var(--background-secondary);
-  border-color: var(--basic-hover);
+.rf-checkbox__input:focus-visible {
+  & ~ .rf-checkbox__check {
+    background-color: var(--background-secondary);
+    border-color: var(--basic-hover);
+  }
+  
+  &:checked, &.rf-checkbox__input--half-checked {
+    & ~ .rf-checkbox__check {
+      background-color: var(--basic-press);
+      border-color: var(--basic-press);
+    }
+  }
 }
 
 // Checked
 
-.rf-checkbox__half-check,
-.rf-checkbox__input:checked + .rf-checkbox__check {
-  background-color: var(--basic-primary);
-  border-color: var(--basic-primary);
-}
+.rf-checkbox__input:checked, .rf-checkbox__input--half-checked {
+  & + .rf-checkbox__check {
+    background-color: var(--basic-primary);
+    border-color: var(--basic-primary);
+  }
 
-.rf-checkbox__input:checked + .rf-checkbox__check .rf-checkbox__mark {
-  opacity: 1;
-}
+  & + .rf-checkbox__check .rf-checkbox__mark {
+    opacity: 1;
+  }
 
-.rf-checkbox__input:checked ~ .rf-checkbox__label {
-  color: var(--text-primary);
+  & ~ .rf-checkbox__label {
+    color: var(--text-primary);
+  }
 }
 
 // Disabled
@@ -146,17 +148,20 @@
 
 .rf-checkbox.disabled + .rf-checkbox__check,
 .rf-checkbox__input:disabled + .rf-checkbox__check {
-  background-color: var(--basic-disable);
   border-color: var(--basic-disable);
+
+  & ~ .rf-checkbox__label {
+    color: var(--text-tertiary);
+  }
 }
 
-.rf-checkbox__input:disabled:checked + .rf-checkbox__check {
-  background-color: var(--basic-disable);
-  border-color: var(--basic-disable);
-}
-
-.rf-checkbox__input:disabled ~ .rf-checkbox__label {
-  color: var(--text-tertiary);
+.rf-checkbox__input:disabled {
+  &:checked, &.rf-checkbox__input--half-checked {
+    & + .rf-checkbox__check {
+      background-color: var(--basic-disable);
+      border-color: var(--basic-disable);
+    }
+  }
 }
 
 .rf-checkbox__children {

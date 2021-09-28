@@ -1,13 +1,23 @@
 import React from 'react';
+import { Story } from '@storybook/react';
+
 import { IOption } from '../../../types';
+import FormGroup from '../FormGroup';
 import Checkbox from './Checkbox';
-import Story from '../../storybook/Story';
-import StoryItem from '../../storybook/StoryItem';
+import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
+
+import {
+  StoryDocs, StoryDocsH1, StoryDocsH2, StoryDocsH3, StoryDocsDescription
+} from '../../storybook';
 
 export default {
   title: 'Form Controls/Checkbox',
-  component: Checkbox
+  component: Checkbox,
+  argTypes: {
+    label: { control: { type: 'text' } },
+    disabled: { type: 'boolean' },
+  }
 };
 
 const checkboxes: IOption[] = [
@@ -31,25 +41,117 @@ const checkboxes: IOption[] = [
   }
 ];
 
-export const checkbox = () => {
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => console.log(e.target.checked);
-
-  const checkboxesJSX = checkboxes.map((item: IOption) => (
-    <StoryRow key={item.value}>
-      <Checkbox
-        name='checkbox'
-        value={item.value}
-        label={item.label}
-        defaultChecked={['1', '3'].includes(item.value)}
-        onChange={onChange}
-        disabled={item.disabled}
-      />
-    </StoryRow>
-  ));
-
+export const Demo: Story = () => {
   return (
-    <Story name='Checkbox'>
-      <StoryItem description='Состояния чекбокса'>{checkboxesJSX}</StoryItem>
-    </Story>
+    <StoryDocs>
+      <StoryDocsH1>Checkbox</StoryDocsH1>
+      <StoryDocsDescription>
+        Чекбоксы применяются, когда есть список опций для выбора.  Можно выбрать любое количество опций из списка.
+        Выбор одних пунктов никак не влияет на другие.
+      </StoryDocsDescription>
+      <div style={{
+        display: 'grid',
+        gap: 16
+      }}>
+        <Checkbox
+          label='Default'
+        />
+        <Checkbox
+          defaultChecked
+          label='Checked'
+        />
+        <Checkbox
+          halfChecked
+          label='Indeterminate'
+        />
+        <Checkbox
+          disabled
+          label='Disabled'
+        />
+        <Checkbox
+          defaultChecked
+          disabled
+          label='Checked disabled'
+        />
+        <Checkbox
+          halfChecked
+          disabled
+          label='Indeterminate disabled'
+        />
+      </div>
+      <StoryDocsH2>Варианты группировки</StoryDocsH2>
+      <StoryDocsH3>Группа чекбоксов</StoryDocsH3>
+      <FormGroup label='Выберите город'>
+        <div style={{
+          display: 'grid',
+          gap: 16
+        }}>
+          <Checkbox
+            label='Default'
+          />
+          <Checkbox
+            label='Default'
+          />
+          <Checkbox
+            label='Default'
+          />
+        </div>
+      </FormGroup>
+      <StoryDocsH3>Горизонтальная компоновка</StoryDocsH3>
+      <FormGroup label='Выберите город'>
+        <div style={{
+          display: 'grid',
+          gridAutoFlow: 'column',
+          justifyContent: 'flex-start',
+          gap: 16
+        }}>
+          <Checkbox
+            label='Default'
+          />
+          <Checkbox
+            label='Default'
+          />
+          <Checkbox
+            label='Default'
+          />
+        </div>
+      </FormGroup>
+      <StoryDocsH3>Составная группа чекбоксов</StoryDocsH3>
+      <StoryDocsDescription>
+        Используется в случае необходимости выводы сложносоставной группы чекбоксов с выпадающим списком.
+      </StoryDocsDescription>
+      <div style={{
+        display: 'grid',
+        gap: 16
+      }}>
+        <Checkbox
+          halfChecked
+          label='Default'
+        />
+        <div style={{
+          display: 'grid',
+          gap: 16,
+          marginLeft: 32
+        }}>
+          <Checkbox
+            label='Default'
+          />
+          <Checkbox
+            label='Default'
+          />
+          <Checkbox
+            label='Default'
+          />
+        </div>
+      </div>
+    </StoryDocs>
   );
+};
+
+export const Playground: Story = (args) => {
+  return <StoryContainer>
+    <StoryRow>
+      <Checkbox {...args} />
+    </StoryRow>
+  </StoryContainer>;
 };

@@ -3,6 +3,7 @@
 .story-docs-h3 {
   @include h4;
   margin-bottom: 24px;
+  margin-top: 24px;
   color: var(--text-primary);
   grid-column-start: 1;
   grid-column-end: -1;
