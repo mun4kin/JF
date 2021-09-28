@@ -149,7 +149,6 @@ const InputNumber: React.FC<IInputNumberProps> = ({
 
   return (
     <>
-      {/* @ts-ignore */}
       <Input
         { ...props }
         value={ value }
