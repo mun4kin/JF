@@ -1,9 +1,11 @@
 import React, {
-  FC, HTMLProps, ReactNode, useEffect, useRef, useState
+  HTMLProps, ReactNode, useEffect, useRef, useState, forwardRef
 } from 'react';
 import './Input.scss';
+
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
 import Close from '../../../assets/icons/Close';
 import { IDebounceResult } from '../../../types/projects.types';
 
@@ -15,6 +17,8 @@ export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size'> {
   /** Иконка */
   icon?: ReactNode;
   variant?: 'base' | 'inline';
+  /** Переводит инпут в невалидный статус */
+  invalid?: boolean;
   /** Контент для вставки в начало инпута */
   startAdornment?: ReactNode;
   /** Контент для вставки в конец инпута */
@@ -23,7 +27,8 @@ export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size'> {
   onDebounce?:(result:IDebounceResult)=>void
 }
 
-const Input: FC<IInputProps> = ({
+const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
+  className,
   onClear,
   debounce = 300,
   icon,
@@ -31,13 +36,15 @@ const Input: FC<IInputProps> = ({
   startAdornment,
   endAdornment,
   disabled,
+  invalid,
   onFocus,
   onBlur,
   onDebounce,
   ...props
-}: IInputProps) => {
+}: IInputProps, ref) => {
   /** Ref */
-  const ref = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
   /** Значение поля */
   const [value, setValue] = useState<string>(props.defaultValue?.toString() || props.value?.toString() || '');
   /** Находится ли инпут в состоянии фокуса */
@@ -49,8 +56,8 @@ const Input: FC<IInputProps> = ({
     /** Подписываемся на ввод текста */
     let sub: Subscription;
 
-    if (ref.current && onDebounce) {
-      sub = fromEvent(ref.current, 'keyup')
+    if (inputRef.current) {
+      sub = fromEvent(inputRef.current, 'keyup')
         .pipe(
           debounceTime(debounce),
           distinctUntilChanged()
@@ -58,10 +65,13 @@ const Input: FC<IInputProps> = ({
         .subscribe((e: Event) => {
           const debounceString = (e.target as HTMLInputElement).value;
           setValue(debounceString);
-          onDebounce({
-            event: e,
-            debounceString
-          });
+
+          if (onDebounce) {
+            onDebounce({
+              event: e,
+              debounceString
+            });
+          }
         });
     }
 
@@ -73,8 +83,8 @@ const Input: FC<IInputProps> = ({
   // ------------------------------------------------------------------------------------------------------------------
   /** Очистка поля ввода и сброс результатов поиска */
   const clearInput = () => {
-    if (ref.current) {
-      ref.current.value = '';
+    if (inputRef.current) {
+      inputRef.current.value = '';
       setValue('');
       onDebounce && onDebounce({ debounceString: '' });
       onClear && onClear();
@@ -108,20 +118,25 @@ const Input: FC<IInputProps> = ({
 
   // ------------------------------------------------------------------------------------------------------------------
 
+  // Делаем проверку на className для обратной совместимости.
+  const isInvalid = invalid || className && className.indexOf('invalid') !== -1;
+
   return (
     <label
+      ref={ref}
       className={`
         rf-input 
         ${variant === 'inline' ? 'rf-input--inline' : ''} 
         ${disabled ? 'rf-input--disabled' : ''} 
         ${isFocused ? 'rf-input--focused' : ''} 
-        ${props.className || ''}`
+        ${isInvalid ? 'rf-input--invalid' : ''}
+        ${className || ''}`
       }
     >
       {!!startAdornment && <div className='rf-input__adornment rf-input__adornment--start'>{startAdornment}</div>}
       <input
         { ...props }
-        ref={ ref }
+        ref={ inputRef }
         className={'rf-input__field'}
         autoComplete='off'
         type={ props.type || 'text' }
@@ -133,6 +148,6 @@ const Input: FC<IInputProps> = ({
       { icon ? <button type='button' className='rf-input__action'>{ icon }</button> : closeButton }
     </label>
   );
-};
+});
 
 export default Input;

@@ -1,61 +1,96 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Textarea from './Textarea';
-import Story from '../../storybook/Story';
+import FormGroup from '../FormGroup';
+import { Story } from '@storybook/react';
+
+import { StoryDocs, StoryDocsH1 } from '../../storybook';
+import StoryContainer from '../../storybook/Story';
 import StoryRow from '../../storybook/StoryRow';
-import StoryItem from '../../storybook/StoryItem';
 
 export default {
   title: 'Form Controls/Textarea',
-  component: Textarea
+  component: Textarea,
+  argTypes: {
+    disabled: { type: 'boolean' },
+    required: { type: 'boolean' },
+    maxLength: { type: 'number' }
+  }
 };
 
-const data = [
-  {
-    id: 1,
-    name: 'plane',
-    placeholder: 'Введите текст',
-    className: ''
-  },
-  {
-    id: 2,
-    name: 'plane',
-    placeholder: 'Ошибка в поле ввода',
-    className: 'invalid'
-  },
-  {
-    id: 3,
-    name: 'disabled',
-    placeholder: 'Неактивное поле',
-    className: 'disabled',
-    disabled: true
-  }
-];
+const LABEL = 'Label';
+const PLACEHOLDER = 'Введите текст';
+const DEFAULT_VALUE = 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem s';
+const MAX_LENGTH = 255;
 
-export const textarea = () => {
+export const Demo = () => {
+  const [value, setValue] = useState('');
+
+  const onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setValue(event.target.value);
+  };
+
   const getValue = (s: string) => {
     console.log(s);
   };
 
-  const listJSX = data.map((item) => (
-    <StoryRow key={item.id}>
-      <Textarea
-        name={item.name}
-        placeholder={item.placeholder}
-        className={item.className}
-        disabled={item.disabled}
-        autoResize={true}
-        maxLength={255}
-        getValue={getValue}
-      />
-    </StoryRow>
-  ));
+  return (
+    <StoryDocs>
+      <StoryDocsH1>Textarea</StoryDocsH1>
+      <div style={{
+        display: 'grid',
+        gap: 32,
+        maxWidth: 400
+      }}>
+        <FormGroup label={LABEL}>
+          <Textarea placeholder={PLACEHOLDER} maxLength={MAX_LENGTH} getValue={getValue} />
+        </FormGroup>
+        <FormGroup label={LABEL}>
+          <Textarea placeholder={PLACEHOLDER} defaultValue={DEFAULT_VALUE} maxLength={MAX_LENGTH} />
+        </FormGroup>
+        <FormGroup label={LABEL}>
+          <Textarea placeholder={PLACEHOLDER} disabled maxLength={MAX_LENGTH} />
+        </FormGroup>
+        <FormGroup label={LABEL}>
+          <Textarea placeholder={PLACEHOLDER} defaultValue={DEFAULT_VALUE} disabled maxLength={MAX_LENGTH} />
+        </FormGroup>
+        <FormGroup label={LABEL}>
+          <Textarea placeholder={PLACEHOLDER} invalid maxLength={MAX_LENGTH} />
+        </FormGroup>
+        <FormGroup label={LABEL} labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
+          <Textarea placeholder={PLACEHOLDER} invalid maxLength={MAX_LENGTH} showMaxLength={false} value={value} onChange={onChange} />
+        </FormGroup>
+        <div style={{ maxWidth: 250 }}>
+          <FormGroup label='Очень длинный лейбл на маленьком экране' labelSecondary={`(${value.length}/${MAX_LENGTH})`}>
+            <Textarea placeholder={PLACEHOLDER} invalid maxLength={MAX_LENGTH} showMaxLength={false} value={value} onChange={onChange} />
+          </FormGroup>
+        </div>
+
+      </div>
+    </StoryDocs>
+  );
+};
+
+export const Playground: Story = ({ maxLength, showMaxLength = true, required, ...args }) => {
+  const [value, setValue] = useState('');
+
+  const onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setValue(event.target.value);
+  };
 
   return (
-    <Story name='Textarea' width={600}>
-      <StoryItem description='Текстовое поле'>{listJSX}</StoryItem>
-      <StoryItem description='Текстовое поле'>
-        <Textarea disabled defaultValue='lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem s'/>
-      </StoryItem>
-    </Story>
+    <StoryContainer>
+      <StoryRow>
+        <FormGroup label={LABEL} labelSecondary={!showMaxLength && !!maxLength && `(${value.length}/${maxLength})`} required={required}>
+          <Textarea
+            required={required}
+            placeholder={PLACEHOLDER}
+            onChange={onChange}
+            maxLength={maxLength}
+            showMaxLength={showMaxLength}
+            {...args}
+          />
+        </FormGroup>
+      </StoryRow>
+    </StoryContainer>
   );
 };
