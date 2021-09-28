@@ -1,5 +1,5 @@
 import React, {
-  HTMLProps, ReactNode, useEffect, useRef, useState, forwardRef
+  HTMLProps, ReactNode, useEffect, useRef, useState, forwardRef, Ref
 } from 'react';
 import './Input.scss';
 
@@ -9,7 +9,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import Close from '../../../assets/icons/Close';
 import { IDebounceResult } from '../../../types/projects.types';
 
-export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size'> {
+export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size' | 'ref'> {
   /** Возможность очистки поля по клику */
   onClear?: () => void;
   /** Дебаунс */
@@ -24,7 +24,9 @@ export interface IInputProps extends Omit<HTMLProps<HTMLInputElement>, 'size'> {
   /** Контент для вставки в конец инпута */
   endAdornment?: ReactNode;
   /** обработка нажатий с эффектом debounce */
-  onDebounce?:(result:IDebounceResult)=>void
+  onDebounce?:(result:IDebounceResult)=>void;
+  /** ref контейнера инпута */
+  ref?: Ref<HTMLLabelElement>;
 }
 
 const Input = forwardRef<HTMLLabelElement | null, IInputProps>(({
