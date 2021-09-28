@@ -21,6 +21,11 @@
   height: 20px;
   color: var(--basic-primary);
 }
+.pdf-document__icon-wrapper {
+ display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .pdf-document__pager {
   position: absolute;
