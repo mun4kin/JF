@@ -2,6 +2,7 @@
 
 .rf-switch {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
   cursor: pointer;
 }
@@ -58,6 +59,20 @@
   margin-left: 8px;
   @include text-m-16;
   user-select: none;
+}
+
+.rf-switch__helper-text {
+  margin-left: 44px;
+  @include text-s-14;
+  user-select: none;
+  color: var(--text-secondary);
+  flex: 1 1 100%;
+
+  .rf-switch--s & {
+    margin-left: 36px;
+    @include caption;
+    color: var(--text-secondary);
+  }
 }
 
 .rf-switch:not(.rf-switch--disable):hover {
