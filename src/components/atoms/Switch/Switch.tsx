@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import './Switch.scss';
 import { Size } from '../../../types';
+import { classnames } from '../../../utils/classnames';
 
 export interface ISwitchProps {
   onChange?: (f: boolean) => void;
@@ -40,7 +41,7 @@ const Switch: FC<ISwitchProps> = ({
 
   return (
     <div
-      className={`rf-switch ${disabled ? 'rf-switch--disable' : ''} rf-switch--${size} ${className}`}
+      className={classnames('rf-switch', disabled && 'rf-switch--disable', `rf-switch--${size}`, className)}
       onClick={changeState}
       style={style}
     >
