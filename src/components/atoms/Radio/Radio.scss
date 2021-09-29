@@ -4,19 +4,20 @@
 $radius: 20px;
 
 .rf-radio {
-  width: 100%;
   display: inline-flex;
   align-items: center;
   vertical-align: middle;
   cursor: pointer;
 }
 
+.rf-radio--fullwidth {
+  width: 100%;
+}
+
 .rf-radio__input {
   position: absolute;
-  top: -99999px;
   left: -9999px;
   opacity: 0;
-  display: none;
 }
 
 .rf-radio__circle {
@@ -68,6 +69,11 @@ $radius: 20px;
 
 .rf-radio__input:checked:focus ~ .rf-radio__circle {
   outline: none;
+}
+
+.rf-radio__input:checked:focus-visible ~ .rf-radio__circle {
+  background-color: var(--background-secondary);
+  border-color: var(--basic-hover);
 }
 
 // Checked
