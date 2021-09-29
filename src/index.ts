@@ -7,6 +7,7 @@ import Button from './components/atoms/Button';
 import ButtonPages from './components/atoms/ButtonPages';
 import Checkbox from './components/atoms/Checkbox';
 import Chip from './components/atoms/Chip';
+import ControlGroup from './components/atoms/ControlGroup';
 import Datepicker from './components/atoms/Datepicker';
 import FormGroup from './components/atoms/FormGroup';
 import Hint from './components/atoms/Hint';
@@ -57,6 +58,7 @@ export {
   Button,
   Checkbox,
   Chip,
+  ControlGroup,
   Datepicker,
   FormGroup,
   Hint,
