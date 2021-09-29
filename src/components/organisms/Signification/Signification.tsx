@@ -255,7 +255,7 @@ const Signification:FC<IProps> = ({
           <ContentExpander
             onExpand={() => setOpenContent(!isOpenContent)}
             expanded={isOpenContent}
-            title={isOpenContent ? 'Скрыть' : `Просмотреть${finalStage !== 'reject' ? 'и подписать документ' : ''} `}>
+            title={isOpenContent ? 'Скрыть' : `Просмотреть${finalStage !== 'reject' ? ' и подписать документ' : ''} `}>
             { isOpenContent && expanderContentTSX}
           </ContentExpander>
         </>}
