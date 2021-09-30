@@ -24,6 +24,7 @@ import CircleReject from '../../../assets/icons/CircleReject';
 import Circle from '../../../assets/icons/Circle';
 import Time from '../../../assets/icons/Time';
 import Refresh from '../../../assets/icons/Refresh';
+import Download from '../../../assets/icons/Download';
 
 export default {
   title: 'Icons',
@@ -37,7 +38,7 @@ export const icons = () => {
     <Story name='Icons' description='Иконки'>
       <Close/>
       <SearchIcon/>
-
+      <Download/>
       <Success/>
       <Reduce/>
       <ChevronDown/>

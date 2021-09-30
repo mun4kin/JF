@@ -163,7 +163,10 @@ export interface IRequestAttachment{
   action?:string,
   /** Подписанты */
   signer?: IUser[];
+
 }
+
+
 /** тип для инпута с эффектом debounce*/
 export interface IDebounceResult{
   event?:Event;
