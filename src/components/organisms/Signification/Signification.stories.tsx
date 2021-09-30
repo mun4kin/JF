@@ -1,7 +1,7 @@
 import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
 import React from 'react';
-import Signification, { TButtons } from './Signification';
+import Signification, { ISignifyCallback } from './Signification';
 import { variants } from '../../../types';
 import { IRequestAttachment } from '../../../types/projects.types';
 import { pdfFile } from '../../molecules/PDFViewer/pdf';
@@ -22,8 +22,8 @@ export default {
     }
   }
 };
-const response = (data:IRequestAttachment, success:TButtons|undefined) => {
-  console.warn('!!!response:', success, data);
+const response = (data:ISignifyCallback) => {
+  console.warn('!!!response:', data);
 };
 const docInfo = <div className='doc__wrapper'>
   <div className='doc__title'>Тип документа</div>
