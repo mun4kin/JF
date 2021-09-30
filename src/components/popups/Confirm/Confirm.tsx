@@ -33,7 +33,7 @@ const Confirm: React.FC<IConfirmProps> = ({
 
   const handleSubmit = () => {
     onAction(state);
-    onClose && onClose();
+    // onClose && onClose();
   };
 
   const [state, setState] = useState<string>('');

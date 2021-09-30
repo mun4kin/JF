@@ -1,7 +1,7 @@
 import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
 import React from 'react';
-import Signification from './Signification';
+import Signification, { TButtons } from './Signification';
 import { variants } from '../../../types';
 import { IRequestAttachment } from '../../../types/projects.types';
 import { pdfFile } from '../../molecules/PDFViewer/pdf';
@@ -22,7 +22,7 @@ export default {
     }
   }
 };
-const response = (data:IRequestAttachment, success:boolean) => {
+const response = (data:IRequestAttachment, success:TButtons|undefined) => {
   console.warn('!!!response:', success, data);
 };
 const docInfo = <div className='doc__wrapper'>
@@ -38,6 +38,7 @@ export const signification = () => {
           onSignify={response}
           isSpoiler={false}
           hideButtons={['reject']}
+          buttonCustomTexts={{ sign: 'котик приложи лапку' }}
           data={file}
           title='Приказ №384848483 от 30.08.2021'/>
       </StoryItem>

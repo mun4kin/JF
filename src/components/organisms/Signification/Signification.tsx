@@ -6,7 +6,7 @@ import React, {
 import './Signification.scss';
 import { IRequestAttachment } from '../../../types/projects.types';
 import {
-  Button, CertReader, Chip, CircleConfirm, CircleReject, Close, download, Hint, InputFile, Modal, PDFViewer, Tile
+  Button, CertReader, Chip, CircleConfirm, CircleReject, Close, Confirm, download, Hint, InputFile, Modal, PDFViewer, Tile
 } from '../../../index';
 import Document from '../../../assets/icons/Documents';
 import { IBrowserCert, ICertResult } from '../../molecules/CertReader/CertReader';
@@ -16,7 +16,15 @@ import Download from '../../../assets/icons/Download';
 import { IFileData } from '../../../types';
 
 
-type TButtons = 'sign'|'manual'|'reject'
+export type TButtons = 'sign'|'manual'|'reject'
+export type ICustomTexts = {
+  [key in TButtons]?: string;
+};
+const buttonNamesDefault:ICustomTexts = {
+  manual: 'Подписать вручную',
+  reject: 'Отклонить ЭДО',
+  sign: 'Подписать ЭЦП (цифровая подпись)'
+};
 export interface IProps{
   /** Изначальный файл*/
   data:IRequestAttachment,
@@ -25,7 +33,7 @@ export interface IProps{
   /** заголовок*/
   title?:string,
   /** функция- результат подписания */
-  onSignify?:(file:IRequestAttachment, success:boolean)=>void
+  onSignify?:(file:IRequestAttachment, success:TButtons|undefined)=>void
   /** массив в котором название кнопок для скрытия */
   hideButtons?:TButtons[],
   /** показывать ли спойлер для документа */
@@ -34,6 +42,8 @@ export interface IProps{
   isOpenSpoiler?:boolean
   /** фильтр сертификатов */
   filter?: (cert: Certificate) => Promise<boolean>;
+  /** кастомные названия кнопок */
+  buttonCustomTexts?:ICustomTexts
 }
 
 
@@ -45,8 +55,14 @@ const Signification:FC<IProps> = ({
   isOpenSpoiler = false,
   documentInfo,
   hideButtons = [],
+  buttonCustomTexts = {},
   filter = async (cert) => !!~cert.issuerName.toLowerCase().indexOf('vtb')
 }:IProps) => {
+  /** тексты для кнопок*/
+  const [textButtons, _] = useState<ICustomTexts>({
+    ...buttonNamesDefault,
+    ...buttonCustomTexts
+  });
   /** текущий статус файла*/
   const [value, setValue] = useState<IRequestAttachment>(data);
   /** хранит текущий выбранный сертификат*/
@@ -61,8 +77,12 @@ const Signification:FC<IProps> = ({
   const [finalStage, setFinalStage] = useState<'reject' | 'auto' | 'manual' | undefined>(undefined);
   /** открывает попап ручного подписания*/
   const [manualPopup, setManualPopup] = useState<boolean>(false);
+  /** открывает попап в случае отказа подписания*/
+  const [refusePopup, setRefusePopup] = useState<ICertResult|undefined>(undefined);
   /** открыт или закрыт спойлер*/
-  const [isOpenContent, setOpenContent] = useState(isOpenSpoiler);
+  const [isOpenContent, setOpenContent] = useState<boolean>(isOpenSpoiler);
+  /** комментарий при отклонении*/
+  const [comment, setComment] = useState<string>('');
 
 
   const status = ['auto', 'manual'].includes(finalStage || '') ? 'success' : 'danger';
@@ -73,19 +93,38 @@ const Signification:FC<IProps> = ({
   // =======================================================================================================================================
 
   const successHandle = (result: ICertResult) => {
-    onSignify(result.data, true);
+    onSignify(result.data, 'sign');
     setValue(result.data);
     setCurrentCert(result.cert);
     setFinalStage('auto');
     setOpenContent(false);
   };
-  const errorHandle = () => {
+  const refuseHandle = (result: ICertResult) => {
+
+    setCurrentCert(result.cert);
+    setRefusePopup(result);
+  };
+  const refuseHandlePopupSuccess = (comment = '') => {
+    setComment(comment);
+    setFinalStage('reject');
+    setOpenContent(false);
+    setRefusePopup(undefined);
+    onSignify(refusePopup?.data as IRequestAttachment, 'reject');
+  };
+  const refuseHandlePopupFail = () => {
+    setCurrentCert(undefined);
+    setRefusePopup(undefined);
+  };
+
+  const errorHandle = (e:Error) => {
+    !~e.message.toLowerCase().indexOf('отменена пользователем') &&
     setCertError(true);
   };
   const cancelSign = () => {
+    setComment('');
     setFinalStage(undefined);
     setValue(initialFile.current);
-    onSignify(initialFile.current, false);
+    onSignify(initialFile.current, undefined);
   };
   const manualSignHandler = () => {
     setFinalStage('manual');
@@ -94,7 +133,7 @@ const Signification:FC<IProps> = ({
       ...manualFile
     };
     setValue(file);
-    onSignify(file, true);
+    onSignify(file, 'manual');
     setManualPopup(false);
     setOpenContent(false);
   };
@@ -116,21 +155,23 @@ const Signification:FC<IProps> = ({
       {!hideButtons?.includes('sign') &&
       <div className='button__item'>
         <CertReader
+          buttonTitle={textButtons.sign}
           filter={filter}
           file={data} onSuccess={successHandle} onError={errorHandle}/>
       </div>
       }
       {!hideButtons?.includes('manual') &&
       <div className='button__item'>
-        <Button buttonType='light' onClick={() => setManualPopup(true)}>Подписать вручную</Button>
+        <Button buttonType='light' onClick={() => setManualPopup(true)}>{textButtons.manual}</Button>
       </div>
       }
       {!hideButtons?.includes('reject') &&
       <div className='button__item'>
-        <Button buttonType='danger' onClick={() => {
-          setOpenContent(false);
-          setFinalStage('reject');
-        }}>Отклонить ЭДО</Button>
+        <CertReader
+          buttonTitle={textButtons.reject}
+          btnProps={{ buttonType: 'danger' }}
+          filter={filter}
+          file={data} onSuccess={refuseHandle} onError={errorHandle}/>
       </div>
       }
     </div>;
@@ -151,7 +192,8 @@ const Signification:FC<IProps> = ({
 
   const finalCardTSX = finalStage &&
     <>
-      <div className={`info-block__wrapper info-block__wrapper--${status}`}>
+      <div style={{ alignItems: status === 'success' ? 'center' : 'start' }}
+        className={`info-block__wrapper info-block__wrapper--${status}`}>
         <div className='info-block__icon'>
           {finalStage === 'reject' ?
             <CircleReject width='40px' height='40px' color1='#DA0B20' color2='#FFFFFF'/> :
@@ -159,13 +201,19 @@ const Signification:FC<IProps> = ({
           }
         </div>
         <div className='info-block__text-wrapper'>
-          <div className={`info-block__main-text info-block__main-text--${finalStage}`}>
+          <div className={`info-block__main-text info-block__main-text--${status}`}>
             {finalText}
           </div>
-          {finalStage === 'auto' &&
-          <div className='info-block__text'>{`${currentCert?.name} ${currentCert?.issuerName}`.slice(0, 100)}</div>}
+          { ['auto', 'reject'].includes(finalStage) &&
+            <>
+              <div className='info-block__text '>{`${currentCert?.name} ${currentCert?.issuerName}`.slice(0, 100)}</div>
+              { comment && <div className='info-block__comment'>
+                {comment}
+              </div>}
+            </>
+          }
         </div>
-        <div className='info-block__button'>
+        <div style={{ paddingTop: finalStage !== 'reject' ? 0 : '12px' }}className='info-block__button'>
           <Button onClick={cancelSign} buttonType='text'>
             <div className='info-block__button-inner'>
             Отменить
@@ -183,7 +231,13 @@ const Signification:FC<IProps> = ({
 
     </>;
   // =======================================================================================================================================
-
+  const refuseConfirmTSX = refusePopup && <Modal>
+    <Confirm textAccept='Отклонить документ'
+      text='Выбранный документ будет отклонен. Подтвердить отклонение документа?'
+      onClose={refuseHandlePopupFail}
+      onAction={refuseHandlePopupSuccess} comment='' showComment />
+  </Modal>;
+  // =======================================================================================================================================
   const manualPopupTSX = manualPopup && <Modal >
     <div className='manual__wrapper'>
       <div className='manual__header'>
@@ -261,6 +315,7 @@ const Signification:FC<IProps> = ({
         </>}
     </Tile>
     { manualPopupTSX }
+    { refuseConfirmTSX }
   </div>;
 };
 
