@@ -122,7 +122,7 @@ const Signification:FC<IProps> = ({
     setRefusePopup(result);
   };
   const refuseHandlePopupSuccess = (comment = '') => {
-    debugger;
+
     setComment(comment);
     setFinalStage('reject');
     setOpenContent(false);
