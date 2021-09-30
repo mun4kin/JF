@@ -1,9 +1,14 @@
 import React from 'react';
-import Tabs, { ITabsProps } from './Tabs';
 import { ITab } from '../../../types';
 import { BrowserRouter } from 'react-router-dom';
-import Story from '../../storybook/Story';
+
+import {
+  StoryDocs, StoryDocsH1, StoryDocsDescription
+} from '../../storybook';
+
+import Tabs, { ITabsProps } from './Tabs';
 import Badge from '../Badge';
+import Placeholder24 from '../../../assets/icons/Placeholder24';
 
 export default {
   title: 'Tabs',
@@ -49,7 +54,7 @@ export const tabs = (args: ITabsProps) => {
 
   const list: ITab[] = [
     {
-      label: <Badge badgeContent={10} placeNear>Заявки</Badge>,
+      label: 'Заявки',
       tab: tab1
     },
     {
@@ -67,13 +72,55 @@ export const tabs = (args: ITabsProps) => {
     }
   ];
 
+  const list2: ITab[] = [
+    {
+      label: 'Заявки',
+      icon: <Placeholder24 />
+    },
+    {
+      label: 'Запросы',
+      icon: <Placeholder24 />
+    },
+    {
+      label: 'Вопросы и ответы',
+      icon: <Placeholder24 />
+    },
+    {
+      label: 'Ситуации',
+      icon: <Placeholder24 />,
+      disabled: true
+    }
+  ];
+
+  const list3: ITab[] = [
+    { label: <Badge badgeContent={10} placeNear>Заявки</Badge> },
+    { label: <Badge badgeContent={5} placeNear>Запросы</Badge> },
+    { label: <Badge badgeContent={10} placeNear>Вопросы и ответы</Badge> },
+    {
+      label: <Badge badgeContent={10} placeNear>Ситуации</Badge>,
+      disabled: true
+    }
+  ];
+
+
   return (
-    <Story
-      name='Tabs (Вкладки)'
-      description='Переключение между вкладками. Внутри вкладки может быть как компонент, так и роутер.'>
+    <StoryDocs>
+      <StoryDocsH1>
+          Tabs
+      </StoryDocsH1>
+      <StoryDocsDescription>
+        Переключение между вкладками. Внутри вкладки может быть как компонент, так и роутер.
+      </StoryDocsDescription>
       <BrowserRouter>
-        <Tabs {...args} list={list}/>
+        <div style={{
+          display: 'grid',
+          gap: 32
+        }}>
+          <Tabs {...args} list={list2}/>
+          <Tabs {...args} list={list3}/>
+          <Tabs {...args} list={list}/>
+        </div>
       </BrowserRouter>
-    </Story>
+    </StoryDocs>
   );
 };
