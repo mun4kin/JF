@@ -61,6 +61,7 @@ export {
   FormGroup,
   Hint,
   Input,
+  InputPhone,
   InputFile,
   InputNumber,
   Menu,
@@ -158,5 +159,6 @@ export {
 import variables from './styles/variables.json';
 import { download } from './utils/download';
 import HistoryCardFilter from './components/molecules/HistoryCardFilter';
+import InputPhone from './components/atoms/InputPhone';
 
 export { variables, download };
