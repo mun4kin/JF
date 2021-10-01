@@ -21,7 +21,7 @@ export const sPDFViewer = () => {
 
       <div style={{ width: '400px' }}>
         <StoryItem description='Ширина блока меньше ширины старницы pdf'>
-          <PDFViewer file={file} />
+          <PDFViewer file={file} url={'test'} />
         </StoryItem>
       </div>
 

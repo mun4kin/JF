@@ -13,14 +13,21 @@ import ButtonPages from '../../atoms/ButtonPages/ButtonPages';
 import { Button } from '../../../index';
 import { Page, Document } from 'react-pdf';
 import { PDFPageProxy } from 'pdfjs-dist';
+import OpenNewTab from '../../../assets/icons/OpenNewTab';
 
 
 export interface IProps {
   /** Файл на просмотр с base64 */
   file: IRequestAttachment;
+  /**
+   * Ссылка для открытия в новой вкладке.
+   * Должна включать полный путь до файла: host + path.
+   * Инлайн data:<type>;base64,* ссылки не работают в IE 11!
+   * */
+  url?: string;
 }
 
-const PDFViewer: React.FC<IProps> = ({ file }: IProps) => {
+const PDFViewer: React.FC<IProps> = ({ file, url = '' }: IProps) => {
   /** Всего страниц в документе */
   const [numPages, setNumPages] = useState(1);
   /** Текущая страница */
@@ -62,6 +69,10 @@ const PDFViewer: React.FC<IProps> = ({ file }: IProps) => {
   const onClickDownload = () => {
     download(file, file.fileName);
   };
+
+  const onClickOpen = () => {
+    window.open(url, '_blank');
+  };
   // -------------------------------------------------------------------------------------------------------------------
 
   return (
@@ -73,12 +84,24 @@ const PDFViewer: React.FC<IProps> = ({ file }: IProps) => {
         </Document>
         <div className='pdf-document__download'>
 
+          {!!url &&
+            <div className='pdf-document__open'>
+              <Button
+                buttonType='white'
+                size='s'
+                onClick={onClickOpen}
+                endAdornment={<OpenNewTab className='pdf-document__icon'/>}>
+                Просмотреть
+              </Button>
+            </div>
+          }
+
           <Button
             buttonType='white'
             size='s'
             onClick={onClickDownload}
             endAdornment={<DownloadIcon className='pdf-document__icon'/>}>
-            Скачать
+            {url ? '' : 'Скачать'}
           </Button>
         </div>
         <div className='pdf-document__pager'>

@@ -12,8 +12,14 @@
 
 .pdf-document__download {
   position: absolute;
+  display: flex;
+  align-items: center;
   left: var(--16);
   bottom: var(--16);
+}
+
+.pdf-document__open {
+  margin-right: 10px;
 }
 
 .pdf-document__icon {
@@ -22,7 +28,7 @@
   color: var(--basic-primary);
 }
 .pdf-document__icon-wrapper {
- display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
