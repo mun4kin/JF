@@ -25,6 +25,7 @@ import Circle from '../../../assets/icons/Circle';
 import Time from '../../../assets/icons/Time';
 import Refresh from '../../../assets/icons/Refresh';
 import Download from '../../../assets/icons/Download';
+import OpenNewTab from '../../../assets/icons/OpenNewTab';
 
 export default {
   title: 'Icons',
@@ -60,7 +61,7 @@ export const icons = () => {
       <Circle/>
       <Time/>
       <Refresh/>
-
+      <OpenNewTab />
     </Story>
   );
 };

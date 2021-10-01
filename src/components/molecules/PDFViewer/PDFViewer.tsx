@@ -97,6 +97,7 @@ const PDFViewer: React.FC<IProps> = ({ file, url = '' }: IProps) => {
           }
 
           <Button
+            data-testid='pdf-download-btn'
             buttonType='white'
             size='s'
             onClick={onClickDownload}
