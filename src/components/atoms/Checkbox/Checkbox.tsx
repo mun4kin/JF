@@ -40,22 +40,6 @@ const Checkbox: FC<ICheckboxProps> = ({
   const roundClass = round ? 'rf-checkbox__check--round' : '';
   const fullWidthClass = fullWidth ? 'rf-checkbox__check--fullWidth' : '';
 
-  /** Отображение иконки */
-  const checkIcon = !halfChecked && icon && (
-    <span className={`rf-checkbox__check ${roundClass}`}>
-      <span className='rf-checkbox__mark'>
-        <Success/>
-      </span>
-    </span>
-  );
-
-  /** Иконка полу-чека */
-  const halfCheckIcon = halfChecked && icon && (
-    <span className='rf-checkbox__half-check'>
-      <Reduce/>
-    </span>
-  );
-
   const disabledClass = props.disabled ? 'disabled' : '';
   const alignClass: Record<string, string> = {
     'flex-start': 'rf-checkbox--flex-start',
@@ -67,12 +51,20 @@ const Checkbox: FC<ICheckboxProps> = ({
 
   return (
     <label className={`rf-checkbox ${props.className || ''} ${disabledClass} ${alignClass[align]} ${positionClass} ${fullWidthClass}`}>
-      <input {...props} type='checkbox' className='rf-checkbox__input' value={value}/>
+      <input
+        {...props}
+        type='checkbox'
+        className={`rf-checkbox__input ${halfChecked ? 'rf-checkbox__input--half-checked' : ''}`}
+        value={value}
+      />
 
-      {checkIcon}
-      {halfCheckIcon}
+      {!!icon && <span className={`rf-checkbox__check ${roundClass}`}>
+        <span className='rf-checkbox__mark'>
+          {halfChecked ? <Reduce/> : <Success/>}
+        </span>
+      </span>}
 
-      {label && <div title={titleAtt} className={`rf-checkbox__label ${showIconClass}`}>{label}</div>}
+      {label && <div title={titleAtt} className={`rf-checkbox__label ${showIconClass}`} tabIndex={-1}>{label}</div>}
     </label>
   );
 };
