@@ -145,7 +145,7 @@ const InputFile: React.FC<IFileInputProps> = ({
 
   return (
     <div className='file-input__wrapper'>
-      <label className={ `rf-input ${className || ''}` }>
+      <label className={ `${className || ''}` }>
         <input
           ref={ ref }
           type='file'

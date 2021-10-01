@@ -11,27 +11,36 @@ export interface IRadioProps extends InputHTMLAttributes<HTMLInputElement> {
   value: string;
   /** Отображение иконки */
   icon?: boolean;
-  /** Вариант */
+  /**
+   * Вариант
+   * @deprecated
+   */
   variant?: Variant;
+  /**
+   * 100% ширины
+   * @default true
+   */
+  fullWidth?: boolean;
 }
 
 const Radio: FC<IRadioProps> = ({
-  label, value, icon = true, ...props
+  label, value, icon = true, fullWidth = true, ...props
 }: IRadioProps) => {
-  /** Отображение иконки */
-  const withIcon = icon ? (
-    <span className='rf-radio__circle'>
-      <span className='rf-radio__mark'/>
-    </span>
-  ) : (
-    ''
-  );
-
   return (
-    <label className={`rf-radio ${props.className || ''} ${props.disabled ? 'disabled' : ''}`}>
+    <label
+      className={`
+        rf-radio ${props.className || ''} 
+        ${props.disabled ? 'disabled' : ''} 
+        ${fullWidth ? 'rf-radio--fullwidth' : ''}
+      `}
+    >
       <input {...props} type='radio' className='rf-radio__input' value={value} />
 
-      {withIcon}
+      {!!icon && (
+        <span className='rf-radio__circle'>
+          <span className='rf-radio__mark'/>
+        </span>
+      )}
 
       <span className='rf-radio__label'>{label}</span>
     </label>

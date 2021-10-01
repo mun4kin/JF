@@ -14,7 +14,7 @@ const ControlGroup: FC<IControlGroupProps> = ({
   className, direction = 'vertical', inset, children
 }) => {
   return (
-    <div className={`rf-control-group rf-control-group--${direction} ${inset ? 'rf-control-group--inset' : ''} ${className}`}>
+    <div className={`rf-control-group rf-control-group--${direction} ${inset ? 'rf-control-group--inset' : ''} ${className || ''}`}>
       {children}
     </div>
   );

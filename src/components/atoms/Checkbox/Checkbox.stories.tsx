@@ -89,9 +89,11 @@ export const Demo: Story = () => {
 };
 
 export const Playground: Story = (args) => {
-  return <StoryContainer>
-    <StoryRow>
-      <Checkbox {...args} />
-    </StoryRow>
-  </StoryContainer>;
+  return (
+    <StoryContainer>
+      <StoryRow>
+        <Checkbox {...args} />
+      </StoryRow>
+    </StoryContainer>
+  );
 };

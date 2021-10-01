@@ -72,6 +72,7 @@ const PDFViewer: React.FC<IProps> = ({ file }: IProps) => {
           <Page width={pageWidth} pageNumber={ currentPage } onLoadSuccess={calculatePageWidth} />
         </Document>
         <div className='pdf-document__download'>
+
           <Button
             buttonType='white'
             size='s'
