@@ -93,7 +93,7 @@ const Segment: React.FC<ISegmentProps> = ({
 
     setActiveIndex(i);
     onChange(list[i]);
-  }, [setActiveIndex]);
+  }, [setActiveIndex, list]);
 
   // -------------------------------------------------------------------------------------------------------------------
 
