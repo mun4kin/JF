@@ -1,7 +1,8 @@
 {
   "name": "juicyfront_ppa",
-  "version": "0.1.1",
-  "description": "",
+
+  "version": "0.0.3",
+  "description": "fgb",
   "main": "index.js",
   "scripts": {
     "storybook": "start-storybook -p 6006",
