@@ -50,7 +50,7 @@
   color: var(--text-secondary);
 }
 
-.rf-chip__remove {
+.rf-chip__right-icon {
   margin-left: 6px;
   color: inherit;
   cursor: pointer;
@@ -59,10 +59,13 @@
   flex-shrink: 0;
 }
 
-.rf-chip__download {
+.rf-chip__not-clickable {
+  cursor: auto;
+}
+
+.rf-chip__left-icon {
   margin-right: 6px;
   color: inherit;
-  cursor: pointer;
   width: 24px;
   height: 24px;
   flex-shrink: 0;
@@ -70,7 +73,7 @@
 
 .rf--s,
 .rf--xs {
-  .rf-chip__remove,
+  .rf-chip__right-icon,
   svg {
     width: 20px;
     height: 20px;

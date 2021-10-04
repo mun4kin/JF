@@ -2,6 +2,7 @@ import React from 'react';
 import Chip from './Chip';
 import Story from '../../storybook/Story';
 import StoryItem from '../../storybook/StoryItem';
+import Download from '../../../assets/icons/Download';
 import { variants } from '../../../types';
 
 export default {
@@ -12,7 +13,8 @@ export default {
       options: variants,
       control: { type: 'select' },
       defaultValue: 'default'
-    }
+    },
+    iconPosition: { options: ['right', 'left'] }
   }
 };
 
@@ -20,10 +22,6 @@ export const chip = () => {
 
   const onRemove = () => {
     console.log('remove');
-  };
-
-  const onDownload = () => {
-    console.log('download');
   };
 
   const onClick = () => {
@@ -49,7 +47,7 @@ export const chip = () => {
         <div style={{ display: 'flex' }}>
           <div style={frameStyle}>
             <div style={elementStyle}>
-              <Chip type='secondary' size='l' onRemove={onRemove}>Size L-M</Chip>
+              <Chip disabled size='l' onRemove={onRemove}>Size L-M</Chip>
             </div>
             <div style={elementStyle}>
               <Chip type='outline' size='l' onRemove={onRemove}>Size L-M</Chip>
@@ -63,16 +61,16 @@ export const chip = () => {
           </div>
           <div style={frameStyle}>
             <div style={elementStyle}>
-              <Chip type='secondary' size='l' onDownload={onDownload}>Size L-M</Chip>
+              <Chip type='secondary' size='l' icon={<Download />} iconPosition='left' onClick={onClick}>Size L-M</Chip>
             </div>
             <div style={elementStyle}>
-              <Chip type='outline' size='l' onDownload={onDownload}>Size L-M</Chip>
+              <Chip type='outline' size='l' icon={<Download />} iconPosition='left' onClick={onClick}>Size L-M</Chip>
             </div>
             <div style={{
               ...elementStyle,
               marginBottom: 0
             }}>
-              <Chip type='primary' size='l' onDownload={onDownload}>Size L-M</Chip>
+              <Chip type='primary' size='l' icon={<Download />} iconPosition='left' onClick={onClick}>Size L-M</Chip>
             </div>
           </div>
         </div>
@@ -101,16 +99,16 @@ export const chip = () => {
             width: 135
           }}>
             <div style={elementStyle}>
-              <Chip type='secondary' size='s' onDownload={onDownload}>Size S-XS</Chip>
+              <Chip type='secondary' size='s' icon={<Download />} iconPosition='left' onClick={onClick}>Size S-XS</Chip>
             </div>
             <div style={elementStyle}>
-              <Chip type='outline' size='s' onDownload={onDownload}>Size S-XS</Chip>
+              <Chip type='outline' size='s' icon={<Download />} iconPosition='left' onClick={onClick}>Size S-XS</Chip>
             </div>
             <div style={{
               ...elementStyle,
               marginBottom: 0
             }}>
-              <Chip type='primary' size='s' onDownload={onDownload}>Size S-XS</Chip>
+              <Chip type='primary' size='s' icon={<Download />} iconPosition='left' onClick={onClick}>Size S-XS</Chip>
             </div>
           </div>
           <div style={{
