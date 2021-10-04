@@ -1,7 +1,7 @@
 {
   "hooks": {
     "after:bump": "npm run build && shx cp package.json dist",
-    "after:git:release": "echo After git push, before github release"
+    "after:git:push": "echo After git push, before github release"
   },
   "git": {
     "requireBranch": "master"
