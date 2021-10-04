@@ -30,4 +30,5 @@ jobs:
       run: yarn install
 
     - name: Build app
-      run: yarn run build
+      run: yarn run build-storybook
+    - run: npx chromatic --project-token=4ae713863527

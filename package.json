@@ -85,6 +85,7 @@
     "url-loader": "^4.1.1",
     "webpack-cli": "^4.7.2",
     "shx": "^0.3.3",
+    "chromatic": "^5.10.2",
     "x----x----x": "*"
   },
   "dependencies": {
