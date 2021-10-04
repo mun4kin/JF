@@ -1,5 +1,6 @@
 {
   "name": "juicyfront_ppa",
+
   "version": "0.0.3",
   "description": "fgb",
   "main": "index.js",
@@ -99,11 +100,12 @@
     "react-pdf": "4.2.0",
     "react-router-dom": "^5.2.0"
   },
-
   "release": {
-    "branches": ["master", "next"]
+    "branches": [
+      "master",
+      "next"
+    ]
   },
-
   "peerDependencies": {
     "@openvtb/fonts": "1.0.0"
   },
