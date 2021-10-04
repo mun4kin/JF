@@ -25,14 +25,15 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           fetch-depth: 0
+      - name: git config
+        run: |
+            git config user.name "${GITHUB_ACTOR}"
+            git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+            npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
       - run: npm install -g -d yarn
       - name: Install dependencies
         run: yarn install
-      - name: git config
-        run: |
-          git config user.name "${GITHUB_ACTOR}"
-          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
+
       - name: Piblish
         env:
           GITHUB_TOKEN: ${{ secrets.GT_TOKEN }}
