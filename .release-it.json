@@ -1,6 +1,10 @@
 {
   "hooks": {
-    "after:bump": "npm run build && shx cp package.json dist"
+    "after:bump": "npm run build && shx cp package.json dist",
+    "after:git:release": "npm run build && shx cp package.json dist"
+  },
+  "git": {
+    "requireBranch": "master"
   },
   "npm": {
     "publishPath": "./dist"
