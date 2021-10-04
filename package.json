@@ -1,7 +1,9 @@
 {
   "name": "juicyfront_ppa",
-  "version": "0.5.6",
-  "description": "ваивив",
+
+  "version": "0.5.7",
+  "description": "dbsdvsdvd",
+
   "main": "index.js",
   "scripts": {
     "storybook": "start-storybook -p 6006",
