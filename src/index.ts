@@ -7,6 +7,7 @@ import Button from './components/atoms/Button';
 import ButtonPages from './components/atoms/ButtonPages';
 import Checkbox from './components/atoms/Checkbox';
 import Chip from './components/atoms/Chip';
+import ControlGroup from './components/atoms/ControlGroup';
 import Datepicker from './components/atoms/Datepicker';
 import FormGroup from './components/atoms/FormGroup';
 import Hint from './components/atoms/Hint';
@@ -51,15 +52,18 @@ import Timepicker from './components/atoms/Timepicker';
 import Confirm from './components/popups/Confirm';
 
 export {
+  HistoryCardFilter,
   Avatar,
   Badge,
   Button,
   Checkbox,
   Chip,
+  ControlGroup,
   Datepicker,
   FormGroup,
   Hint,
   Input,
+  InputPhone,
   InputFile,
   InputNumber,
   Menu,
@@ -158,5 +162,7 @@ export {
 // --------------------------Переменные---------------------------------------------------------------------------------
 import variables from './styles/variables.json';
 import { download } from './utils/download';
+import HistoryCardFilter from './components/molecules/HistoryCardFilter';
+import InputPhone from './components/atoms/InputPhone';
 
 export { variables, download };

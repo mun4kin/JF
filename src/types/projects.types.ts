@@ -99,6 +99,8 @@ export interface IPageSection {
   id: string;
   title?: ReactNode;
   component: ReactNode;
+  /** отключение бекграунда*/
+  hideBackground?:boolean
 }
 
 /** Возвращаемое значение календаря */
@@ -161,5 +163,13 @@ export interface IRequestAttachment{
   action?:string,
   /** Подписанты */
   signer?: IUser[];
+
+}
+
+
+/** тип для инпута с эффектом debounce*/
+export interface IDebounceResult{
+  event?:Event;
+  debounceString:string
 }
 export type TooltipPosition = 'top' | 'right' | 'bottom' | 'left';

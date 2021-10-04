@@ -84,7 +84,8 @@ const Tabs: FC<ITabsProps> = ({ list, type = 'underline', children }: ITabsProps
     return (
       <div key={ i } className='rf-tabs__link' ref={ refs.current[i] }>
         <button type='button' className={ `rf-tabs__button ${className}` } disabled={ t.disabled } onClick={ handler }>
-          { t.label }
+          { !!t.icon && <div className='rf-tabs__icon'>{t.icon}</div>}
+          { !!t.label && <div>{t.label}</div> }
         </button>
       </div>
     );

@@ -87,9 +87,13 @@ const Segment: React.FC<ISegmentProps> = ({
   // -------------------------------------------------------------------------------------------------------------------
 
   const handleChange = useCallback((i: number) => {
+    if (list[i].disabled) {
+      return;
+    }
+
     setActiveIndex(i);
     onChange(list[i]);
-  }, [setActiveIndex]);
+  }, [setActiveIndex, list]);
 
   // -------------------------------------------------------------------------------------------------------------------
 

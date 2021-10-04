@@ -23,7 +23,7 @@ export interface IProps {
   /** пропсы для кнопки */
   btnProps?: IButtonProps;
 }
-interface IBrowserCert{
+export interface IBrowserCert{
   /** имя пользователя*/
   issuerName: string;
   /** название сертификата*/

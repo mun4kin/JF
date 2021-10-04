@@ -36,7 +36,11 @@
   .rf-badge {
     transform: translate(0, 0);
     position: static;
-    margin-left: 4px;
+    margin-left: 8px;
+    height: 16px;
+    min-width: 16px;
+    padding: 0 5px;
+    border-radius: 8px;
   }
 }
 

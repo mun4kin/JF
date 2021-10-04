@@ -6,6 +6,8 @@ export interface IFormGroup {
   children: React.ReactNode | React.ReactNode[];
   /** Имя */
   label?: React.ReactNode;
+  /** Имя */
+  labelSecondary?: React.ReactNode;
   /** Сообщение об ошибке */
   errorMessage?: string;
   /** Дополнительный класс */
@@ -15,7 +17,7 @@ export interface IFormGroup {
 }
 
 const FormGroup: FC<IFormGroup> = ({
-  label, children, errorMessage, className = '', required = false
+  label, labelSecondary, children, errorMessage, className = '', required = false
 }: IFormGroup) => {
   return (
     <div className={`rf-form-group ${className} `}>
@@ -24,6 +26,7 @@ const FormGroup: FC<IFormGroup> = ({
           <p className='rf-form-group__label'>
             {label}
             {required && <span className='rf-form-group__required'>*</span>}
+            {!!labelSecondary && <span className='rf-form-group__label-secondary'>{labelSecondary}</span>}
           </p>
         )}
         {children}

@@ -35,6 +35,8 @@ export interface ITab {
   active?: boolean;
   /** Ссылка */
   url?: string;
+  /** Иконка вкладки */
+  icon?: ReactNode;
   /** Действие при клике на вкладку */
   handler?: (element?: HTMLElement) => void;
 }
@@ -58,6 +60,7 @@ export interface IListElement {
 /** Контекст меню */
 export interface IMenuContext {
   onClose: () => void;
+  show: boolean;
 }
 
 /** Результат обработки файла */

@@ -10,10 +10,6 @@
   position: relative;
 }
 
-.pdf-document__download button {
-  padding: var(--12) var(--4) var(--12)  var(--12) ;
-}
-
 .pdf-document__download {
   position: absolute;
   left: var(--16);
@@ -23,8 +19,12 @@
 .pdf-document__icon {
   width: 20px;
   height: 20px;
-  margin-left: 8px;
   color: var(--basic-primary);
+}
+.pdf-document__icon-wrapper {
+ display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .pdf-document__pager {

@@ -1,5 +1,5 @@
 import React, {
-  useCallback, useEffect, useState
+  useCallback, useEffect, useRef, useState
 } from 'react';
 import './PDFViewer.scss';
 import { IRequestAttachment } from '../../../types/projects.types';
@@ -12,9 +12,11 @@ import { download } from '../../../utils/download';
 import ButtonPages from '../../atoms/ButtonPages/ButtonPages';
 import { Button } from '../../../index';
 import { Page, Document } from 'react-pdf';
+import { PDFPageProxy } from 'pdfjs-dist';
 
 
 export interface IProps {
+  /** Файл на просмотр с base64 */
   file: IRequestAttachment;
 }
 
@@ -23,10 +25,14 @@ const PDFViewer: React.FC<IProps> = ({ file }: IProps) => {
   const [numPages, setNumPages] = useState(1);
   /** Текущая страница */
   const [currentPage, setCurrentPage] = useState(1);
+
+  const [pageWidth, setPageWidth] = useState(0);
+  const pdfWrapper = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
-    console.log('!!!');
     pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJSWorker;
   }, []);
+
   useEffect(() => {
     setNumPages(1);
     setCurrentPage(1);
@@ -43,21 +49,36 @@ const PDFViewer: React.FC<IProps> = ({ file }: IProps) => {
     setCurrentPage(page);
   }, []);
 
+  /** Определение ширины страницы */
+  const calculatePageWidth = (page: PDFPageProxy) => {
+    if (pdfWrapper.current) {
+      const blockWidth = pdfWrapper.current?.getBoundingClientRect().width;
+      const pageWidth = page.getViewport({ scale: 1 }).width;
+
+      setPageWidth(Math.min(pageWidth, blockWidth - 16));
+    }
+  };
+
+  const onClickDownload = () => {
+    download(file, file.fileName);
+  };
   // -------------------------------------------------------------------------------------------------------------------
 
   return (
     <>
       { file &&
-      <div className='pdf-document'>
+      <div ref={pdfWrapper} className='pdf-document'>
         <Document file={ file.base64 } onLoadSuccess={ onDocumentLoadSuccess }>
-          <Page pageNumber={ currentPage }/>
+          <Page width={pageWidth} pageNumber={ currentPage } onLoadSuccess={calculatePageWidth} />
         </Document>
         <div className='pdf-document__download'>
-          <Button buttonType='white' size='s' onClick={() => {
-            download(file, file.fileName);
-          }}>
+
+          <Button
+            buttonType='white'
+            size='s'
+            onClick={onClickDownload}
+            endAdornment={<DownloadIcon className='pdf-document__icon'/>}>
             Скачать
-            <DownloadIcon className='pdf-document__icon'/>
           </Button>
         </div>
         <div className='pdf-document__pager'>

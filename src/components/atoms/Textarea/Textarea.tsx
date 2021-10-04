@@ -18,13 +18,26 @@ export interface ITextareaProps extends HTMLProps<HTMLTextAreaElement> {
   debounce?: number;
   /** Вернуть value */
   getValue?: (value: string) => void;
+  /** Переводит инпут в невалидный статус */
+  invalid?: boolean;
+  /**
+   * Показывать счетчик символов под инпутом.
+   * @default true
+   */
+  showMaxLength?: boolean;
 }
 
 const Textarea: FC<ITextareaProps> = ({
+  className,
   autoResize = false,
   initialRowCount = 3,
   debounce = 300,
   getValue,
+  disabled,
+  invalid,
+  onFocus,
+  onBlur,
+  showMaxLength = true,
   ...props
 }: ITextareaProps) => {
   /** Ссылка на поле */
@@ -34,6 +47,8 @@ const Textarea: FC<ITextareaProps> = ({
   const [rows, setRows] = useState(initialRowCount);
 
   const [value, setValue] = useState<string>(props.defaultValue?.toString() || props.value?.toString() || '');
+  /** Находится ли инпут в состоянии фокуса */
+  const [isFocused, setFocused] = useState(false);
 
   useEffect(() => {
     /** При фокусе на поле раскрываем его */
@@ -70,23 +85,58 @@ const Textarea: FC<ITextareaProps> = ({
 
     return () => {
       try {
-        autoResize && sub && sub.unsubscribe();
+        if (sub) {
+          sub.unsubscribe();
+        }
       } catch (e) {
         console.log(e);
       }
     };
-  }, []);
+  }, [props.maxLength, autoResize]);
+
+  // ------------------------------------------------------------------------------------------------------------------
+
+  const onInputFocus = (event: React.FocusEvent<HTMLTextAreaElement>) => {
+    setFocused(true);
+
+    if (onFocus) {
+      onFocus(event);
+    }
+  };
+
+  const onInputBlur = (event: React.FocusEvent<HTMLTextAreaElement>) => {
+    setFocused(false);
+
+    if (onBlur) {
+      onBlur(event);
+    }
+  };
+
+  // ------------------------------------------------------------------------------------------------------------------
+
+  // Делаем проверку на className для обратной совместимости.
+  const isInvalid = invalid || className && className.indexOf('invalid') !== -1;
 
   return (
-    <div className={`rf-textarea__wrapper ${props.className}`}>
-      <textarea
-        {...props}
-        ref={textarea}
-        rows={rows}
-        className={'rf-textarea-field'}
-        autoComplete='off'
-      />
-      {props.maxLength && props.maxLength > 0 && (
+    <div className={`rf-textarea ${className}`}>
+      <div className={`
+        rf-textarea__wrapper
+        ${disabled ? 'rf-textarea__wrapper--disabled' : ''} 
+        ${isFocused ? 'rf-textarea__wrapper--focused' : ''} 
+        ${isInvalid ? 'rf-textarea__wrapper--invalid' : ''}
+      `}>
+        <textarea
+          {...props}
+          disabled={disabled}
+          ref={textarea}
+          rows={rows}
+          className={'rf-textarea__field'}
+          autoComplete='off'
+          onFocus={onInputFocus}
+          onBlur={onInputBlur}
+        />
+      </div>
+      {!!showMaxLength && !!props.maxLength && props.maxLength > 0 && (
         <p className='rf-textarea__max-length'>
           {value.length} / {props.maxLength}
         </p>

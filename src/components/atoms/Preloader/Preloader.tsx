@@ -5,7 +5,7 @@ import { Size } from '../../../types';
 export interface IPreloaderProps {
   className?: string;
   size?: Size;
-  variant?: 'default' | 'white';
+  variant?: 'default' | 'white' | 'inherit';
 }
 
 const Preloader: React.FC<IPreloaderProps> = ({ className = '', size = 'm', variant = 'default' }: IPreloaderProps) => {

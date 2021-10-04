@@ -1,9 +1,9 @@
 import React from 'react';
+
 import FormGroup from './FormGroup';
 import Input from '../../atoms/Input/Input';
-import Story from '../../storybook/Story';
-import StoryRow from '../../storybook/StoryRow';
-import StoryItem from '../../storybook/StoryItem';
+
+import { StoryDocs, StoryDocsH1 } from '../../storybook';
 
 export default {
   title: 'Form Controls/FormGroup',
@@ -11,13 +11,12 @@ export default {
 };
 
 export const formGroup = () => (
-  <Story name='FormGroup' width={600}>
-    <StoryItem description='Группировка элементов формы'>
-      <StoryRow>
-        <FormGroup label='Дефолтное состояние с контентом' required errorMessage='Ошибка'>
-          <Input name='text' placeholder='Введите текст' />
-        </FormGroup>
-      </StoryRow>
-    </StoryItem>
-  </Story>
+  <StoryDocs>
+    <StoryDocsH1>FormGroup</StoryDocsH1>
+    <div style={{ maxWidth: 600 }}>
+      <FormGroup label='Дефолтное состояние с контентом' required errorMessage='Ошибка'>
+        <Input name='text' placeholder='Введите текст' />
+      </FormGroup>
+    </div>
+  </StoryDocs>
 );

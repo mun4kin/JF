@@ -3,7 +3,7 @@ import './Story.scss';
 
 interface IProps {
   /** n */
-  name: string;
+  name?: string;
   width?: number;
   height?: number;
   description?: string;
@@ -20,7 +20,7 @@ const Story: React.FC<IProps> = ({
 
   return (
     <div className='story' style={style}>
-      <h2 className='story__name'>{name}</h2>
+      {!!name && <h2 className='story__name'>{name}</h2>}
       {description && <p className='story__description'>{description}</p>}
       <div className='story__wrapper'>{children}</div>
     </div>

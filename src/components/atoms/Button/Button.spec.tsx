@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Button from './Button';
 
 describe('Test <Button/> component', () => {
@@ -66,5 +66,16 @@ describe('Test <Button/> component', () => {
   it('should be round', () => {
     const { container } = render(<Button round> Button </Button>);
     expect(container.getElementsByClassName('rf-button--round')).toHaveLength(1);
+  });
+
+  it('should render adornments', () => {
+    render(<Button startAdornment={<div>start</div>} endAdornment={<div>end</div>}/>);
+    expect(screen.queryByText('start')).toBeInTheDocument();
+    expect(screen.queryByText('end')).toBeInTheDocument();
+  });
+
+  it('should hide content when preloader is visible', () => {
+    render(<Button preloader> Button </Button>);
+    expect(screen.getByTestId('rf-button__content')).toHaveClass('rf-button__content--hidden');
   });
 });

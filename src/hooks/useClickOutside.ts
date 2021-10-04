@@ -1,6 +1,6 @@
 import { RefObject, useEffect } from 'react';
 
-const useClickOutside = (node: RefObject<HTMLElement>, handler: () => void) => {
+const useClickOutside = (node: RefObject<HTMLElement>, handler: (event: MouseEvent) => void) => {
   /** Функция для отслеживания клика вне элемента */
   const handleClickOutside = (event: MouseEvent) => {
     /** Если кликнули по элементу или элементам внутри него - ничего не делаем */
@@ -8,7 +8,7 @@ const useClickOutside = (node: RefObject<HTMLElement>, handler: () => void) => {
       return;
     }
 
-    handler();
+    handler(event);
   };
 
   /** Вешаем eventListener на клик по текущему компоненту */
