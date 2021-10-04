@@ -29,6 +29,6 @@ jobs:
         run: yarn install
       - name: Piblish
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run:  npm run release -- patch --ci
